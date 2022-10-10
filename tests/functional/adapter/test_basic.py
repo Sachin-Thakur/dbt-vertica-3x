@@ -15,7 +15,7 @@ from dbt.tests.adapter.basic.test_adapter_methods import BaseAdapterMethod
 from dbt.tests.adapter.basic.test_validate_connection import BaseValidateConnection
 from dbt.tests.adapter.basic.test_docs_generate import BaseDocsGenerate
 from dbt.tests.adapter.basic.expected_catalog import base_expected_catalog
-from tests.functional.adapter.expected_stats import vertica_stats
+# from tests.functional.adapter.expected_stats import vertica_stats
 
 
 class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
@@ -69,13 +69,13 @@ class TestDocsGenerateVertica(BaseDocsGenerate):
     @pytest.fixture(scope="class")
     def expected_catalog(self, project):
         return base_expected_catalog(
-            project,
+            project='vertica',
             role=None,
             id_type="INT64",
             text_type="STRING",
             time_type="DATETIME",
             view_type="view",
             table_type="table",
-            model_stats=vertica_stats(False),
-            seed_stats=vertica_stats(True),
+            # model_stats=vertica_stats(False),
+            # seed_stats=vertica_stats(True),
         )
