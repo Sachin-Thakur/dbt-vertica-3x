@@ -16,16 +16,36 @@ from dbt.tests.adapter.basic.test_validate_connection import BaseValidateConnect
 from dbt.tests.adapter.basic.test_docs_generate import BaseDocsGenerate
 from dbt.tests.adapter.basic.expected_catalog import base_expected_catalog
 # from tests.functional.adapter.expected_stats import vertica_stats
+from expected_stats import vertica_stats
 
 
 class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
-    # This test requires a full-refresh to replace a table with a view
-    @pytest.fixture(scope="class")
-    def test_config(self):
-        return {"require_full_refresh": True}
+    pass
+
+# class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
+#     # This test requires a full-refresh to replace a table with a view
+#     @pytest.fixture(scope="class")
+#     def test_config(self):
+#         return {"require_full_refresh": True}
+from dbt.tests.adapter.basic.files import seeds_base_csv, seeds_added_csv, seeds_newcolumns_csv
+schema_seed_added_yml = """
+version: 2
+seeds:
+  - name: added
+    config:
+      column_types:
+        name: varchar(64)
+"""
 
 
 class TestSingularTestsVertica(BaseSingularTests):
+    # @pytest.fixture(scope="class")
+    # def models(self):
+    #     return {
+    #         "base.csv": seeds_base_csv,
+    #         "added.csv": seeds_added_csv,
+    #         "seeds.yml": schema_seed_added_yml,
+    #     }
     pass
 
 
@@ -67,15 +87,15 @@ class TestVerticaValidateConnection(BaseValidateConnection):
 
 class TestDocsGenerateVertica(BaseDocsGenerate):
     @pytest.fixture(scope="class")
-    def expected_catalog(self, project):
+    def test_expected_catalog(self, project="vertica_profile_3x"):
         return base_expected_catalog(
-            project='vertica',
-            role=None,
-            id_type="INT64",
-            text_type="STRING",
-            time_type="DATETIME",
-            view_type="view",
-            table_type="table",
+            project='vertica_profile_3x',
+            # role=None,
+            # id_type="INT64",
+            # text_type="STRING",
+            # time_type="DATETIME",
+            # view_type="view",
+            # table_type="table",
             # model_stats=vertica_stats(False),
             # seed_stats=vertica_stats(True),
         )
