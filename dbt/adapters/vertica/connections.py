@@ -30,7 +30,6 @@ class verticaCredentials(Credentials):
     withMaterialization: bool = False
     ssl_env_cafile: Optional[str] = None
     ssl_uri: Optional[str] = None
-    retries: int = 1
 
     @property
     def type(self):
@@ -117,19 +116,7 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f':P Could not EnableWithClauseMaterialization: {exc}')
                 pass
 
-        # return connection
-        retryable_exceptions = [  
-            Exception,  
-            dbt.exceptions.FailedToConnectException()
-        ]
-
-        return cls.retry_connection(
-        connection,
-        connect=vertica_python.connect(**conn_info),
-        logger=logger,
-        retry_limit=credentials.retries,
-        retryable_exceptions=retryable_exceptions )
-
+        return connection
 
     @classmethod
     def get_response(cls, cursor):
@@ -161,4 +148,3 @@ class verticaConnectionManager(SQLConnectionManager):
             logger.debug(f':P Error: {exc}')
             self.release()
             raise dbt.exceptions.RuntimeException(str(exc))
-
