@@ -148,4 +148,3 @@ class verticaConnectionManager(SQLConnectionManager):
             logger.debug(f':P Error: {exc}')
             self.release()
             raise dbt.exceptions.RuntimeException(str(exc))
-
