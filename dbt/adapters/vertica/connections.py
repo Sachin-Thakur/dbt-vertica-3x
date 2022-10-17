@@ -30,6 +30,7 @@ class verticaCredentials(Credentials):
     withMaterialization: bool = False
     ssl_env_cafile: Optional[str] = None
     ssl_uri: Optional[str] = None
+    retries: int = 1
 
     @property
     def type(self):
@@ -60,6 +61,7 @@ class verticaConnectionManager(SQLConnectionManager):
         credentials = connection.credentials
 
         try:
+            
             conn_info = {
                 'host': credentials.host,
                 'port': credentials.port,
@@ -87,11 +89,18 @@ class verticaConnectionManager(SQLConnectionManager):
                     context = ssl.create_default_context()
                 conn_info['ssl'] = context
                 logger.debug(f'SSL is on')
+           
+            def connect(**conn_info):
+              
+                logger.debug(f': COnnecting always')
+                handle = vertica_python.connect(**conn_info)
+                connection.state = 'open'
+                connection.handle = handle
+                logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
+                return  handle
 
-            handle = vertica_python.connect(**conn_info)
-            connection.state = 'open'
-            connection.handle = handle
-            logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
+
+              
 
         except Exception as exc:
             logger.debug(f':P Error connecting to database: {exc}')
@@ -116,7 +125,21 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f':P Could not EnableWithClauseMaterialization: {exc}')
                 pass
 
-        return connection
+        retryable_exceptions = [
+        Exception,
+    
+        dbt.exceptions.FailedToConnectException
+        ]
+
+        # return connection
+        
+        return cls.retry_connection(
+        connection,
+        connect=connect,
+        logger=logger,
+        retry_limit=credentials.retries,
+        retryable_exceptions=retryable_exceptions,
+        )
 
     @classmethod
     def get_response(cls, cursor):
@@ -141,10 +164,11 @@ class verticaConnectionManager(SQLConnectionManager):
         try:
             yield
         except vertica_python.DatabaseError as exc:
-            logger.debug(f':P Database error: {exc}')
+            logger.debug(f':P Database error: {exc} +worki')
             self.release()
             raise dbt.exceptions.DatabaseException(str(exc))
         except Exception as exc:
             logger.debug(f':P Error: {exc}')
+
             self.release()
             raise dbt.exceptions.RuntimeException(str(exc))
