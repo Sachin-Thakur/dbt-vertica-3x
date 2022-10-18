@@ -1,0 +1,39 @@
+import pytest
+import os
+
+# Import the standard functional fixtures as a plugin
+# Note: fixtures with session scope need to be local
+pytest_plugins = "dbt.tests.fixtures.project"
+
+def pytest_addoption(parser):
+    parser.addoption("--profile", action="store", default="vertica", type=str)
+
+# The profile dictionary, used to write out profiles.yml
+# dbt will supply a unique schema per test, so we do not specify 'schema' here
+@pytest.fixture(scope="class")
+def dbt_profile_target():
+    return {
+        "type": "vertica",
+        "threads": 1,
+        "host": "127.0.0.1",
+        "port": int(os.getenv("VERTICA_TEST_PORT", 5433)),
+        "username": os.getenv("VERTICA_TEST_USER", "dbadmin"),
+        "password": os.getenv("VERTICA_TEST_PASS", ""),
+        "database": os.getenv("VERTICA_TEST_DATABASE","VMart"),
+        
+    }
+
+def vertica_target():
+    return {
+        "type": "vertica",
+        "host": "127.0.0.1",
+    }
+
+def vertica_sql_endpoint_target():
+    return {
+        "type": "vertica",
+        "host": "127.0.0.1",
+    }
+
+
+
