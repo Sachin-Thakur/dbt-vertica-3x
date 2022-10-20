@@ -25,7 +25,7 @@
 {% endmacro %}
 
 -- a user-friendly interface into adapter.get_relation
-{% macro load_cached_relation(relation) %}
+{% macro load_cached_relation(relation) %}  
   {% do return(adapter.get_relation(
     database=relation.database,
     schema=relation.schema,
