@@ -1,8 +1,6 @@
-{% macro vertica__alter_column_comment(relation, column_dict) -%}
-  {{ exceptions.raise_not_implemented(
-    'alter_column_comment macro not implemented for adapter '+adapter.type()) }}
-{%- endmacro %}
-
+{% macro alter_relation_comment(relation, relation_comment) -%}
+  {{ return(adapter.dispatch('alter_relation_comment', 'dbt')(relation, relation_comment)) }}
+{% endmacro %}
 
 {% macro vertica__alter_relation_comment(relation, relation_comment) -%}
   {{ exceptions.raise_not_implemented(
@@ -13,3 +11,16 @@
 {# 
   No need to implement persist_docs(). Syntax supported by default. 
 #}
+
+{% macro alter_column_comment(relation, column_dict) -%}
+  {{ return(adapter.dispatch('alter_column_comment', 'dbt')(relation, column_dict)) }}
+{% endmacro %}
+
+{% macro vertica__alter_column_comment(relation, column_dict) -%}
+  {{ exceptions.raise_not_implemented(
+    'alter_column_comment macro not implemented for adapter '+adapter.type()) }}
+{% endmacro %}
+
+
+
+
