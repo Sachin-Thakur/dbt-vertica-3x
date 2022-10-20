@@ -58,6 +58,19 @@
 {%- endmacro %}
 
 
+
+
+
+
+
+-- added by us
+{% macro list_schemas(database) -%}
+  {{ return(adapter.dispatch('list_schemas', 'dbt')(database)) }}
+{% endmacro %}
+
+
+
+
 {% macro vertica__list_schemas(database) %}
   {% call statement('list_schemas', fetch_result=True, auto_begin=False) %}
     select schema_name
@@ -67,6 +80,15 @@
 {% endmacro %}
 
 
+
+
+{% macro check_schema_exists(information_schema, schema) -%}
+  {{ return(adapter.dispatch('check_schema_exists', 'dbt')(information_schema, schema)) }}
+{% endmacro %}
+
+
+
+
 {% macro vertica__check_schema_exists(database, schema) -%}
   {% call statement('check_schema_exists', fetch_result=True, auto_begin=False) -%}
         select count(*)
@@ -74,6 +96,13 @@
         where schema_name='{{ schema }}'
   {%- endcall %}
   {{ return(load_result('check_schema_exists').table) }}
+{% endmacro %}
+
+
+-- added by us 
+
+{% macro list_relations_without_caching(schema_relation) %}
+  {{ return(adapter.dispatch('list_relations_without_caching', 'dbt')(schema_relation)) }}
 {% endmacro %}
 
 

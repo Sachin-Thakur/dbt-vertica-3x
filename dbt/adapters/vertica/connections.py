@@ -90,14 +90,14 @@ class verticaConnectionManager(SQLConnectionManager):
                 conn_info['ssl'] = context
                 logger.debug(f'SSL is on')
            
-            def connect(**conn_info):
+            def connect():
               
                 logger.debug(f': COnnecting always')
                 handle = vertica_python.connect(**conn_info)
                 connection.state = 'open'
                 connection.handle = handle
                 logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
-                return  handle
+                return  connection
 
 
               
