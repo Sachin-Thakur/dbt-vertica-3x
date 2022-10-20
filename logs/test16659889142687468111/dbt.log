@@ -1,0 +1,807 @@
+[0m06:41:54.378877 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m06:41:54.379106 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m06:41:54.379313 [debug] [MainThread]: Creating schema "_ReferenceKey(database='vmart', schema='test16659889142687468111_test_basic', identifier=None)"
+[0m06:41:54.380735 [debug] [MainThread]: Using vertica connection "_test"
+[0m06:41:54.380889 [debug] [MainThread]: On _test: BEGIN
+[0m06:41:54.381023 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:41:54.395128 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:54.405963 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:54.406298 [debug] [MainThread]: Using vertica connection "_test"
+[0m06:41:54.406480 [debug] [MainThread]: On _test: create schema if not exists "test16659889142687468111_test_basic"
+  
+[0m06:41:54.417545 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:54.419260 [debug] [MainThread]: On _test: COMMIT
+[0m06:41:54.419656 [debug] [MainThread]: Using vertica connection "_test"
+[0m06:41:54.419971 [debug] [MainThread]: On _test: COMMIT
+[0m06:41:54.426995 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:54.427615 [debug] [MainThread]: On _test: Close
+[0m06:41:54.445298 [debug] [MainThread]: Connection '_test' was properly closed.
+
+
+============================== 2022-10-17 06:41:54.451117 | f0e90219-dc22-4b5f-8aa4-5e360b5c3c34 ==============================
+[0m06:41:54.451127 [info ] [MainThread]: Running with dbt=1.2.2
+[0m06:41:54.451448 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-6/profile2', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'show': False, 'which': 'seed', 'rpc_method': 'seed', 'indirect_selection': 'eager'}
+[0m06:41:54.451565 [debug] [MainThread]: Tracking: do not track
+[0m06:41:54.457163 [info ] [MainThread]: Partial parse save file not found. Starting full parse.
+[0m06:41:54.465137 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m06:41:54.465391 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m06:41:54.465535 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m06:41:54.470049 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m06:41:54.470967 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m06:41:54.471617 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m06:41:54.474173 [debug] [MainThread]: Parsing macros/materializations/models/incremental/helpers.sql
+[0m06:41:54.475939 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m06:41:54.479804 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m06:41:54.480983 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m06:41:54.484976 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m06:41:54.486271 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m06:41:54.493448 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m06:41:54.494516 [debug] [MainThread]: Parsing macros/materializations/snapshots/helper.sql
+[0m06:41:54.494686 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m06:41:54.500170 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m06:41:54.503842 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m06:41:54.504402 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m06:41:54.504844 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m06:41:54.506717 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m06:41:54.508328 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m06:41:54.512618 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m06:41:54.513468 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m06:41:54.514179 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m06:41:54.515573 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m06:41:54.517841 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m06:41:54.518728 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m06:41:54.521965 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m06:41:54.523350 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m06:41:54.525388 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m06:41:54.535295 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m06:41:54.538036 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m06:41:54.538973 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m06:41:54.544566 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m06:41:54.553861 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m06:41:54.555689 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m06:41:54.559342 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m06:41:54.567775 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m06:41:54.568883 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m06:41:54.576274 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m06:41:54.586358 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m06:41:54.587563 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m06:41:54.588725 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m06:41:54.591446 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m06:41:54.602168 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m06:41:54.606325 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m06:41:54.607674 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m06:41:54.608823 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m06:41:54.611047 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m06:41:54.613239 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m06:41:54.615194 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m06:41:54.622824 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m06:41:54.632534 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m06:41:54.637384 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m06:41:54.646483 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m06:41:54.648102 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m06:41:54.651306 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m06:41:54.652301 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m06:41:54.652995 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m06:41:54.653674 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m06:41:54.654358 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m06:41:54.655130 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m06:41:54.656538 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m06:41:54.657136 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m06:41:54.657979 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m06:41:54.658894 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m06:41:54.662732 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m06:41:54.663534 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m06:41:54.664422 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m06:41:54.665155 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m06:41:54.666045 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m06:41:54.666784 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m06:41:54.668369 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m06:41:54.669075 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m06:41:54.669655 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m06:41:54.670399 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m06:41:54.671148 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m06:41:54.672342 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m06:41:54.673278 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m06:41:54.673878 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m06:41:54.674355 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m06:41:54.675022 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m06:41:54.677892 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m06:41:54.682928 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m06:41:54.831290 [debug] [MainThread]: 1699: static parser successfully parsed view_model.sql
+[0m06:41:54.833118 [debug] [MainThread]: 1699: static parser successfully parsed table_model.sql
+[0m06:41:54.847981 [warn ] [MainThread]: [[33mWARNING[0m]: 'base' is a seed node, but it is specified in the models section of
+seeds/schema.yml. To fix this error, place the `base` specification under the
+seeds key instead.
+[0m06:41:54.872587 [info ] [MainThread]: Found 2 models, 3 tests, 0 snapshots, 0 analyses, 266 macros, 0 operations, 1 seed file, 1 source, 0 exposures, 0 metrics
+[0m06:41:54.873269 [info ] [MainThread]: 
+[0m06:41:54.873609 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:54.874116 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart"
+[0m06:41:54.875414 [debug] [ThreadPool]: Using vertica connection "list_VMart"
+[0m06:41:54.875553 [debug] [ThreadPool]: On list_VMart: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart"} */
+
+    select schema_name
+    from v_catalog.schemata
+  
+[0m06:41:54.875659 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:41:54.897169 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:54.931467 [debug] [ThreadPool]: SQL status: Code: [Column(name='schema_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.06 seconds
+[0m06:41:54.932407 [debug] [ThreadPool]: On list_VMart: Close
+[0m06:41:54.933466 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:54.935202 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:54.935361 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: BEGIN
+[0m06:41:54.935471 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:41:54.951624 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:54.956921 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:54.957471 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:54.957813 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16659889142687468111_test_basic"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16659889142687468111_test_basic'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16659889142687468111_test_basic'
+  
+[0m06:41:54.974716 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:54.977063 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: ROLLBACK
+[0m06:41:54.984981 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: Close
+[0m06:41:54.986486 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:54.986973 [debug] [MainThread]: On master: BEGIN
+[0m06:41:54.987353 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:41:55.003611 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.010211 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.010777 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.011132 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.011489 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.016686 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m06:41:55.017265 [debug] [MainThread]: On master: Close
+[0m06:41:55.018033 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+[0m06:41:55.018732 [info ] [MainThread]: 
+[0m06:41:55.021895 [debug] [Thread-22 ]: Began running node seed.generic_tests.base
+[0m06:41:55.022462 [info ] [Thread-22 ]: 1 of 1 START seed file test16659889142687468111_test_basic.base ................ [RUN]
+[0m06:41:55.023378 [debug] [Thread-22 ]: Acquiring new vertica connection "seed.generic_tests.base"
+[0m06:41:55.023748 [debug] [Thread-22 ]: Began compiling node seed.generic_tests.base
+[0m06:41:55.024366 [debug] [Thread-22 ]: finished collecting timing info
+[0m06:41:55.024726 [debug] [Thread-22 ]: Began executing node seed.generic_tests.base
+[0m06:41:55.029996 [debug] [Thread-22 ]: Writing runtime SQL for node "seed.generic_tests.base"
+[0m06:41:55.030657 [debug] [Thread-22 ]: Using vertica connection "seed.generic_tests.base"
+[0m06:41:55.030880 [debug] [Thread-22 ]: On seed.generic_tests.base: BEGIN
+[0m06:41:55.031048 [debug] [Thread-22 ]: Opening a new connection, currently in state closed
+[0m06:41:55.046192 [debug] [Thread-22 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.050619 [debug] [Thread-22 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.050967 [debug] [Thread-22 ]: Using vertica connection "seed.generic_tests.base"
+[0m06:41:55.051158 [debug] [Thread-22 ]: On seed.generic_tests.base: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "seed.generic_tests.base"} */
+
+    
+    create table "VMart"."test16659889142687468111_test_basic"."base" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone)
+  ;
+    -- dbt seed --
+    
+        copy "VMart"."test16659889142687468111_test_basic"."base"
+        ("id", "name", "some_date")
+        from local '/tmp/pytest-of-sachin/pytest-6/project2/seeds/base.csv'
+        delimiter ','
+        enclosed by '"'
+        skip 1
+        abort on error
+        rejected data as table "VMart"."test16659889142687468111_test_basic".seed_rejects;
+    
+  
+[0m06:41:55.072603 [debug] [Thread-22 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.074559 [debug] [Thread-22 ]: On seed.generic_tests.base: COMMIT
+[0m06:41:55.074814 [debug] [Thread-22 ]: Using vertica connection "seed.generic_tests.base"
+[0m06:41:55.074999 [debug] [Thread-22 ]: On seed.generic_tests.base: COMMIT
+[0m06:41:55.169530 [debug] [Thread-22 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.09 seconds
+[0m06:41:55.170312 [debug] [Thread-22 ]: finished collecting timing info
+[0m06:41:55.170615 [debug] [Thread-22 ]: On seed.generic_tests.base: Close
+[0m06:41:55.171191 [info ] [Thread-22 ]: 1 of 1 OK loaded seed file test16659889142687468111_test_basic.base ............ [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.15s]
+[0m06:41:55.171789 [debug] [Thread-22 ]: Finished running node seed.generic_tests.base
+[0m06:41:55.172948 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:55.173212 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.173425 [debug] [MainThread]: On master: BEGIN
+[0m06:41:55.173600 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:41:55.191242 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.204954 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m06:41:55.205400 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.205663 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.205883 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.211836 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.212373 [debug] [MainThread]: On master: Close
+[0m06:41:55.213166 [info ] [MainThread]: 
+[0m06:41:55.213823 [info ] [MainThread]: Finished running 1 seed in 0 hours 0 minutes and 0.34 seconds (0.34s).
+[0m06:41:55.214388 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:41:55.214677 [debug] [MainThread]: Connection 'seed.generic_tests.base' was properly closed.
+[0m06:41:55.222906 [info ] [MainThread]: 
+[0m06:41:55.223315 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m06:41:55.223681 [info ] [MainThread]: 
+[0m06:41:55.223978 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m06:41:55.224359 [debug] [MainThread]: Flushing usage events
+
+
+============================== 2022-10-17 06:41:55.238166 | f0e90219-dc22-4b5f-8aa4-5e360b5c3c34 ==============================
+[0m06:41:55.238179 [info ] [MainThread]: Running with dbt=1.2.2
+[0m06:41:55.238520 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-6/profile2', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'indirect_selection': 'eager', 'select': ['base'], 'which': 'test', 'rpc_method': 'test'}
+[0m06:41:55.238655 [debug] [MainThread]: Tracking: do not track
+[0m06:41:55.264915 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m06:41:55.265144 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m06:41:55.273470 [info ] [MainThread]: Found 2 models, 3 tests, 0 snapshots, 0 analyses, 266 macros, 0 operations, 1 seed file, 1 source, 0 exposures, 0 metrics
+[0m06:41:55.274133 [info ] [MainThread]: 
+[0m06:41:55.274482 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:55.275041 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.276344 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.276485 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: BEGIN
+[0m06:41:55.276615 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:41:55.296897 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.302496 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m06:41:55.302956 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.303266 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16659889142687468111_test_basic"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16659889142687468111_test_basic'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16659889142687468111_test_basic'
+  
+[0m06:41:55.319370 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.321949 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: ROLLBACK
+[0m06:41:55.330827 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: Close
+[0m06:41:55.332538 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.333014 [debug] [MainThread]: On master: BEGIN
+[0m06:41:55.333376 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:41:55.352748 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.358358 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.358930 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.359347 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.359712 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.366043 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.366636 [debug] [MainThread]: On master: Close
+[0m06:41:55.367531 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+[0m06:41:55.368249 [info ] [MainThread]: 
+[0m06:41:55.371711 [debug] [Thread-29 ]: Began running node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:55.372214 [info ] [Thread-29 ]: 1 of 1 START test not_null_base_id ............................................. [RUN]
+[0m06:41:55.373158 [debug] [Thread-29 ]: Acquiring new vertica connection "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:55.373533 [debug] [Thread-29 ]: Began compiling node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:55.373860 [debug] [Thread-29 ]: Compiling test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:55.392458 [debug] [Thread-29 ]: Writing injected SQL for node "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:55.392939 [debug] [Thread-29 ]: finished collecting timing info
+[0m06:41:55.393147 [debug] [Thread-29 ]: Began executing node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:55.394668 [debug] [Thread-29 ]: Writing runtime SQL for node "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:55.394926 [debug] [Thread-29 ]: Using vertica connection "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:55.395050 [debug] [Thread-29 ]: On test.generic_tests.not_null_base_id.910041d42f: BEGIN
+[0m06:41:55.395150 [debug] [Thread-29 ]: Opening a new connection, currently in state closed
+[0m06:41:55.411642 [debug] [Thread-29 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.416970 [debug] [Thread-29 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.417517 [debug] [Thread-29 ]: Using vertica connection "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:55.417865 [debug] [Thread-29 ]: On test.generic_tests.not_null_base_id.910041d42f: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "test.generic_tests.not_null_base_id.910041d42f"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select id
+from "VMart"."test16659889142687468111_test_basic"."base"
+where id is null
+
+
+
+      
+    ) dbt_internal_test
+[0m06:41:55.430255 [debug] [Thread-29 ]: SQL status: Code: [Column(name='failures', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='should_warn', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True), Column(name='should_error', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.433190 [debug] [Thread-29 ]: finished collecting timing info
+[0m06:41:55.433763 [debug] [Thread-29 ]: On test.generic_tests.not_null_base_id.910041d42f: ROLLBACK
+[0m06:41:55.439781 [debug] [Thread-29 ]: On test.generic_tests.not_null_base_id.910041d42f: Close
+[0m06:41:55.440820 [info ] [Thread-29 ]: 1 of 1 PASS not_null_base_id ................................................... [[32mPASS[0m in 0.07s]
+[0m06:41:55.441813 [debug] [Thread-29 ]: Finished running node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:55.443884 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:55.444530 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.444968 [debug] [MainThread]: On master: BEGIN
+[0m06:41:55.445318 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:41:55.461791 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.468269 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.468441 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.468573 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.468691 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.474038 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.474197 [debug] [MainThread]: On master: Close
+[0m06:41:55.474510 [info ] [MainThread]: 
+[0m06:41:55.474742 [info ] [MainThread]: Finished running 1 test in 0 hours 0 minutes and 0.20 seconds (0.20s).
+[0m06:41:55.474931 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:41:55.475027 [debug] [MainThread]: Connection 'test.generic_tests.not_null_base_id.910041d42f' was properly closed.
+[0m06:41:55.478473 [info ] [MainThread]: 
+[0m06:41:55.478732 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m06:41:55.478948 [info ] [MainThread]: 
+[0m06:41:55.479126 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m06:41:55.479374 [debug] [MainThread]: Flushing usage events
+
+
+============================== 2022-10-17 06:41:55.490407 | f0e90219-dc22-4b5f-8aa4-5e360b5c3c34 ==============================
+[0m06:41:55.490416 [info ] [MainThread]: Running with dbt=1.2.2
+[0m06:41:55.490716 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-6/profile2', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m06:41:55.490834 [debug] [MainThread]: Tracking: do not track
+[0m06:41:55.546094 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m06:41:55.546314 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m06:41:55.553198 [info ] [MainThread]: Found 2 models, 3 tests, 0 snapshots, 0 analyses, 266 macros, 0 operations, 1 seed file, 1 source, 0 exposures, 0 metrics
+[0m06:41:55.553915 [info ] [MainThread]: 
+[0m06:41:55.554287 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:55.554789 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart"
+[0m06:41:55.555931 [debug] [ThreadPool]: Using vertica connection "list_VMart"
+[0m06:41:55.556055 [debug] [ThreadPool]: On list_VMart: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart"} */
+
+    select schema_name
+    from v_catalog.schemata
+  
+[0m06:41:55.556164 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:41:55.575438 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.592373 [debug] [ThreadPool]: SQL status: Code: [Column(name='schema_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m06:41:55.594943 [debug] [ThreadPool]: On list_VMart: Close
+[0m06:41:55.597479 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.601275 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.601743 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: BEGIN
+[0m06:41:55.602076 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:41:55.621284 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.628152 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m06:41:55.628709 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.629074 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16659889142687468111_test_basic"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16659889142687468111_test_basic'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16659889142687468111_test_basic'
+  
+[0m06:41:55.645646 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.648132 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: ROLLBACK
+[0m06:41:55.654674 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: Close
+[0m06:41:55.656268 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.656712 [debug] [MainThread]: On master: BEGIN
+[0m06:41:55.657045 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:41:55.673827 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.679756 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.680332 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.680691 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.681039 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.686717 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.687355 [debug] [MainThread]: On master: Close
+[0m06:41:55.688208 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+[0m06:41:55.688917 [info ] [MainThread]: 
+[0m06:41:55.692820 [debug] [Thread-36 ]: Began running node model.generic_tests.table_model
+[0m06:41:55.693229 [debug] [Thread-37 ]: Began running node model.generic_tests.view_model
+[0m06:41:55.694004 [info ] [Thread-36 ]: 1 of 2 START table model test16659889142687468111_test_basic.table_model ....... [RUN]
+[0m06:41:55.694822 [info ] [Thread-37 ]: 2 of 2 START view model test16659889142687468111_test_basic.view_model ......... [RUN]
+[0m06:41:55.696049 [debug] [Thread-36 ]: Acquiring new vertica connection "model.generic_tests.table_model"
+[0m06:41:55.697143 [debug] [Thread-37 ]: Acquiring new vertica connection "model.generic_tests.view_model"
+[0m06:41:55.697696 [debug] [Thread-36 ]: Began compiling node model.generic_tests.table_model
+[0m06:41:55.698151 [debug] [Thread-37 ]: Began compiling node model.generic_tests.view_model
+[0m06:41:55.698644 [debug] [Thread-36 ]: Compiling model.generic_tests.table_model
+[0m06:41:55.699046 [debug] [Thread-37 ]: Compiling model.generic_tests.view_model
+[0m06:41:55.708951 [debug] [Thread-37 ]: Writing injected SQL for node "model.generic_tests.view_model"
+[0m06:41:55.709862 [debug] [Thread-36 ]: Writing injected SQL for node "model.generic_tests.table_model"
+[0m06:41:55.710542 [debug] [Thread-37 ]: finished collecting timing info
+[0m06:41:55.711007 [debug] [Thread-37 ]: Began executing node model.generic_tests.view_model
+[0m06:41:55.711285 [debug] [Thread-36 ]: finished collecting timing info
+[0m06:41:55.717383 [debug] [Thread-37 ]: Writing runtime SQL for node "model.generic_tests.view_model"
+[0m06:41:55.717738 [debug] [Thread-36 ]: Began executing node model.generic_tests.table_model
+[0m06:41:55.734016 [debug] [Thread-36 ]: Using vertica connection "model.generic_tests.table_model"
+[0m06:41:55.734229 [debug] [Thread-36 ]: On model.generic_tests.table_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.table_model"} */
+drop table if exists "VMart"."test16659889142687468111_test_basic"."table_model__dbt_tmp" cascade
+[0m06:41:55.734374 [debug] [Thread-36 ]: Opening a new connection, currently in state closed
+[0m06:41:55.734811 [debug] [Thread-37 ]: Using vertica connection "model.generic_tests.view_model"
+[0m06:41:55.734967 [debug] [Thread-37 ]: On model.generic_tests.view_model: BEGIN
+[0m06:41:55.735072 [debug] [Thread-37 ]: Opening a new connection, currently in state init
+[0m06:41:55.751591 [debug] [Thread-37 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.757776 [debug] [Thread-37 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.758422 [debug] [Thread-36 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.760622 [debug] [Thread-37 ]: Using vertica connection "model.generic_tests.view_model"
+[0m06:41:55.761346 [debug] [Thread-37 ]: On model.generic_tests.view_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.view_model"} */
+
+  create view "VMart"."test16659889142687468111_test_basic"."view_model__dbt_tmp" as (
+    
+
+  select * from "VMart"."test16659889142687468111_test_basic"."base"
+  );
+[0m06:41:55.772386 [debug] [Thread-37 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.772998 [debug] [Thread-36 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.04 seconds
+[0m06:41:55.777593 [debug] [Thread-37 ]: Using vertica connection "model.generic_tests.view_model"
+[0m06:41:55.781966 [debug] [Thread-36 ]: Using vertica connection "model.generic_tests.table_model"
+[0m06:41:55.782652 [debug] [Thread-37 ]: On model.generic_tests.view_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.view_model"} */
+alter view "VMart"."test16659889142687468111_test_basic"."view_model__dbt_tmp" rename to "view_model"
+[0m06:41:55.783187 [debug] [Thread-36 ]: On model.generic_tests.table_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.table_model"} */
+drop table if exists "VMart"."test16659889142687468111_test_basic"."table_model__dbt_backup" cascade
+[0m06:41:55.791826 [debug] [Thread-37 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.795064 [debug] [Thread-37 ]: On model.generic_tests.view_model: COMMIT
+[0m06:41:55.795545 [debug] [Thread-36 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.796095 [debug] [Thread-37 ]: Using vertica connection "model.generic_tests.view_model"
+[0m06:41:55.807854 [debug] [Thread-36 ]: Writing runtime SQL for node "model.generic_tests.table_model"
+[0m06:41:55.808219 [debug] [Thread-37 ]: On model.generic_tests.view_model: COMMIT
+[0m06:41:55.808775 [debug] [Thread-36 ]: Using vertica connection "model.generic_tests.table_model"
+[0m06:41:55.809329 [debug] [Thread-36 ]: On model.generic_tests.table_model: BEGIN
+[0m06:41:55.814932 [debug] [Thread-36 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.815517 [debug] [Thread-37 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.815938 [debug] [Thread-36 ]: Using vertica connection "model.generic_tests.table_model"
+[0m06:41:55.819167 [debug] [Thread-37 ]: Using vertica connection "model.generic_tests.view_model"
+[0m06:41:55.819627 [debug] [Thread-36 ]: On model.generic_tests.table_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.table_model"} */
+
+
+  create  table
+    "VMart"."test16659889142687468111_test_basic"."table_model__dbt_tmp"
+    
+  as (
+    
+
+  select * from "VMart"."test16659889142687468111_test_basic"."base"
+  );
+
+[0m06:41:55.820118 [debug] [Thread-37 ]: On model.generic_tests.view_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.view_model"} */
+drop view if exists "VMart"."test16659889142687468111_test_basic"."view_model__dbt_backup" cascade
+[0m06:41:55.831476 [debug] [Thread-37 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.833653 [debug] [Thread-37 ]: finished collecting timing info
+[0m06:41:55.834103 [debug] [Thread-37 ]: On model.generic_tests.view_model: Close
+[0m06:41:55.835143 [info ] [Thread-37 ]: 2 of 2 OK created view model test16659889142687468111_test_basic.view_model .... [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.14s]
+[0m06:41:55.836079 [debug] [Thread-37 ]: Finished running node model.generic_tests.view_model
+[0m06:41:55.858468 [debug] [Thread-36 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.04 seconds
+[0m06:41:55.863434 [debug] [Thread-36 ]: Using vertica connection "model.generic_tests.table_model"
+[0m06:41:55.863927 [debug] [Thread-36 ]: On model.generic_tests.table_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.table_model"} */
+alter table "VMart"."test16659889142687468111_test_basic"."table_model__dbt_tmp" rename to "table_model"
+[0m06:41:55.875412 [debug] [Thread-36 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.877491 [debug] [Thread-36 ]: On model.generic_tests.table_model: COMMIT
+[0m06:41:55.877940 [debug] [Thread-36 ]: Using vertica connection "model.generic_tests.table_model"
+[0m06:41:55.878297 [debug] [Thread-36 ]: On model.generic_tests.table_model: COMMIT
+[0m06:41:55.885188 [debug] [Thread-36 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.888949 [debug] [Thread-36 ]: Using vertica connection "model.generic_tests.table_model"
+[0m06:41:55.889397 [debug] [Thread-36 ]: On model.generic_tests.table_model: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "model.generic_tests.table_model"} */
+drop table if exists "VMart"."test16659889142687468111_test_basic"."table_model__dbt_backup" cascade
+[0m06:41:55.897233 [debug] [Thread-36 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:55.899607 [debug] [Thread-36 ]: finished collecting timing info
+[0m06:41:55.900094 [debug] [Thread-36 ]: On model.generic_tests.table_model: Close
+[0m06:41:55.901231 [info ] [Thread-36 ]: 1 of 2 OK created table model test16659889142687468111_test_basic.table_model .. [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.21s]
+[0m06:41:55.902175 [debug] [Thread-36 ]: Finished running node model.generic_tests.table_model
+[0m06:41:55.904392 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:55.904856 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.905209 [debug] [MainThread]: On master: BEGIN
+[0m06:41:55.905520 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:41:55.922950 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:55.928179 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:55.928715 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.929038 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:55.929329 [debug] [MainThread]: On master: COMMIT
+[0m06:41:55.933855 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m06:41:55.934407 [debug] [MainThread]: On master: Close
+[0m06:41:55.935317 [info ] [MainThread]: 
+[0m06:41:55.936005 [info ] [MainThread]: Finished running 1 view model, 1 table model in 0 hours 0 minutes and 0.38 seconds (0.38s).
+[0m06:41:55.936547 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:41:55.936827 [debug] [MainThread]: Connection 'model.generic_tests.table_model' was properly closed.
+[0m06:41:55.937110 [debug] [MainThread]: Connection 'model.generic_tests.view_model' was properly closed.
+[0m06:41:55.948425 [info ] [MainThread]: 
+[0m06:41:55.948902 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m06:41:55.949323 [info ] [MainThread]: 
+[0m06:41:55.949674 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+[0m06:41:55.950105 [debug] [MainThread]: Flushing usage events
+
+
+============================== 2022-10-17 06:41:55.962233 | f0e90219-dc22-4b5f-8aa4-5e360b5c3c34 ==============================
+[0m06:41:55.962242 [info ] [MainThread]: Running with dbt=1.2.2
+[0m06:41:55.962505 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-6/profile2', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'indirect_selection': 'eager', 'which': 'test', 'rpc_method': 'test'}
+[0m06:41:55.962610 [debug] [MainThread]: Tracking: do not track
+[0m06:41:55.978980 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m06:41:55.979151 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m06:41:55.985886 [info ] [MainThread]: Found 2 models, 3 tests, 0 snapshots, 0 analyses, 266 macros, 0 operations, 1 seed file, 1 source, 0 exposures, 0 metrics
+[0m06:41:55.986602 [info ] [MainThread]: 
+[0m06:41:55.986933 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:55.987562 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.988663 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:55.988802 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: BEGIN
+[0m06:41:55.989056 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:41:56.011281 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:56.019162 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m06:41:56.019729 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16659889142687468111_test_basic"
+[0m06:41:56.020069 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16659889142687468111_test_basic"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16659889142687468111_test_basic'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16659889142687468111_test_basic'
+  
+[0m06:41:56.039429 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:56.042298 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: ROLLBACK
+[0m06:41:56.049275 [debug] [ThreadPool]: On list_VMart_test16659889142687468111_test_basic: Close
+[0m06:41:56.050953 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:56.051527 [debug] [MainThread]: On master: BEGIN
+[0m06:41:56.051894 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:41:56.067329 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:56.073065 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:56.073694 [debug] [MainThread]: On master: COMMIT
+[0m06:41:56.074087 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:56.074431 [debug] [MainThread]: On master: COMMIT
+[0m06:41:56.080384 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:56.081041 [debug] [MainThread]: On master: Close
+[0m06:41:56.081947 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+[0m06:41:56.082717 [info ] [MainThread]: 
+[0m06:41:56.086409 [debug] [Thread-43 ]: Began running node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:56.087239 [debug] [Thread-44 ]: Began running node test.generic_tests.not_null_table_model_id.74214535fa
+[0m06:41:56.088454 [info ] [Thread-43 ]: 1 of 3 START test not_null_base_id ............................................. [RUN]
+[0m06:41:56.088990 [debug] [Thread-45 ]: Began running node test.generic_tests.not_null_view_model_id.c9346154f2
+[0m06:41:56.089666 [info ] [Thread-44 ]: 2 of 3 START test not_null_table_model_id ...................................... [RUN]
+[0m06:41:56.090975 [debug] [Thread-43 ]: Acquiring new vertica connection "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:56.091393 [info ] [Thread-45 ]: 3 of 3 START test not_null_view_model_id ....................................... [RUN]
+[0m06:41:56.092570 [debug] [Thread-44 ]: Acquiring new vertica connection "test.generic_tests.not_null_table_model_id.74214535fa"
+[0m06:41:56.093064 [debug] [Thread-43 ]: Began compiling node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:56.094213 [debug] [Thread-44 ]: Began compiling node test.generic_tests.not_null_table_model_id.74214535fa
+[0m06:41:56.094944 [debug] [Thread-45 ]: Acquiring new vertica connection "test.generic_tests.not_null_view_model_id.c9346154f2"
+[0m06:41:56.095424 [debug] [Thread-43 ]: Compiling test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:56.095905 [debug] [Thread-44 ]: Compiling test.generic_tests.not_null_table_model_id.74214535fa
+[0m06:41:56.096391 [debug] [Thread-45 ]: Began compiling node test.generic_tests.not_null_view_model_id.c9346154f2
+[0m06:41:56.109247 [debug] [Thread-43 ]: Writing injected SQL for node "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:56.110996 [debug] [Thread-44 ]: Writing injected SQL for node "test.generic_tests.not_null_table_model_id.74214535fa"
+[0m06:41:56.111526 [debug] [Thread-45 ]: Compiling test.generic_tests.not_null_view_model_id.c9346154f2
+[0m06:41:56.112494 [debug] [Thread-43 ]: finished collecting timing info
+[0m06:41:56.119744 [debug] [Thread-45 ]: Writing injected SQL for node "test.generic_tests.not_null_view_model_id.c9346154f2"
+[0m06:41:56.120300 [debug] [Thread-43 ]: Began executing node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:56.120746 [debug] [Thread-44 ]: finished collecting timing info
+[0m06:41:56.125923 [debug] [Thread-43 ]: Writing runtime SQL for node "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:56.126400 [debug] [Thread-45 ]: finished collecting timing info
+[0m06:41:56.126955 [debug] [Thread-44 ]: Began executing node test.generic_tests.not_null_table_model_id.74214535fa
+[0m06:41:56.127859 [debug] [Thread-45 ]: Began executing node test.generic_tests.not_null_view_model_id.c9346154f2
+[0m06:41:56.128293 [debug] [Thread-43 ]: Using vertica connection "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:56.131567 [debug] [Thread-44 ]: Writing runtime SQL for node "test.generic_tests.not_null_table_model_id.74214535fa"
+[0m06:41:56.134685 [debug] [Thread-45 ]: Writing runtime SQL for node "test.generic_tests.not_null_view_model_id.c9346154f2"
+[0m06:41:56.135181 [debug] [Thread-43 ]: On test.generic_tests.not_null_base_id.910041d42f: BEGIN
+[0m06:41:56.136288 [debug] [Thread-43 ]: Opening a new connection, currently in state closed
+[0m06:41:56.137207 [debug] [Thread-44 ]: Using vertica connection "test.generic_tests.not_null_table_model_id.74214535fa"
+[0m06:41:56.137609 [debug] [Thread-45 ]: Using vertica connection "test.generic_tests.not_null_view_model_id.c9346154f2"
+[0m06:41:56.137943 [debug] [Thread-44 ]: On test.generic_tests.not_null_table_model_id.74214535fa: BEGIN
+[0m06:41:56.138306 [debug] [Thread-45 ]: On test.generic_tests.not_null_view_model_id.c9346154f2: BEGIN
+[0m06:41:56.138616 [debug] [Thread-44 ]: Opening a new connection, currently in state init
+[0m06:41:56.138933 [debug] [Thread-45 ]: Opening a new connection, currently in state init
+[0m06:41:56.156389 [debug] [Thread-44 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:56.157204 [debug] [Thread-45 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:56.157776 [debug] [Thread-43 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:56.161666 [debug] [Thread-44 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:56.162086 [debug] [Thread-44 ]: Using vertica connection "test.generic_tests.not_null_table_model_id.74214535fa"
+[0m06:41:56.162386 [debug] [Thread-44 ]: On test.generic_tests.not_null_table_model_id.74214535fa: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "test.generic_tests.not_null_table_model_id.74214535fa"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select id
+from "VMart"."test16659889142687468111_test_basic"."table_model"
+where id is null
+
+
+
+      
+    ) dbt_internal_test
+[0m06:41:56.165294 [debug] [Thread-45 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m06:41:56.165758 [debug] [Thread-43 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m06:41:56.166170 [debug] [Thread-45 ]: Using vertica connection "test.generic_tests.not_null_view_model_id.c9346154f2"
+[0m06:41:56.166644 [debug] [Thread-43 ]: Using vertica connection "test.generic_tests.not_null_base_id.910041d42f"
+[0m06:41:56.167069 [debug] [Thread-45 ]: On test.generic_tests.not_null_view_model_id.c9346154f2: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "test.generic_tests.not_null_view_model_id.c9346154f2"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select id
+from "VMart"."test16659889142687468111_test_basic"."view_model"
+where id is null
+
+
+
+      
+    ) dbt_internal_test
+[0m06:41:56.167544 [debug] [Thread-43 ]: On test.generic_tests.not_null_base_id.910041d42f: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "node_id": "test.generic_tests.not_null_base_id.910041d42f"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select id
+from "VMart"."test16659889142687468111_test_basic"."base"
+where id is null
+
+
+
+      
+    ) dbt_internal_test
+[0m06:41:56.183231 [debug] [Thread-44 ]: SQL status: Code: [Column(name='failures', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='should_warn', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True), Column(name='should_error', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:56.184028 [debug] [Thread-45 ]: SQL status: Code: [Column(name='failures', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='should_warn', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True), Column(name='should_error', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:56.184557 [debug] [Thread-43 ]: SQL status: Code: [Column(name='failures', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='should_warn', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True), Column(name='should_error', type_code=5, display_size=1, internal_size=1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:56.187166 [debug] [Thread-44 ]: finished collecting timing info
+[0m06:41:56.189524 [debug] [Thread-45 ]: finished collecting timing info
+[0m06:41:56.191938 [debug] [Thread-43 ]: finished collecting timing info
+[0m06:41:56.192527 [debug] [Thread-44 ]: On test.generic_tests.not_null_table_model_id.74214535fa: ROLLBACK
+[0m06:41:56.193102 [debug] [Thread-45 ]: On test.generic_tests.not_null_view_model_id.c9346154f2: ROLLBACK
+[0m06:41:56.193638 [debug] [Thread-43 ]: On test.generic_tests.not_null_base_id.910041d42f: ROLLBACK
+[0m06:41:56.201791 [debug] [Thread-44 ]: On test.generic_tests.not_null_table_model_id.74214535fa: Close
+[0m06:41:56.202472 [debug] [Thread-45 ]: On test.generic_tests.not_null_view_model_id.c9346154f2: Close
+[0m06:41:56.202864 [debug] [Thread-43 ]: On test.generic_tests.not_null_base_id.910041d42f: Close
+[0m06:41:56.204268 [info ] [Thread-44 ]: 2 of 3 PASS not_null_table_model_id ............................................ [[32mPASS[0m in 0.11s]
+[0m06:41:56.205184 [info ] [Thread-45 ]: 3 of 3 PASS not_null_view_model_id ............................................. [[32mPASS[0m in 0.11s]
+[0m06:41:56.206224 [info ] [Thread-43 ]: 1 of 3 PASS not_null_base_id ................................................... [[32mPASS[0m in 0.12s]
+[0m06:41:56.207230 [debug] [Thread-44 ]: Finished running node test.generic_tests.not_null_table_model_id.74214535fa
+[0m06:41:56.208092 [debug] [Thread-45 ]: Finished running node test.generic_tests.not_null_view_model_id.c9346154f2
+[0m06:41:56.209045 [debug] [Thread-43 ]: Finished running node test.generic_tests.not_null_base_id.910041d42f
+[0m06:41:56.211121 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m06:41:56.211598 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:56.211718 [debug] [MainThread]: On master: BEGIN
+[0m06:41:56.211823 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:41:56.232096 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:56.238440 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m06:41:56.238972 [debug] [MainThread]: On master: COMMIT
+[0m06:41:56.239306 [debug] [MainThread]: Using vertica connection "master"
+[0m06:41:56.239594 [debug] [MainThread]: On master: COMMIT
+[0m06:41:56.247686 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:56.248277 [debug] [MainThread]: On master: Close
+[0m06:41:56.249162 [info ] [MainThread]: 
+[0m06:41:56.249839 [info ] [MainThread]: Finished running 3 tests in 0 hours 0 minutes and 0.26 seconds (0.26s).
+[0m06:41:56.250403 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:41:56.250702 [debug] [MainThread]: Connection 'test.generic_tests.not_null_base_id.910041d42f' was properly closed.
+[0m06:41:56.250993 [debug] [MainThread]: Connection 'test.generic_tests.not_null_table_model_id.74214535fa' was properly closed.
+[0m06:41:56.251311 [debug] [MainThread]: Connection 'test.generic_tests.not_null_view_model_id.c9346154f2' was properly closed.
+[0m06:41:56.261516 [info ] [MainThread]: 
+[0m06:41:56.262080 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m06:41:56.262580 [info ] [MainThread]: 
+[0m06:41:56.262996 [info ] [MainThread]: Done. PASS=3 WARN=0 ERROR=0 SKIP=0 TOTAL=3
+[0m06:41:56.263522 [debug] [MainThread]: Flushing usage events
+[0m06:41:56.264595 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m06:41:56.264959 [debug] [MainThread]: Dropping schema "_ReferenceKey(database='vmart', schema='test16659889142687468111_test_basic', identifier=None)".
+[0m06:41:56.266886 [debug] [MainThread]: Using vertica connection "_test"
+[0m06:41:56.267072 [debug] [MainThread]: On _test: BEGIN
+[0m06:41:56.267268 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:41:56.284704 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m06:41:56.291088 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m06:41:56.291410 [debug] [MainThread]: Using vertica connection "_test"
+[0m06:41:56.291550 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.2.2", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+drop schema if exists "test16659889142687468111_test_basic" cascade
+  
+[0m06:41:56.305875 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:56.307405 [debug] [MainThread]: On _test: COMMIT
+[0m06:41:56.307757 [debug] [MainThread]: Using vertica connection "_test"
+[0m06:41:56.308028 [debug] [MainThread]: On _test: COMMIT
+[0m06:41:56.315903 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m06:41:56.316703 [debug] [MainThread]: On _test: Close
+[0m06:41:56.318644 [debug] [MainThread]: Connection '_test' was properly closed.
+[0m06:41:56.338558 [info ] [MainThread]: Partial parse save file not found. Starting full parse.
+[0m06:41:56.339363 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m06:41:56.339551 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m06:41:56.339735 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m06:41:56.344162 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m06:41:56.345085 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m06:41:56.345720 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m06:41:56.348320 [debug] [MainThread]: Parsing macros/materializations/models/incremental/helpers.sql
+[0m06:41:56.350060 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m06:41:56.353695 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m06:41:56.354621 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m06:41:56.358424 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m06:41:56.359815 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m06:41:56.366946 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m06:41:56.367998 [debug] [MainThread]: Parsing macros/materializations/snapshots/helper.sql
+[0m06:41:56.368174 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m06:41:56.373389 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m06:41:56.377005 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m06:41:56.377564 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m06:41:56.378003 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m06:41:56.379910 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m06:41:56.382024 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m06:41:56.386151 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m06:41:56.387023 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m06:41:56.388682 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m06:41:56.390088 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m06:41:56.392480 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m06:41:56.393306 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m06:41:56.396634 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m06:41:56.398029 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m06:41:56.400086 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m06:41:56.409954 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m06:41:56.412624 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m06:41:56.413579 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m06:41:56.419212 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m06:41:56.428410 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m06:41:56.430133 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m06:41:56.433525 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m06:41:56.441268 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m06:41:56.442326 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m06:41:56.449380 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m06:41:56.459281 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m06:41:56.460396 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m06:41:56.461544 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m06:41:56.464295 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m06:41:56.475229 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m06:41:56.479387 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m06:41:56.480347 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m06:41:56.481333 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m06:41:56.482814 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m06:41:56.484579 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m06:41:56.486236 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m06:41:56.491998 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m06:41:56.500524 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m06:41:56.504701 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m06:41:56.512731 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m06:41:56.514084 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m06:41:56.516774 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m06:41:56.517573 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m06:41:56.518221 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m06:41:56.518888 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m06:41:56.519539 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m06:41:56.520259 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m06:41:56.521570 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m06:41:56.522151 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m06:41:56.522984 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m06:41:56.523990 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m06:41:56.527362 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m06:41:56.527982 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m06:41:56.528806 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m06:41:56.529506 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m06:41:56.530302 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m06:41:56.531043 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m06:41:56.532483 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m06:41:56.533134 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m06:41:56.533681 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m06:41:56.534391 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m06:41:56.535146 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m06:41:56.536284 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m06:41:56.537155 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m06:41:56.537739 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m06:41:56.538210 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m06:41:56.538831 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m06:41:56.541537 [debug] [MainThread]: Parsing macros/etc/datetime.sql
