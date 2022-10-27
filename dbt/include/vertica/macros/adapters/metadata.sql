@@ -1,8 +1,3 @@
-{% macro get_catalog(information_schema, schemas) -%}
-  {{ return(adapter.dispatch('get_catalog', 'dbt')(information_schema, schemas)) }}
-{%- endmacro %}
-
-
 {% macro vertica__get_catalog(information_schema, schemas) -%}
   {% call statement('get_catalog', fetch_result=True) %}
 
@@ -54,7 +49,6 @@
 {% endmacro %}
 
 
-
 {% macro vertica__information_schema_name(database) -%}
   {%- if database -%}
     {{ adapter.quote_as_configured(database, 'database') }}.v_catalog
@@ -63,9 +57,6 @@
   {%- endif -%}
 {%- endmacro %}
 
-{% macro list_schemas(database) -%}
-  {{ return(adapter.dispatch('list_schemas', 'dbt')(database)) }}
-{% endmacro %}
 
 {% macro vertica__list_schemas(database) %}
   {% call statement('list_schemas', fetch_result=True, auto_begin=False) %}
@@ -75,9 +66,6 @@
   {{ return(load_result('list_schemas').table) }}
 {% endmacro %}
 
-{% macro check_schema_exists(information_schema, schema) -%}
-  {{ return(adapter.dispatch('check_schema_exists', 'dbt')(information_schema, schema)) }}
-{% endmacro %}
 
 {% macro vertica__check_schema_exists(database, schema) -%}
   {% call statement('check_schema_exists', fetch_result=True, auto_begin=False) -%}
@@ -88,9 +76,6 @@
   {{ return(load_result('check_schema_exists').table) }}
 {% endmacro %}
 
-{% macro list_relations_without_caching(schema_relation) %}
-  {{ return(adapter.dispatch('list_relations_without_caching', 'dbt')(schema_relation)) }}
-{% endmacro %}
 
 {% macro vertica__list_relations_without_caching(schema_relation) %}
   {% call statement('list_relations_without_caching', fetch_result=True) -%}
