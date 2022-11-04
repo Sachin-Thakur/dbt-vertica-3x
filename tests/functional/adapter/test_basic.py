@@ -32,12 +32,12 @@ class TestBaseAdapterMethodVertica(BaseAdapterMethod):
 class TestVerticaValidateConnection(BaseValidateConnection):
     pass
 
+class TestSingularTestsEphemeralVertica(BaseSingularTestsEphemeral):
+    pass
 
 class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
     pass
 
-class TestSingularTestsEphemeralVertica(BaseSingularTestsEphemeral):
-    pass
 
 class TestEphemeralVertica(BaseEphemeral):
     pass
@@ -57,35 +57,5 @@ class TestSnapshotCheckColsVertica(BaseSnapshotCheckCols):
 
 class TestSnapshotTimestampVertica(BaseSnapshotTimestamp):
     pass
-
-
-class TestDocsGenerateVertica(BaseDocsGenerate):
-    @pytest.fixture(scope="class")
-    def expected_catalog(self, project):
-        return base_expected_catalog(
-            project,
-            role=None,
-            id_type=1,
-            time_type="11/12/2022",
-            view_type="VIEW",
-            table_type="BASE TABLE",
-            model_stats=vertica_stats(False),
-            text_type= "abc",
-        )
-
-class TestDocsGenReferencesVertica(BaseDocsGenReferences):
-    @pytest.fixture(scope="class")
-    def expected_catalog(self, project):
-        return expected_references_catalog(
-            project,
-            role=None,
-            id_type=1,
-            bigint_type=135481653441354138548413384135,
-            time_type="11/12/2022",
-            view_type="VIEW",
-            table_type="BASE TABLE",
-            model_stats=vertica_stats(False),
-            text_type= "abc",
-        )
 
 
