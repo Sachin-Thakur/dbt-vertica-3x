@@ -132,9 +132,17 @@ class verticaConnectionManager(SQLConnectionManager):
             code=str(code)
         )
 
+    # def cancel(self, connection):
+    #     logger.debug(':P Cancel query')
+    #     connection.handle.cancel()
+
     def cancel(self, connection):
-        logger.debug(':P Cancel query')
-        connection.handle.cancel()
+        tid = connection.handle.transaction_id()
+        sql = 'select cancel_transaction({})'.format(tid)
+        logger.debug("Cancelling query '{}' ({})".format(connection_name, pid))
+        _, cursor = self.add_query(sql, 'master')
+        res = cursor.fetchone()
+        logger.debug("Canceled query '{}': {}".format(connection_name, res))
 
     @contextmanager
     def exception_handler(self, sql):

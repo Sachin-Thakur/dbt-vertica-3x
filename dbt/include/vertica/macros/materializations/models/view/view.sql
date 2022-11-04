@@ -1,5 +1,8 @@
 {%- materialization view, default -%}
 
+    -- -- grab current tables grants config for comparision later on
+    -- {% set grant_config = config.get('grants') %}
+
   {%- set identifier = model['alias'] -%}
   {%- set tmp_identifier = model['name'] + '__dbt_tmp' -%}
   {%- set backup_identifier = model['name'] + '__dbt_backup' -%}
