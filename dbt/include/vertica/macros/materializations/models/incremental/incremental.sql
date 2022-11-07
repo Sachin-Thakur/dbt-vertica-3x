@@ -1,6 +1,9 @@
-{% materialization incremental, adapter='vertica' %}
+{% materialization incremental, adapter='vertica'  %}
+
+
 
   {% set full_refresh_mode = flags.FULL_REFRESH %}
+   {%- set on_schema_change = incremental_validate_on_schema_change(config.get('on_schema_change'), default='ignore') -%}
 
   {% set target_relation = this %}
   {% set existing_relation = load_relation(this) %}
@@ -8,6 +11,9 @@
 
   {#-- Validate early so we don't run SQL if the strategy is invalid --#}
   {% set strategy = vertica__validate_get_incremental_strategy(config) %}
+
+
+    {% set grant_config = config.get('grants') %} -- added by Sachin  
 
   -- setup
   {{ run_hooks(pre_hooks, inside_transaction=False) }}

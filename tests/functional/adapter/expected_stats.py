@@ -1,62 +1,34 @@
 from dbt.tests.util import AnyString, AnyFloat
 
 
-def vertica_stats(is_table, partition=None, cluster=None):
-    stats = {}
-
-    if is_table:
-        stats.update(
-            {
-                "num_bytes": {
-                    "id": "num_bytes",
-                    "label": AnyString(),
-                    "value": AnyFloat(),
-                    "description": AnyString(),
-                    "include": True,
-                },
-                "num_rows": {
-                    "id": "num_rows",
-                    "label": AnyString(),
-                    "value": AnyFloat(),
-                    "description": AnyString(),
-                    "include": True,
-                },
-            }
-        )
-
-    if partition is not None:
-        stats.update(
-            {
-                "partitioning_type": {
-                    "id": "partitioning_type",
-                    "label": AnyString(),
-                    "value": partition,
-                    "description": AnyString(),
-                    "include": True,
-                }
-            }
-        )
-
-    if cluster is not None:
-        stats.update(
-            {
-                "clustering_fields": {
-                    "id": "clustering_fields",
-                    "label": AnyString(),
-                    "value": cluster,
-                    "description": AnyString(),
-                    "include": True,
-                }
-            }
-        )
-
-    has_stats = {
-        "id": "has_stats",
-        "label": "Has Stats?",
-        "value": bool(stats),
-        "description": "Indicates whether there are statistics for this table",
-        "include": False,
+def vertica_stats():
+    return {
+        'has_stats': {
+            'id': 'has_stats',
+            'label': 'Has Stats?',
+            'value': True,
+            'description': 'Indicates whether there are statistics for this table',
+            'include': False,
+        },
+        'bytes': {
+            'id': 'bytes',
+            'label': 'Approximate Size',
+            'value': AnyFloat(),
+            'description': 'Approximate size of the table as reported by Snowflake',
+            'include': True,
+        },
+        'last_modified': {
+            'id': 'last_modified',
+            'label': 'Last Modified',
+            'value': AnyString(),
+            'description': 'The timestamp for last update/change',
+            'include': True,
+        },
+        'row_count': {
+            'id': 'row_count',
+            'label': 'Row Count',
+            'value': 1.0,
+            'description': 'An approximate count of rows in this table',
+            'include': True,
+        }
     }
-    stats["has_stats"] = has_stats
-
-    return stats

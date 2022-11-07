@@ -12,9 +12,10 @@
 {#
     Get the current time cross-db
 #}
-{% macro vertica__snapshot_get_time() -%}
-  {{ current_timestamp() }}
-{%- endmacro %}
+
+
+
+
 
 
 {% macro vertica__snapshot_string_as_time(timestamp) %}

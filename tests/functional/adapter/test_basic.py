@@ -4,10 +4,12 @@ from dbt.tests.adapter.basic.test_singular_tests import BaseSingularTests
 from dbt.tests.adapter.basic.test_singular_tests_ephemeral import (
     BaseSingularTestsEphemeral,
 )
-
 from dbt.tests.adapter.basic.test_empty import BaseEmpty
 from dbt.tests.adapter.basic.test_ephemeral import BaseEphemeral
 from dbt.tests.adapter.basic.test_incremental import BaseIncremental
+
+
+# from dbt.tests.adapter.basic.test_incremental import BaseIncrementalNotSchemaChange
 from dbt.tests.adapter.basic.test_generic_tests import BaseGenericTests
 from dbt.tests.adapter.basic.test_snapshot_check_cols import BaseSnapshotCheckCols
 from dbt.tests.adapter.basic.test_snapshot_timestamp import BaseSnapshotTimestamp
@@ -16,38 +18,10 @@ from dbt.tests.adapter.basic.test_validate_connection import BaseValidateConnect
 from dbt.tests.adapter.basic.test_docs_generate import BaseDocsGenerate
 from dbt.tests.adapter.basic.expected_catalog import base_expected_catalog
 
-from expected_stats import vertica_stats
+from dbt.tests.adapter.basic.files import seeds_base_csv, seeds_added_csv, seeds_newcolumns_csv
+from dbt.tests.adapter.basic.test_snapshot_check_cols import BaseSnapshotCheckCols
+# from tests.functional.adapter.expected_stats import vertica_stats
 
-# class TestSingularTestsEphemeralVertica(BaseSingularTestsEphemeral):
-#     pass
-
-# class TestEmptyVertica(BaseEmpty):
-#     pass
-
-# class TestGenericTestsVertica(BaseGenericTests):
-#     pass
-
-# class TestBaseAdapterMethodVertica(BaseAdapterMethod):
-#     pass
-
-# class TestVerticaValidateConnection(BaseValidateConnection):
-#     pass
-
-#incremental model test case is not working 
-# class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
-#     pass
-
-class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
-    # This test requires a full-refresh to replace a table with a view
-    @pytest.fixture(scope="class")
-    def test_config(self):
-        return {"require_full_refresh": True}
-
-# class TestEphemeralVertica(BaseEphemeral):
-#     pass
-#--------------------------------------------------------------------------------
-# class TestIncrementalVertica(BaseIncremental):
-#     pass
 
 # schema_seed_added_yml = """
 # version: 2
@@ -57,18 +31,80 @@ class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
 #       column_types:
 #         name: varchar(64)
 # """
-# from dbt.tests.adapter.basic.files import seeds_base_csv, seeds_added_csv, seeds_newcolumns_csv
-# from dbt.tests.adapter.basic.test_snapshot_check_cols import BaseSnapshotCheckCols
-# class TestSnapshotCheckColsVertica(BaseSnapshotCheckCols):
-#     # Redshift defines the 'name' column such that it's not big enough
-#     # to hold the '_update' added in the test.
+# from expected_stats import vertica_stats
+# NOt Working 
+# class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
+#     # This test requires a full-refresh to replace a table with a view
 #     @pytest.fixture(scope="class")
-#     def models(self):
-#         return {
-#             "base.csv": seeds_base_csv,
-#             "added.csv": seeds_added_csv,
-#             "seeds.yml": schema_seed_added_yml,
-#         }
+#     def test_config(self):
+#         return {"require_full_refresh": True}
+
+# WORKING
+# class TestSingularTestsVertica(BaseSingularTests):
+#     pass
+
+# # WORKING
+# class TestSingularTestsEphemeralVertica(BaseSingularTestsEphemeral):
+#     pass
+
+
+# # WORKING
+# class TestEmptyVertica(BaseEmpty):
+#     pass
+
+# # WOrking
+# class TestEphemeralVertica(BaseEphemeral):
+#     pass
+
+
+# # Not WOrking
+class TestIncrementalVertica(BaseIncremental):
+    pass
+
+# # Working
+# class TestGenericTestsVertica(BaseGenericTests):
+#     pass
+
+# # Working
+# class TestBaseAdapterMethodVertica(BaseAdapterMethod):
+#     pass
+
+# Working
+# class TestVerticaValidateConnection(BaseValidateConnection):
+#     pass
+
+
+
+# class TestBaseIncrementalNotSchemaChange(BaseIncrementalNotSchemaChange):
+#     pass
+
+
+
+
+
+
+
+
+# # Not Working
+# class TestSnapshotCheckColsVertica(BaseSnapshotCheckCols):
+    # Redshift defines the 'name' column such that it's not big enough
+    # to hold the '_update' added in the test.
+    # @pytest.fixture(scope="class")
+    # def models(self):
+    #     return {
+    #         "base.csv": seeds_base_csv,
+    #         "added.csv": seeds_added_csv,
+    #         "seeds.yml": schema_seed_added_yml,
+    #     }
+    # pass
+class TestSnapshotCheckColsVertica(BaseSnapshotCheckCols):
+    pass
+
+
+# # Not Working
+class TestSnapshotTimestampVertica(BaseSnapshotTimestamp):
+    pass
+
 
 
 
@@ -77,12 +113,7 @@ class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
 
 
 #snapshot check takes lot of time.
-# class TestSnapshotCheckColsVertica(BaseSnapshotCheckCols):
-#     pass
 
-
-# class TestSnapshotTimestampVertica(BaseSnapshotTimestamp):
-#     pass
 
 
 

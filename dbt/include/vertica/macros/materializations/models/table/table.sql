@@ -37,7 +37,7 @@
 
   -- build model
   {% call statement('main') -%}
-    {{ create_table_as(False, intermediate_relation, sql) }}
+    {{ create_table_as(False, intermediate_relation,   sql) }} -- added sql  added by sachin
   {%- endcall %}
 
   -- cleanup

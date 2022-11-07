@@ -72,10 +72,6 @@
 
 
 
--- added by us
-{% macro list_schemas(database) -%}
-  {{ return(adapter.dispatch('list_schemas', 'dbt')(database)) }}
-{% endmacro %}
 
 
 
@@ -88,9 +84,7 @@
   {{ return(load_result('list_schemas').table) }}
 {% endmacro %}
 
-{% macro check_schema_exists(information_schema, schema) -%}
-  {{ return(adapter.dispatch('check_schema_exists', 'dbt')(information_schema, schema)) }}
-{% endmacro %}
+
 
 
 
@@ -114,11 +108,6 @@
   {{ return(adapter.dispatch('list_relations_without_caching', 'dbt')(schema_relation)) }}
 {% endmacro %}
 
--- added by us 
-
-{% macro list_relations_without_caching(schema_relation) %}
-  {{ return(adapter.dispatch('list_relations_without_caching', 'dbt')(schema_relation)) }}
-{% endmacro %}
 
 
 {% macro vertica__list_relations_without_caching(schema_relation) %}

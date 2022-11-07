@@ -4,22 +4,24 @@ import ssl
 import os
 import requests
 from typing import Optional
-
+from typing import List, Optional, Tuple, Any, Iterable, Dict, Union
+from dbt.contracts.connection import AdapterResponse
+import dbt.clients.agate_helper
+import agate
 
 from dbt.adapters.base import Credentials
 from dbt.adapters.sql import SQLConnectionManager
 from dbt.events import AdapterLogger
 logger = AdapterLogger("vertica")
-
 from dbt.contracts.connection import AdapterResponse
 import dbt.exceptions
-
 import vertica_python
+
 
 
 @dataclass
 class verticaCredentials(Credentials):
-    host: str
+    host: List[str]
     database: str
     schema: str
     username: str
@@ -31,6 +33,7 @@ class verticaCredentials(Credentials):
     ssl_env_cafile: Optional[str] = None
     ssl_uri: Optional[str] = None
     retries: int = 1
+    connection_load_balance: bool = True
 
     @property
     def type(self):
@@ -46,7 +49,7 @@ class verticaCredentials(Credentials):
 
     def _connection_keys(self):
         # return an iterator of keys to pretty-print in 'dbt debug'
-        return ('host','port','database','username','schema')
+        return ('host','port','database','username','schema', 'connection_load_balance')
 
 
 class verticaConnectionManager(SQLConnectionManager):
@@ -69,7 +72,7 @@ class verticaConnectionManager(SQLConnectionManager):
                 'password': credentials.password,
                 'database': credentials.database,
                 'connection_timeout': credentials.timeout,
-                'connection_load_balance': True,
+                'connection_load_balance': credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
             }
             # if credentials.ssl.lower() in {'true', 'yes', 'please'}:
@@ -99,9 +102,6 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
                 return  connection
 
-
-              
-
         except Exception as exc:
             logger.debug(f':P Error connecting to database: {exc}')
             connection.state = 'fail'
@@ -127,7 +127,6 @@ class verticaConnectionManager(SQLConnectionManager):
 
         retryable_exceptions = [
         Exception,
-    
         dbt.exceptions.FailedToConnectException
         ]
 
@@ -172,3 +171,46 @@ class verticaConnectionManager(SQLConnectionManager):
 
             self.release()
             raise dbt.exceptions.RuntimeException(str(exc))
+    @classmethod
+    def get_result_from_cursor(self,cls, cursor: Any) -> agate.Table:
+        data: List[Any] = []
+        column_names: List[str] = []
+
+        if cursor.description is not None:
+            column_names = [col[0] for col in cursor.description]
+            rows = cursor.fetchall()
+            self.check_exceptions_for_msq(cursor)
+            data = cls.process_results(column_names, rows)
+
+        return dbt.clients.agate_helper.table_from_data_flat(
+            data,
+            column_names
+        )
+
+    def execute(self, sql: str, auto_begin: bool = False, fetch: bool = False) -> Tuple[Union[AdapterResponse, str], agate.Table]:
+        sql = self._add_query_comment(sql)
+        _, cursor = self.add_query(sql, auto_begin)
+        response = self.get_response(cursor)
+        if fetch:
+            table = self.get_result_from_cursor(cursor)
+        else:
+            table = dbt.clients.agate_helper.empty_table()
+            self.check_exceptions_for_msq(cursor)
+        return response, table
+    def check_exceptions_for_msq(self, cursor: Any):
+        # check results of other queries in multistatement query
+        # check it only after getting data from cursor!
+        while cursor.nextset():
+            check = cursor._message
+            if isinstance(check, vertica_python.vertica.messages.ErrorResponse):
+                logger.debug(f'Cursor message is: {check}')
+                self.release()
+                raise dbt.exceptions.DatabaseException(str(check))
+
+
+
+
+
+
+
+    
