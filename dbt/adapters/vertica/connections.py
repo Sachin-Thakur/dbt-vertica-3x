@@ -19,7 +19,7 @@ import vertica_python
 
 @dataclass
 class verticaCredentials(Credentials):
-    host: str
+    host: List[str]
     database: str
     schema: str
     username: str
@@ -45,8 +45,7 @@ class verticaCredentials(Credentials):
 
     def _connection_keys(self):
         # return an iterator of keys to pretty-print in 'dbt debug'
-        return ('host','port','database','username','schema')
-
+        return ('host','port','database','username','schema', 'connection_load_balance')
 
 class verticaConnectionManager(SQLConnectionManager):
     TYPE = 'vertica'
@@ -67,7 +66,7 @@ class verticaConnectionManager(SQLConnectionManager):
                 'password': credentials.password,
                 'database': credentials.database,
                 'connection_timeout': credentials.timeout,
-                'connection_load_balance': True,
+                'connection_load_balance': credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
             }
             # if credentials.ssl.lower() in {'true', 'yes', 'please'}:
@@ -156,3 +155,13 @@ class verticaConnectionManager(SQLConnectionManager):
             logger.debug(f':P Error: {exc}')
             self.release()
             raise dbt.exceptions.RuntimeException(str(exc))
+
+    def check_exceptions_for_msq(self, cursor: Any):
+        # check results of other queries in multistatement query
+        # check it only after getting data from cursor!
+        while cursor.nextset():
+            check = cursor._message
+            if isinstance(check, vertica_python.vertica.messages.ErrorResponse):
+                logger.debug(f'Cursor message is: {check}')
+                self.release()
+                raise dbt.exceptions.DatabaseException(str(check))
