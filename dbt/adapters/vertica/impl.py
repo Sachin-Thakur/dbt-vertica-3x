@@ -1,9 +1,28 @@
 from dbt.adapters.sql import SQLAdapter
 from dbt.adapters.vertica import verticaConnectionManager
-
+from typing import Mapping, Any, Optional, List, Union, Dict
 from dbt.adapters.base import available
 
 import agate
+from dataclasses import dataclass
+from dbt.adapters.base.meta import available
+from dbt.adapters.sql import SQLAdapter  # type: ignore
+from dbt.adapters.sql.impl import (
+    LIST_SCHEMAS_MACRO_NAME,
+    LIST_RELATIONS_MACRO_NAME,
+)
+
+from dbt.adapters.base.impl import AdapterConfig
+@dataclass
+class VerticaConfig(AdapterConfig):
+    transient: Optional[bool] = None
+    cluster_by: Optional[Union[str, List[str]]] = None
+    automatic_clustering: Optional[bool] = None
+    secure: Optional[bool] = None
+    copy_grants: Optional[bool] = None
+    snowflake_warehouse: Optional[str] = None
+    query_tag: Optional[str] = None
+    merge_update_columns: Optional[str] = None
 
 class verticaAdapter(SQLAdapter):
     ConnectionManager = verticaConnectionManager

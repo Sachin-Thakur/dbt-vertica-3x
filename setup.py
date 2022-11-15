@@ -2,13 +2,36 @@
 from setuptools import find_packages
 from setuptools import setup
 import pathlib
+import os
+import re
+
+
+HERE = pathlib.Path(__file__).parent
+README = (HERE / "README.md").read_text()
+
+
+def _get_plugin_version_dict():
+    _version_path = os.path.join(HERE, "dbt", "adapters", "vertica", "__version__.py")
+    _semver = r"""(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)"""
+    _pre = r"""((?P<prekind>a|b|rc)(?P<pre>\d+))?"""
+    _version_pattern = fr"""version\s*=\s*["']{_semver}{_pre}["']"""
+    with open(_version_path) as f:
+        match = re.search(_version_pattern, f.read().strip())
+        if match is None:
+            raise ValueError(f"invalid version at {_version_path}")
+        return match.groupdict()
+
+def _get_dbt_core_version():
+    parts = _get_plugin_version_dict()
+    minor = "{major}.{minor}.0".format(**parts)
+    pre = parts["prekind"] + "1" if parts["prekind"] else ""
+    return f"{minor}{pre}"
+
 
 package_name = "dbt-vertica_sprint1"
 package_version = "1.0.4.0"
 description = """The vertica adapter plugin for dbt (data build tool)"""
-
-HERE = pathlib.Path(__file__).parent
-README = (HERE / "README.md").read_text()
+dbt_core_version = _get_dbt_core_version()
 
 setup(
     name=package_name,
