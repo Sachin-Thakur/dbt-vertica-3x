@@ -1,0 +1,1783 @@
+[0m07:55:28.415439 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:28.415646 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:28.415828 [debug] [MainThread]: Creating schema "_ReferenceKey(database='vmart', schema='test16666845282332081944_test_concurrency', identifier=None)"
+[0m07:55:28.422340 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:28.422503 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:28.422615 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:55:28.447738 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:28.455405 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:28.455844 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:28.456110 [debug] [MainThread]: On _test: create schema if not exists "test16666845282332081944_test_concurrency"
+  
+[0m07:55:28.468919 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:28.470874 [debug] [MainThread]: On _test: COMMIT
+[0m07:55:28.471304 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:28.471640 [debug] [MainThread]: On _test: COMMIT
+[0m07:55:28.478754 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:28.479353 [debug] [MainThread]: On _test: Close
+[0m07:55:28.495022 [debug] [MainThread]: Connection '_test' was properly closed.
+
+
+============================== 2022-10-25 07:55:28.500543 | cc58d904-fa73-4c43-8819-687ddceb430b ==============================
+[0m07:55:28.500551 [info ] [MainThread]: Running with dbt=1.3.0
+[0m07:55:28.500800 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-12/profile0', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'show': False, 'select': ['seed'], 'which': 'seed', 'rpc_method': 'seed', 'indirect_selection': 'eager'}
+[0m07:55:28.500905 [debug] [MainThread]: Tracking: do not track
+[0m07:55:28.506637 [info ] [MainThread]: Partial parse save file not found. Starting full parse.
+[0m07:55:28.515494 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m07:55:28.515677 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m07:55:28.515838 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m07:55:28.520263 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m07:55:28.521128 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m07:55:28.521712 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m07:55:28.524269 [debug] [MainThread]: Parsing macros/materializations/models/incremental/helpers.sql
+[0m07:55:28.525966 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m07:55:28.529461 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m07:55:28.530366 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m07:55:28.534031 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m07:55:28.535355 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m07:55:28.542266 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m07:55:28.543288 [debug] [MainThread]: Parsing macros/materializations/snapshots/helper.sql
+[0m07:55:28.543438 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m07:55:28.548515 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m07:55:28.552092 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m07:55:28.552626 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m07:55:28.553044 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m07:55:28.555012 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m07:55:28.556577 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m07:55:28.560607 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m07:55:28.561443 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m07:55:28.562115 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m07:55:28.563476 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m07:55:28.565708 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m07:55:28.566610 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m07:55:28.569801 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m07:55:28.571212 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m07:55:28.573179 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m07:55:28.582755 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m07:55:28.588142 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m07:55:28.589278 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m07:55:28.595859 [debug] [MainThread]: Parsing macros/materializations/models/incremental/strategies.sql
+[0m07:55:28.599902 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m07:55:28.609999 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m07:55:28.612090 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m07:55:28.615371 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m07:55:28.623103 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m07:55:28.624115 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m07:55:28.631073 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m07:55:28.640531 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m07:55:28.641608 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m07:55:28.642725 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m07:55:28.645361 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m07:55:28.656207 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m07:55:28.660235 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m07:55:28.661160 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m07:55:28.662104 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m07:55:28.663576 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m07:55:28.664867 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m07:55:28.666657 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m07:55:28.673428 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m07:55:28.683145 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m07:55:28.687755 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m07:55:28.696278 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m07:55:28.698014 [debug] [MainThread]: Parsing macros/adapters/timestamps.sql
+[0m07:55:28.700896 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m07:55:28.703737 [debug] [MainThread]: Parsing macros/python_model/python.sql
+[0m07:55:28.707550 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m07:55:28.708539 [debug] [MainThread]: Parsing macros/utils/array_concat.sql
+[0m07:55:28.709258 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m07:55:28.709847 [debug] [MainThread]: Parsing macros/utils/array_append.sql
+[0m07:55:28.710653 [debug] [MainThread]: Parsing macros/utils/array_construct.sql
+[0m07:55:28.711750 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m07:55:28.712578 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m07:55:28.713287 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m07:55:28.713957 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m07:55:28.715195 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m07:55:28.715707 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m07:55:28.716450 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m07:55:28.717111 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m07:55:28.721090 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m07:55:28.721791 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m07:55:28.722909 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m07:55:28.723684 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m07:55:28.724552 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m07:55:28.725226 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m07:55:28.726701 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m07:55:28.727312 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m07:55:28.727863 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m07:55:28.728769 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m07:55:28.729609 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m07:55:28.730752 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m07:55:28.731605 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m07:55:28.732147 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m07:55:28.732576 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m07:55:28.733183 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m07:55:28.736370 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m07:55:28.741808 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m07:55:28.913951 [debug] [MainThread]: 1699: static parser successfully parsed dep.sql
+[0m07:55:28.921895 [debug] [MainThread]: 1603: static parser failed on table_a.sql
+[0m07:55:28.924500 [debug] [MainThread]: 1602: parser fallback to jinja rendering on table_a.sql
+[0m07:55:28.925277 [debug] [MainThread]: 1603: static parser failed on table_b.sql
+[0m07:55:28.927891 [debug] [MainThread]: 1602: parser fallback to jinja rendering on table_b.sql
+[0m07:55:28.928652 [debug] [MainThread]: 1603: static parser failed on invalid.sql
+[0m07:55:28.931528 [debug] [MainThread]: 1602: parser fallback to jinja rendering on invalid.sql
+[0m07:55:28.932293 [debug] [MainThread]: 1603: static parser failed on view_model.sql
+[0m07:55:28.934721 [debug] [MainThread]: 1602: parser fallback to jinja rendering on view_model.sql
+[0m07:55:28.935699 [debug] [MainThread]: 1699: static parser successfully parsed view_with_conflicting_cascade.sql
+[0m07:55:28.937428 [debug] [MainThread]: 1699: static parser successfully parsed skip.sql
+[0m07:55:28.973139 [info ] [MainThread]: Found 7 models, 0 tests, 0 snapshots, 0 analyses, 296 macros, 0 operations, 1 seed file, 0 sources, 0 exposures, 0 metrics
+[0m07:55:28.974016 [info ] [MainThread]: 
+[0m07:55:28.974483 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m07:55:28.975126 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart"
+[0m07:55:28.978572 [debug] [ThreadPool]: Using vertica connection "list_VMart"
+[0m07:55:28.978716 [debug] [ThreadPool]: On list_VMart: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart"} */
+
+    select schema_name
+    from v_catalog.schemata
+  
+[0m07:55:28.978855 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m07:55:28.996675 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.015744 [debug] [ThreadPool]: SQL status: Code: [Column(name='schema_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:29.018460 [debug] [ThreadPool]: On list_VMart: Close
+[0m07:55:29.022207 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:29.034109 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:29.034618 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: BEGIN
+[0m07:55:29.034956 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m07:55:29.050546 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.056314 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.056845 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:29.057201 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16666845282332081944_test_concurrency"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16666845282332081944_test_concurrency'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16666845282332081944_test_concurrency'
+  
+[0m07:55:29.077256 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.079357 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: ROLLBACK
+[0m07:55:29.084430 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: Close
+[0m07:55:29.085533 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.085726 [debug] [MainThread]: On master: BEGIN
+[0m07:55:29.085872 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:55:29.101213 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.106571 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.106781 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.106906 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.107034 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.112049 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:29.112309 [debug] [MainThread]: On master: Close
+[0m07:55:29.112773 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+[0m07:55:29.113090 [info ] [MainThread]: 
+[0m07:55:29.115606 [debug] [Thread-1 (]: Began running node seed.test.seed
+[0m07:55:29.115908 [info ] [Thread-1 (]: 1 of 1 START seed file test16666845282332081944_test_concurrency.seed .......... [RUN]
+[0m07:55:29.116411 [debug] [Thread-1 (]: Acquiring new vertica connection "seed.test.seed"
+[0m07:55:29.116564 [debug] [Thread-1 (]: Began compiling node seed.test.seed
+[0m07:55:29.116693 [debug] [Thread-1 (]: finished collecting timing info
+[0m07:55:29.116813 [debug] [Thread-1 (]: Began executing node seed.test.seed
+[0m07:55:29.142749 [debug] [Thread-1 (]: Writing runtime sql for node "seed.test.seed"
+[0m07:55:29.143184 [debug] [Thread-1 (]: Using vertica connection "seed.test.seed"
+[0m07:55:29.143337 [debug] [Thread-1 (]: On seed.test.seed: BEGIN
+[0m07:55:29.143476 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m07:55:29.158816 [debug] [Thread-1 (]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.168850 [debug] [Thread-1 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:29.169021 [debug] [Thread-1 (]: Using vertica connection "seed.test.seed"
+[0m07:55:29.169168 [debug] [Thread-1 (]: On seed.test.seed: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.test.seed"} */
+
+    
+    create table "VMart"."test16666845282332081944_test_concurrency"."seed" ("id" integer,"first_name" varchar(10),"last_name" varchar(10),"email" varchar(34),"gender" varchar(6),"ip_address" varchar(15))
+  ;
+    -- dbt seed --
+    
+        copy "VMart"."test16666845282332081944_test_concurrency"."seed"
+        ("id", "first_name", "last_name", "email", "gender", "ip_address")
+        from local '/tmp/pytest-of-sachin/pytest-12/project0/seeds/seed.csv'
+        delimiter ','
+        enclosed by '"'
+        skip 1
+        abort on error
+        rejected data as table "VMart"."test16666845282332081944_test_concurrency".seed_rejects;
+    
+  
+[0m07:55:29.203868 [debug] [Thread-1 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:29.211175 [debug] [Thread-1 (]: On seed.test.seed: COMMIT
+[0m07:55:29.211660 [debug] [Thread-1 (]: Using vertica connection "seed.test.seed"
+[0m07:55:29.211820 [debug] [Thread-1 (]: On seed.test.seed: COMMIT
+[0m07:55:29.262808 [debug] [Thread-1 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.05 seconds
+[0m07:55:29.263524 [debug] [Thread-1 (]: finished collecting timing info
+[0m07:55:29.263725 [debug] [Thread-1 (]: On seed.test.seed: Close
+[0m07:55:29.264225 [info ] [Thread-1 (]: 1 of 1 OK loaded seed file test16666845282332081944_test_concurrency.seed ...... [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.15s]
+[0m07:55:29.264662 [debug] [Thread-1 (]: Finished running node seed.test.seed
+[0m07:55:29.265518 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m07:55:29.265734 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.265858 [debug] [MainThread]: On master: BEGIN
+[0m07:55:29.265977 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:29.279904 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.285104 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.285481 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.285670 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.285844 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.290374 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:29.290787 [debug] [MainThread]: On master: Close
+[0m07:55:29.291479 [info ] [MainThread]: 
+[0m07:55:29.291888 [info ] [MainThread]: Finished running 1 seed in 0 hours 0 minutes and 0.32 seconds (0.32s).
+[0m07:55:29.292208 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m07:55:29.292368 [debug] [MainThread]: Connection 'seed.test.seed' was properly closed.
+[0m07:55:29.299129 [info ] [MainThread]: 
+[0m07:55:29.299587 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m07:55:29.299952 [info ] [MainThread]: 
+[0m07:55:29.300242 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m07:55:29.300635 [debug] [MainThread]: Flushing usage events
+
+
+============================== 2022-10-25 07:55:29.320147 | cc58d904-fa73-4c43-8819-687ddceb430b ==============================
+[0m07:55:29.320163 [info ] [MainThread]: Running with dbt=1.3.0
+[0m07:55:29.320659 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-12/profile0', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m07:55:29.320855 [debug] [MainThread]: Tracking: do not track
+[0m07:55:29.399745 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m07:55:29.399990 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m07:55:29.408785 [info ] [MainThread]: Found 7 models, 0 tests, 0 snapshots, 0 analyses, 296 macros, 0 operations, 1 seed file, 0 sources, 0 exposures, 0 metrics
+[0m07:55:29.409655 [info ] [MainThread]: 
+[0m07:55:29.410177 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m07:55:29.411116 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart"
+[0m07:55:29.412932 [debug] [ThreadPool]: Using vertica connection "list_VMart"
+[0m07:55:29.413106 [debug] [ThreadPool]: On list_VMart: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart"} */
+
+    select schema_name
+    from v_catalog.schemata
+  
+[0m07:55:29.413217 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m07:55:29.428752 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.445807 [debug] [ThreadPool]: SQL status: Code: [Column(name='schema_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:29.446832 [debug] [ThreadPool]: On list_VMart: Close
+[0m07:55:29.448252 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:29.449724 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:29.449867 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: BEGIN
+[0m07:55:29.449973 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m07:55:29.465217 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.470414 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.470643 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:29.470770 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16666845282332081944_test_concurrency"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16666845282332081944_test_concurrency'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16666845282332081944_test_concurrency'
+  
+[0m07:55:29.491619 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.492702 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: ROLLBACK
+[0m07:55:29.497932 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: Close
+[0m07:55:29.498912 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.499086 [debug] [MainThread]: On master: BEGIN
+[0m07:55:29.499215 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:55:29.514215 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.519821 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.520073 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.520217 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.520320 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.525130 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:29.525390 [debug] [MainThread]: On master: Close
+[0m07:55:29.525839 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+[0m07:55:29.526108 [info ] [MainThread]: 
+[0m07:55:29.527539 [debug] [Thread-8 (]: Began running node model.test.invalid
+[0m07:55:29.527693 [debug] [Thread-9 (]: Began running node model.test.table_a
+[0m07:55:29.527833 [debug] [Thread-10 ]: Began running node model.test.table_b
+[0m07:55:29.528003 [debug] [Thread-11 ]: Began running node model.test.view_model
+[0m07:55:29.528278 [info ] [Thread-8 (]: 1 of 7 START sql table model test16666845282332081944_test_concurrency.invalid . [RUN]
+[0m07:55:29.528556 [info ] [Thread-9 (]: 2 of 7 START sql table model test16666845282332081944_test_concurrency.table_a . [RUN]
+[0m07:55:29.528921 [info ] [Thread-10 ]: 3 of 7 START sql table model test16666845282332081944_test_concurrency.table_b . [RUN]
+[0m07:55:29.529248 [info ] [Thread-11 ]: 4 of 7 START sql view model test16666845282332081944_test_concurrency.view_model  [RUN]
+[0m07:55:29.530106 [debug] [Thread-8 (]: Acquiring new vertica connection "model.test.invalid"
+[0m07:55:29.530695 [debug] [Thread-9 (]: Acquiring new vertica connection "model.test.table_a"
+[0m07:55:29.531425 [debug] [Thread-10 ]: Acquiring new vertica connection "model.test.table_b"
+[0m07:55:29.531946 [debug] [Thread-11 ]: Acquiring new vertica connection "model.test.view_model"
+[0m07:55:29.532133 [debug] [Thread-8 (]: Began compiling node model.test.invalid
+[0m07:55:29.532335 [debug] [Thread-9 (]: Began compiling node model.test.table_a
+[0m07:55:29.532509 [debug] [Thread-10 ]: Began compiling node model.test.table_b
+[0m07:55:29.532699 [debug] [Thread-11 ]: Began compiling node model.test.view_model
+[0m07:55:29.532876 [debug] [Thread-8 (]: Compiling model.test.invalid
+[0m07:55:29.533065 [debug] [Thread-9 (]: Compiling model.test.table_a
+[0m07:55:29.533390 [debug] [Thread-10 ]: Compiling model.test.table_b
+[0m07:55:29.533577 [debug] [Thread-11 ]: Compiling model.test.view_model
+[0m07:55:29.537148 [debug] [Thread-8 (]: Writing injected SQL for node "model.test.invalid"
+[0m07:55:29.539397 [debug] [Thread-9 (]: Writing injected SQL for node "model.test.table_a"
+[0m07:55:29.542688 [debug] [Thread-10 ]: Writing injected SQL for node "model.test.table_b"
+[0m07:55:29.545186 [debug] [Thread-11 ]: Writing injected SQL for node "model.test.view_model"
+[0m07:55:29.546001 [debug] [Thread-9 (]: finished collecting timing info
+[0m07:55:29.546131 [debug] [Thread-8 (]: finished collecting timing info
+[0m07:55:29.546237 [debug] [Thread-11 ]: finished collecting timing info
+[0m07:55:29.546443 [debug] [Thread-10 ]: finished collecting timing info
+[0m07:55:29.546650 [debug] [Thread-9 (]: Began executing node model.test.table_a
+[0m07:55:29.546796 [debug] [Thread-8 (]: Began executing node model.test.invalid
+[0m07:55:29.546983 [debug] [Thread-11 ]: Began executing node model.test.view_model
+[0m07:55:29.547230 [debug] [Thread-10 ]: Began executing node model.test.table_b
+[0m07:55:29.560265 [debug] [Thread-9 (]: Using vertica connection "model.test.table_a"
+[0m07:55:29.563858 [debug] [Thread-8 (]: Using vertica connection "model.test.invalid"
+[0m07:55:29.581965 [debug] [Thread-10 ]: Using vertica connection "model.test.table_b"
+[0m07:55:29.588802 [debug] [Thread-11 ]: Writing runtime sql for node "model.test.view_model"
+[0m07:55:29.589100 [debug] [Thread-9 (]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_tmp" cascade
+[0m07:55:29.589258 [debug] [Thread-8 (]: On model.test.invalid: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp" cascade
+[0m07:55:29.589430 [debug] [Thread-10 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_tmp" cascade
+[0m07:55:29.589697 [debug] [Thread-9 (]: Opening a new connection, currently in state init
+[0m07:55:29.589849 [debug] [Thread-8 (]: Opening a new connection, currently in state closed
+[0m07:55:29.590021 [debug] [Thread-11 ]: Using vertica connection "model.test.view_model"
+[0m07:55:29.590152 [debug] [Thread-10 ]: Opening a new connection, currently in state init
+[0m07:55:29.590893 [debug] [Thread-11 ]: On model.test.view_model: BEGIN
+[0m07:55:29.591190 [debug] [Thread-11 ]: Opening a new connection, currently in state init
+[0m07:55:29.605990 [debug] [Thread-10 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.606331 [debug] [Thread-9 (]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.606528 [debug] [Thread-8 (]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.607063 [debug] [Thread-11 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.613842 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.614132 [debug] [Thread-10 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.614403 [debug] [Thread-11 ]: Using vertica connection "model.test.view_model"
+[0m07:55:29.616729 [debug] [Thread-10 ]: Using vertica connection "model.test.table_b"
+[0m07:55:29.617091 [debug] [Thread-9 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:29.617261 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:29.617418 [debug] [Thread-11 ]: On model.test.view_model: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_model"} */
+
+  create view "VMart"."test16666845282332081944_test_concurrency"."view_model__dbt_tmp" as (
+    
+
+select * from test16666845282332081944_test_concurrency.seed
+  );
+[0m07:55:29.617635 [debug] [Thread-10 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_backup" cascade
+[0m07:55:29.619577 [debug] [Thread-9 (]: Using vertica connection "model.test.table_a"
+[0m07:55:29.621784 [debug] [Thread-8 (]: Using vertica connection "model.test.invalid"
+[0m07:55:29.622512 [debug] [Thread-9 (]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_backup" cascade
+[0m07:55:29.622751 [debug] [Thread-8 (]: On model.test.invalid: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_backup" cascade
+[0m07:55:29.630033 [debug] [Thread-10 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.637113 [debug] [Thread-10 ]: Writing runtime sql for node "model.test.table_b"
+[0m07:55:29.637373 [debug] [Thread-9 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.637612 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.637774 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.639222 [debug] [Thread-9 (]: Writing runtime sql for node "model.test.table_a"
+[0m07:55:29.640380 [debug] [Thread-8 (]: Writing runtime sql for node "model.test.invalid"
+[0m07:55:29.640562 [debug] [Thread-10 ]: Using vertica connection "model.test.table_b"
+[0m07:55:29.645449 [debug] [Thread-11 ]: Using vertica connection "model.test.view_model"
+[0m07:55:29.646058 [debug] [Thread-10 ]: On model.test.table_b: BEGIN
+[0m07:55:29.646329 [debug] [Thread-11 ]: On model.test.view_model: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_model"} */
+alter view "VMart"."test16666845282332081944_test_concurrency"."view_model__dbt_tmp" rename to "view_model"
+[0m07:55:29.646482 [debug] [Thread-8 (]: Using vertica connection "model.test.invalid"
+[0m07:55:29.646636 [debug] [Thread-9 (]: Using vertica connection "model.test.table_a"
+[0m07:55:29.647045 [debug] [Thread-8 (]: On model.test.invalid: BEGIN
+[0m07:55:29.647177 [debug] [Thread-9 (]: On model.test.table_a: BEGIN
+[0m07:55:29.651804 [debug] [Thread-10 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:29.652074 [debug] [Thread-10 ]: Using vertica connection "model.test.table_b"
+[0m07:55:29.652237 [debug] [Thread-10 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_tmp"
+    
+  as (
+    
+
+select * from test16666845282332081944_test_concurrency.seed
+  );
+
+  
+[0m07:55:29.653109 [debug] [Thread-9 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.653251 [debug] [Thread-9 (]: Using vertica connection "model.test.table_a"
+[0m07:55:29.653350 [debug] [Thread-9 (]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_tmp"
+    
+  as (
+    
+
+select * from test16666845282332081944_test_concurrency.seed
+  );
+
+  
+[0m07:55:29.656212 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.656386 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.666386 [debug] [Thread-11 ]: On model.test.view_model: COMMIT
+[0m07:55:29.666650 [debug] [Thread-8 (]: Using vertica connection "model.test.invalid"
+[0m07:55:29.666806 [debug] [Thread-11 ]: Using vertica connection "model.test.view_model"
+[0m07:55:29.666935 [debug] [Thread-8 (]: On model.test.invalid: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"
+    
+  as (
+    
+
+select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed
+  );
+
+  
+[0m07:55:29.667053 [debug] [Thread-11 ]: On model.test.view_model: COMMIT
+[0m07:55:29.681094 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.681418 [debug] [Thread-8 (]: vertica adapter: :P Database error: Severity: ERROR, Message: Column "a_field_that_does_not_exist" does not exist, Sqlstate: 42703, Routine: transformSQLColumnRef, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Optimizer/OptUtil/ExprUtil.cpp, Line: 7217, Error Code: 2624, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */           create  table     "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"        as (      select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed   );   '
+[0m07:55:29.683098 [debug] [Thread-11 ]: Using vertica connection "model.test.view_model"
+[0m07:55:29.683325 [debug] [Thread-8 (]: On model.test.invalid: ROLLBACK
+[0m07:55:29.683470 [debug] [Thread-11 ]: On model.test.view_model: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_model"} */
+drop view if exists "VMart"."test16666845282332081944_test_concurrency"."view_model__dbt_backup" cascade
+[0m07:55:29.694696 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.696245 [debug] [Thread-11 ]: finished collecting timing info
+[0m07:55:29.696560 [debug] [Thread-8 (]: On model.test.invalid: Close
+[0m07:55:29.696780 [debug] [Thread-11 ]: On model.test.view_model: Close
+[0m07:55:29.697226 [debug] [Thread-8 (]: finished collecting timing info
+[0m07:55:29.697647 [debug] [Thread-8 (]: Database Error in model invalid (models/invalid.sql)
+  Severity: ERROR, Message: Column "a_field_that_does_not_exist" does not exist, Sqlstate: 42703, Routine: transformSQLColumnRef, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Optimizer/OptUtil/ExprUtil.cpp, Line: 7217, Error Code: 2624, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */           create  table     "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"        as (      select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed   );   '
+  compiled Code at target/run/test/models/invalid.sql
+[0m07:55:29.698332 [info ] [Thread-11 ]: 4 of 7 OK created sql view model test16666845282332081944_test_concurrency.view_model  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.17s]
+[0m07:55:29.698847 [error] [Thread-8 (]: 1 of 7 ERROR creating sql table model test16666845282332081944_test_concurrency.invalid  [[31mERROR[0m in 0.17s]
+[0m07:55:29.699399 [debug] [Thread-11 ]: Finished running node model.test.view_model
+[0m07:55:29.699729 [debug] [Thread-8 (]: Finished running node model.test.invalid
+[0m07:55:29.700012 [debug] [Thread-11 ]: Began running node model.test.dep
+[0m07:55:29.700293 [debug] [Thread-8 (]: Began running node model.test.skip
+[0m07:55:29.700459 [info ] [Thread-11 ]: 5 of 7 START sql table model test16666845282332081944_test_concurrency.dep ..... [RUN]
+[0m07:55:29.700607 [info ] [Thread-8 (]: 6 of 7 SKIP relation test16666845282332081944_test_concurrency.skip ............ [[33mSKIP[0m]
+[0m07:55:29.701065 [debug] [Thread-11 ]: Acquiring new vertica connection "model.test.dep"
+[0m07:55:29.701386 [debug] [Thread-8 (]: Finished running node model.test.skip
+[0m07:55:29.701523 [debug] [Thread-11 ]: Began compiling node model.test.dep
+[0m07:55:29.701729 [debug] [Thread-11 ]: Compiling model.test.dep
+[0m07:55:29.703910 [debug] [Thread-11 ]: Writing injected SQL for node "model.test.dep"
+[0m07:55:29.704252 [debug] [Thread-11 ]: finished collecting timing info
+[0m07:55:29.704464 [debug] [Thread-11 ]: Began executing node model.test.dep
+[0m07:55:29.707086 [debug] [Thread-11 ]: Using vertica connection "model.test.dep"
+[0m07:55:29.707300 [debug] [Thread-9 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.05 seconds
+[0m07:55:29.707472 [debug] [Thread-11 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_tmp" cascade
+[0m07:55:29.709407 [debug] [Thread-9 (]: Using vertica connection "model.test.table_a"
+[0m07:55:29.709610 [debug] [Thread-11 ]: Opening a new connection, currently in state closed
+[0m07:55:29.709767 [debug] [Thread-9 (]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_tmp" rename to "table_a"
+[0m07:55:29.719713 [debug] [Thread-10 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.07 seconds
+[0m07:55:29.721934 [debug] [Thread-10 ]: Using vertica connection "model.test.table_b"
+[0m07:55:29.722161 [debug] [Thread-9 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.722406 [debug] [Thread-10 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_tmp" rename to "table_b"
+[0m07:55:29.723203 [debug] [Thread-9 (]: On model.test.table_a: COMMIT
+[0m07:55:29.723528 [debug] [Thread-9 (]: Using vertica connection "model.test.table_a"
+[0m07:55:29.723677 [debug] [Thread-9 (]: On model.test.table_a: COMMIT
+[0m07:55:29.728995 [debug] [Thread-9 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.730700 [debug] [Thread-9 (]: Using vertica connection "model.test.table_a"
+[0m07:55:29.730888 [debug] [Thread-9 (]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_backup" cascade
+[0m07:55:29.733341 [debug] [Thread-10 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.733696 [debug] [Thread-11 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.734863 [debug] [Thread-10 ]: On model.test.table_b: COMMIT
+[0m07:55:29.735270 [debug] [Thread-10 ]: Using vertica connection "model.test.table_b"
+[0m07:55:29.735470 [debug] [Thread-10 ]: On model.test.table_b: COMMIT
+[0m07:55:29.739029 [debug] [Thread-9 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.740009 [debug] [Thread-9 (]: finished collecting timing info
+[0m07:55:29.740268 [debug] [Thread-9 (]: On model.test.table_a: Close
+[0m07:55:29.740590 [debug] [Thread-10 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:29.741171 [info ] [Thread-9 (]: 2 of 7 OK created sql table model test16666845282332081944_test_concurrency.table_a  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.21s]
+[0m07:55:29.743884 [debug] [Thread-10 ]: Using vertica connection "model.test.table_b"
+[0m07:55:29.744564 [debug] [Thread-9 (]: Finished running node model.test.table_a
+[0m07:55:29.744752 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:29.744933 [debug] [Thread-10 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_backup" cascade
+[0m07:55:29.747031 [debug] [Thread-11 ]: Using vertica connection "model.test.dep"
+[0m07:55:29.747381 [debug] [Thread-11 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_backup" cascade
+[0m07:55:29.753630 [debug] [Thread-10 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.754827 [debug] [Thread-10 ]: finished collecting timing info
+[0m07:55:29.755076 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.755294 [debug] [Thread-10 ]: On model.test.table_b: Close
+[0m07:55:29.756448 [debug] [Thread-11 ]: Writing runtime sql for node "model.test.dep"
+[0m07:55:29.757170 [info ] [Thread-10 ]: 3 of 7 OK created sql table model test16666845282332081944_test_concurrency.table_b  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.23s]
+[0m07:55:29.757511 [debug] [Thread-11 ]: Using vertica connection "model.test.dep"
+[0m07:55:29.757717 [debug] [Thread-10 ]: Finished running node model.test.table_b
+[0m07:55:29.757849 [debug] [Thread-11 ]: On model.test.dep: BEGIN
+[0m07:55:29.758251 [debug] [Thread-8 (]: Began running node model.test.view_with_conflicting_cascade
+[0m07:55:29.758458 [info ] [Thread-8 (]: 7 of 7 START sql view model test16666845282332081944_test_concurrency.view_with_conflicting_cascade  [RUN]
+[0m07:55:29.758887 [debug] [Thread-8 (]: Acquiring new vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:29.759013 [debug] [Thread-8 (]: Began compiling node model.test.view_with_conflicting_cascade
+[0m07:55:29.759123 [debug] [Thread-8 (]: Compiling model.test.view_with_conflicting_cascade
+[0m07:55:29.762586 [debug] [Thread-8 (]: Writing injected SQL for node "model.test.view_with_conflicting_cascade"
+[0m07:55:29.762915 [debug] [Thread-8 (]: finished collecting timing info
+[0m07:55:29.763062 [debug] [Thread-8 (]: Began executing node model.test.view_with_conflicting_cascade
+[0m07:55:29.766013 [debug] [Thread-8 (]: Writing runtime sql for node "model.test.view_with_conflicting_cascade"
+[0m07:55:29.766206 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.766503 [debug] [Thread-11 ]: Using vertica connection "model.test.dep"
+[0m07:55:29.766655 [debug] [Thread-11 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_tmp"
+    
+  as (
+    
+
+select * from "VMart"."test16666845282332081944_test_concurrency"."view_model"
+  );
+
+  
+[0m07:55:29.766797 [debug] [Thread-8 (]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:29.766999 [debug] [Thread-8 (]: On model.test.view_with_conflicting_cascade: BEGIN
+[0m07:55:29.767121 [debug] [Thread-8 (]: Opening a new connection, currently in state closed
+[0m07:55:29.782984 [debug] [Thread-8 (]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.787152 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.787426 [debug] [Thread-8 (]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:29.787547 [debug] [Thread-8 (]: On model.test.view_with_conflicting_cascade: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_with_conflicting_cascade"} */
+
+  create view "VMart"."test16666845282332081944_test_concurrency"."view_with_conflicting_cascade__dbt_tmp" as (
+    select * from "VMart"."test16666845282332081944_test_concurrency"."table_a"
+
+union all
+
+select * from "VMart"."test16666845282332081944_test_concurrency"."table_b"
+  );
+[0m07:55:29.799477 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.801664 [debug] [Thread-8 (]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:29.801846 [debug] [Thread-8 (]: On model.test.view_with_conflicting_cascade: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_with_conflicting_cascade"} */
+alter view "VMart"."test16666845282332081944_test_concurrency"."view_with_conflicting_cascade__dbt_tmp" rename to "view_with_conflicting_cascade"
+[0m07:55:29.811481 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.813236 [debug] [Thread-8 (]: On model.test.view_with_conflicting_cascade: COMMIT
+[0m07:55:29.813443 [debug] [Thread-8 (]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:29.813556 [debug] [Thread-8 (]: On model.test.view_with_conflicting_cascade: COMMIT
+[0m07:55:29.816081 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.05 seconds
+[0m07:55:29.819376 [debug] [Thread-11 ]: Using vertica connection "model.test.dep"
+[0m07:55:29.819742 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.819905 [debug] [Thread-11 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_tmp" rename to "dep"
+[0m07:55:29.821717 [debug] [Thread-8 (]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:29.822086 [debug] [Thread-8 (]: On model.test.view_with_conflicting_cascade: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_with_conflicting_cascade"} */
+drop view if exists "VMart"."test16666845282332081944_test_concurrency"."view_with_conflicting_cascade__dbt_backup" cascade
+[0m07:55:29.827944 [debug] [Thread-8 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.828953 [debug] [Thread-8 (]: finished collecting timing info
+[0m07:55:29.829153 [debug] [Thread-8 (]: On model.test.view_with_conflicting_cascade: Close
+[0m07:55:29.829691 [info ] [Thread-8 (]: 7 of 7 OK created sql view model test16666845282332081944_test_concurrency.view_with_conflicting_cascade  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.07s]
+[0m07:55:29.830046 [debug] [Thread-8 (]: Finished running node model.test.view_with_conflicting_cascade
+[0m07:55:29.833390 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.834280 [debug] [Thread-11 ]: On model.test.dep: COMMIT
+[0m07:55:29.834435 [debug] [Thread-11 ]: Using vertica connection "model.test.dep"
+[0m07:55:29.834557 [debug] [Thread-11 ]: On model.test.dep: COMMIT
+[0m07:55:29.838876 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:29.840857 [debug] [Thread-11 ]: Using vertica connection "model.test.dep"
+[0m07:55:29.841064 [debug] [Thread-11 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_backup" cascade
+[0m07:55:29.847877 [debug] [Thread-11 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:29.848930 [debug] [Thread-11 ]: finished collecting timing info
+[0m07:55:29.849158 [debug] [Thread-11 ]: On model.test.dep: Close
+[0m07:55:29.849719 [info ] [Thread-11 ]: 5 of 7 OK created sql table model test16666845282332081944_test_concurrency.dep  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.15s]
+[0m07:55:29.850100 [debug] [Thread-11 ]: Finished running node model.test.dep
+[0m07:55:29.851005 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m07:55:29.851218 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.851344 [debug] [MainThread]: On master: BEGIN
+[0m07:55:29.851451 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:29.865856 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.870513 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.870835 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.871009 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:29.871141 [debug] [MainThread]: On master: COMMIT
+[0m07:55:29.876274 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:29.876613 [debug] [MainThread]: On master: Close
+[0m07:55:29.877432 [info ] [MainThread]: 
+[0m07:55:29.877787 [info ] [MainThread]: Finished running 3 view models, 4 table models in 0 hours 0 minutes and 0.47 seconds (0.47s).
+[0m07:55:29.877985 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m07:55:29.878092 [debug] [MainThread]: Connection 'model.test.view_with_conflicting_cascade' was properly closed.
+[0m07:55:29.878218 [debug] [MainThread]: Connection 'model.test.table_a' was properly closed.
+[0m07:55:29.878322 [debug] [MainThread]: Connection 'model.test.table_b' was properly closed.
+[0m07:55:29.878464 [debug] [MainThread]: Connection 'model.test.dep' was properly closed.
+[0m07:55:29.883269 [info ] [MainThread]: 
+[0m07:55:29.883578 [info ] [MainThread]: [31mCompleted with 1 error and 0 warnings:[0m
+[0m07:55:29.883791 [info ] [MainThread]: 
+[0m07:55:29.883974 [error] [MainThread]: [33mDatabase Error in model invalid (models/invalid.sql)[0m
+[0m07:55:29.884150 [error] [MainThread]:   Severity: ERROR, Message: Column "a_field_that_does_not_exist" does not exist, Sqlstate: 42703, Routine: transformSQLColumnRef, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Optimizer/OptUtil/ExprUtil.cpp, Line: 7217, Error Code: 2624, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */           create  table     "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"        as (      select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed   );   '
+[0m07:55:29.884323 [error] [MainThread]:   compiled Code at target/run/test/models/invalid.sql
+[0m07:55:29.884503 [info ] [MainThread]: 
+[0m07:55:29.884686 [info ] [MainThread]: Done. PASS=5 WARN=0 ERROR=1 SKIP=1 TOTAL=7
+[0m07:55:29.884963 [debug] [MainThread]: Flushing usage events
+[0m07:55:29.885531 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:29.890712 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:29.890954 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:29.891070 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:55:29.906783 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:29.911937 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:29.912199 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:29.912321 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:29.941443 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:29.945990 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:29.946352 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."view_model")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."view_model" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."view_model"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:30.005824 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.06 seconds
+[0m07:55:30.007667 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:30.013845 [debug] [MainThread]: On _test: Close
+[0m07:55:30.015865 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:30.021822 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.022293 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:30.022603 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:30.042692 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.050236 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:30.050794 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.051149 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:30.095501 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:30.099062 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.099535 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."dep")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."dep" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."dep"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:30.160105 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.06 seconds
+[0m07:55:30.162573 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:30.168374 [debug] [MainThread]: On _test: Close
+[0m07:55:30.170579 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:30.174977 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.175540 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:30.175926 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:30.201012 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.207452 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:30.208041 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.208453 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:30.248160 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:30.251749 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.252187 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_a")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_a" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."table_a"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:30.294783 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:30.297281 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:30.303663 [debug] [MainThread]: On _test: Close
+[0m07:55:30.305975 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:30.310950 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.311431 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:30.311786 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:30.327022 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.332461 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.333068 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.333426 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:30.360098 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:30.363340 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.363784 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_b")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_b" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."table_b"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:30.411072 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.05 seconds
+[0m07:55:30.413508 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:30.419701 [debug] [MainThread]: On _test: Close
+[0m07:55:30.421810 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:30.425842 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.426275 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:30.426601 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:30.441475 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.447857 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.448415 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.448774 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'invalid'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'invalid'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:30.488116 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:30.490911 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:30.495749 [debug] [MainThread]: On _test: Close
+[0m07:55:30.497819 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:30.501855 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.502280 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:30.502606 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:30.518742 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.524288 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.524854 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:30.525203 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'skip'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'skip'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:30.565465 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:30.568265 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:30.573396 [debug] [MainThread]: On _test: Close
+[0m07:55:30.591149 [debug] [MainThread]: Connection '_test' was properly closed.
+
+
+============================== 2022-10-25 07:55:30.597459 | cc58d904-fa73-4c43-8819-687ddceb430b ==============================
+[0m07:55:30.597467 [info ] [MainThread]: Running with dbt=1.3.0
+[0m07:55:30.597745 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-12/profile0', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m07:55:30.597859 [debug] [MainThread]: Tracking: do not track
+[0m07:55:30.616999 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m07:55:30.617349 [debug] [MainThread]: Partial parsing: updated file: test://seeds/seed.csv
+[0m07:55:30.632499 [info ] [MainThread]: Found 7 models, 0 tests, 0 snapshots, 0 analyses, 296 macros, 0 operations, 1 seed file, 0 sources, 0 exposures, 0 metrics
+[0m07:55:30.633449 [info ] [MainThread]: 
+[0m07:55:30.633966 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m07:55:30.634858 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart"
+[0m07:55:30.636338 [debug] [ThreadPool]: Using vertica connection "list_VMart"
+[0m07:55:30.636480 [debug] [ThreadPool]: On list_VMart: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart"} */
+
+    select schema_name
+    from v_catalog.schemata
+  
+[0m07:55:30.636599 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m07:55:30.653620 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.670771 [debug] [ThreadPool]: SQL status: Code: [Column(name='schema_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:30.673433 [debug] [ThreadPool]: On list_VMart: Close
+[0m07:55:30.676826 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:30.680903 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:30.681343 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: BEGIN
+[0m07:55:30.681665 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m07:55:30.701050 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.706369 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.706814 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16666845282332081944_test_concurrency"
+[0m07:55:30.707123 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16666845282332081944_test_concurrency"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16666845282332081944_test_concurrency'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16666845282332081944_test_concurrency'
+  
+[0m07:55:30.723724 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.725015 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: ROLLBACK
+[0m07:55:30.728982 [debug] [ThreadPool]: On list_VMart_test16666845282332081944_test_concurrency: Close
+[0m07:55:30.729719 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:30.729878 [debug] [MainThread]: On master: BEGIN
+[0m07:55:30.729992 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:55:30.745434 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.752881 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.753195 [debug] [MainThread]: On master: COMMIT
+[0m07:55:30.753409 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:30.753672 [debug] [MainThread]: On master: COMMIT
+[0m07:55:30.758460 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:30.758881 [debug] [MainThread]: On master: Close
+[0m07:55:30.759820 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+[0m07:55:30.760423 [info ] [MainThread]: 
+[0m07:55:30.763143 [debug] [Thread-15 ]: Began running node model.test.invalid
+[0m07:55:30.763764 [info ] [Thread-15 ]: 1 of 7 START sql table model test16666845282332081944_test_concurrency.invalid . [RUN]
+[0m07:55:30.764165 [debug] [Thread-16 ]: Began running node model.test.table_a
+[0m07:55:30.764681 [debug] [Thread-17 ]: Began running node model.test.table_b
+[0m07:55:30.765045 [debug] [Thread-18 ]: Began running node model.test.view_model
+[0m07:55:30.766566 [debug] [Thread-15 ]: Acquiring new vertica connection "model.test.invalid"
+[0m07:55:30.767090 [info ] [Thread-16 ]: 2 of 7 START sql table model test16666845282332081944_test_concurrency.table_a . [RUN]
+[0m07:55:30.767783 [info ] [Thread-17 ]: 3 of 7 START sql table model test16666845282332081944_test_concurrency.table_b . [RUN]
+[0m07:55:30.768499 [info ] [Thread-18 ]: 4 of 7 START sql view model test16666845282332081944_test_concurrency.view_model  [RUN]
+[0m07:55:30.769094 [debug] [Thread-15 ]: Began compiling node model.test.invalid
+[0m07:55:30.770605 [debug] [Thread-16 ]: Acquiring new vertica connection "model.test.table_a"
+[0m07:55:30.771920 [debug] [Thread-17 ]: Acquiring new vertica connection "model.test.table_b"
+[0m07:55:30.773214 [debug] [Thread-18 ]: Acquiring new vertica connection "model.test.view_model"
+[0m07:55:30.773649 [debug] [Thread-15 ]: Compiling model.test.invalid
+[0m07:55:30.774092 [debug] [Thread-16 ]: Began compiling node model.test.table_a
+[0m07:55:30.774574 [debug] [Thread-17 ]: Began compiling node model.test.table_b
+[0m07:55:30.774981 [debug] [Thread-18 ]: Began compiling node model.test.view_model
+[0m07:55:30.781393 [debug] [Thread-15 ]: Writing injected SQL for node "model.test.invalid"
+[0m07:55:30.781891 [debug] [Thread-16 ]: Compiling model.test.table_a
+[0m07:55:30.782408 [debug] [Thread-17 ]: Compiling model.test.table_b
+[0m07:55:30.782855 [debug] [Thread-18 ]: Compiling model.test.view_model
+[0m07:55:30.787574 [debug] [Thread-16 ]: Writing injected SQL for node "model.test.table_a"
+[0m07:55:30.792266 [debug] [Thread-17 ]: Writing injected SQL for node "model.test.table_b"
+[0m07:55:30.797160 [debug] [Thread-18 ]: Writing injected SQL for node "model.test.view_model"
+[0m07:55:30.797636 [debug] [Thread-15 ]: finished collecting timing info
+[0m07:55:30.798501 [debug] [Thread-16 ]: finished collecting timing info
+[0m07:55:30.799412 [debug] [Thread-17 ]: finished collecting timing info
+[0m07:55:30.799966 [debug] [Thread-15 ]: Began executing node model.test.invalid
+[0m07:55:30.800294 [debug] [Thread-18 ]: finished collecting timing info
+[0m07:55:30.800795 [debug] [Thread-16 ]: Began executing node model.test.table_a
+[0m07:55:30.801272 [debug] [Thread-17 ]: Began executing node model.test.table_b
+[0m07:55:30.806947 [debug] [Thread-15 ]: Using vertica connection "model.test.invalid"
+[0m07:55:30.807380 [debug] [Thread-18 ]: Began executing node model.test.view_model
+[0m07:55:30.812888 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:30.818043 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:30.818490 [debug] [Thread-15 ]: On model.test.invalid: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp" cascade
+[0m07:55:30.826667 [debug] [Thread-18 ]: Writing runtime sql for node "model.test.view_model"
+[0m07:55:30.827243 [debug] [Thread-16 ]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_tmp" cascade
+[0m07:55:30.827855 [debug] [Thread-17 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_tmp" cascade
+[0m07:55:30.828242 [debug] [Thread-15 ]: Opening a new connection, currently in state closed
+[0m07:55:30.828933 [debug] [Thread-16 ]: Opening a new connection, currently in state init
+[0m07:55:30.829405 [debug] [Thread-18 ]: Using vertica connection "model.test.view_model"
+[0m07:55:30.829720 [debug] [Thread-17 ]: Opening a new connection, currently in state init
+[0m07:55:30.831259 [debug] [Thread-18 ]: On model.test.view_model: BEGIN
+[0m07:55:30.832023 [debug] [Thread-18 ]: Opening a new connection, currently in state init
+[0m07:55:30.845295 [debug] [Thread-16 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.846651 [debug] [Thread-15 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.847251 [debug] [Thread-18 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.848657 [debug] [Thread-17 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:30.853187 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.853589 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.858224 [debug] [Thread-15 ]: Using vertica connection "model.test.invalid"
+[0m07:55:30.858700 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:30.862632 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:30.863015 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:30.863415 [debug] [Thread-15 ]: On model.test.invalid: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_backup" cascade
+[0m07:55:30.863853 [debug] [Thread-18 ]: Using vertica connection "model.test.view_model"
+[0m07:55:30.864211 [debug] [Thread-16 ]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_backup" cascade
+[0m07:55:30.868256 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:30.868961 [debug] [Thread-18 ]: On model.test.view_model: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_model"} */
+
+  create view "VMart"."test16666845282332081944_test_concurrency"."view_model__dbt_tmp" as (
+    
+
+select * from test16666845282332081944_test_concurrency.seed
+  );
+[0m07:55:30.869646 [debug] [Thread-17 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_backup" cascade
+[0m07:55:30.876370 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.879336 [debug] [Thread-15 ]: Writing runtime sql for node "model.test.invalid"
+[0m07:55:30.879744 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.882749 [debug] [Thread-17 ]: Writing runtime sql for node "model.test.table_b"
+[0m07:55:30.883524 [debug] [Thread-15 ]: Using vertica connection "model.test.invalid"
+[0m07:55:30.883929 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.884498 [debug] [Thread-15 ]: On model.test.invalid: BEGIN
+[0m07:55:30.884818 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.885170 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:30.886872 [debug] [Thread-16 ]: Writing runtime sql for node "model.test.table_a"
+[0m07:55:30.890622 [debug] [Thread-18 ]: Using vertica connection "model.test.view_model"
+[0m07:55:30.890987 [debug] [Thread-17 ]: On model.test.table_b: BEGIN
+[0m07:55:30.891557 [debug] [Thread-18 ]: On model.test.view_model: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_model"} */
+alter view "VMart"."test16666845282332081944_test_concurrency"."view_model" rename to "view_model__dbt_backup"
+[0m07:55:30.892056 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:30.892665 [debug] [Thread-16 ]: On model.test.table_a: BEGIN
+[0m07:55:30.892942 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.893494 [debug] [Thread-15 ]: Using vertica connection "model.test.invalid"
+[0m07:55:30.893786 [debug] [Thread-15 ]: On model.test.invalid: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"
+    
+  as (
+    
+
+select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed
+  );
+
+  
+[0m07:55:30.897235 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:30.897513 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.897859 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:30.898218 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:30.898528 [debug] [Thread-16 ]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_tmp"
+    
+  as (
+    
+
+select * from test16666845282332081944_test_concurrency.seed
+  );
+
+  
+[0m07:55:30.898830 [debug] [Thread-17 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_tmp"
+    
+  as (
+    
+
+select * from test16666845282332081944_test_concurrency.seed
+  );
+
+  
+[0m07:55:30.900304 [debug] [Thread-15 ]: vertica adapter: :P Database error: Severity: ERROR, Message: Column "a_field_that_does_not_exist" does not exist, Sqlstate: 42703, Routine: transformSQLColumnRef, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Optimizer/OptUtil/ExprUtil.cpp, Line: 7217, Error Code: 2624, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */           create  table     "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"        as (      select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed   );   '
+[0m07:55:30.900638 [debug] [Thread-15 ]: On model.test.invalid: ROLLBACK
+[0m07:55:30.909321 [debug] [Thread-15 ]: On model.test.invalid: Close
+[0m07:55:30.910191 [debug] [Thread-15 ]: finished collecting timing info
+[0m07:55:30.911147 [debug] [Thread-15 ]: Database Error in model invalid (models/invalid.sql)
+  Severity: ERROR, Message: Column "a_field_that_does_not_exist" does not exist, Sqlstate: 42703, Routine: transformSQLColumnRef, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Optimizer/OptUtil/ExprUtil.cpp, Line: 7217, Error Code: 2624, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */           create  table     "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"        as (      select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed   );   '
+  compiled Code at target/run/test/models/invalid.sql
+[0m07:55:30.911830 [error] [Thread-15 ]: 1 of 7 ERROR creating sql table model test16666845282332081944_test_concurrency.invalid  [[31mERROR[0m in 0.15s]
+[0m07:55:30.912647 [debug] [Thread-15 ]: Finished running node model.test.invalid
+[0m07:55:30.913571 [debug] [Thread-15 ]: Began running node model.test.skip
+[0m07:55:30.913914 [info ] [Thread-15 ]: 5 of 7 SKIP relation test16666845282332081944_test_concurrency.skip ............ [[33mSKIP[0m]
+[0m07:55:30.914674 [debug] [Thread-15 ]: Finished running node model.test.skip
+[0m07:55:30.919884 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:30.925055 [debug] [Thread-18 ]: Using vertica connection "model.test.view_model"
+[0m07:55:30.925470 [debug] [Thread-18 ]: On model.test.view_model: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_model"} */
+alter view "VMart"."test16666845282332081944_test_concurrency"."view_model__dbt_tmp" rename to "view_model"
+[0m07:55:30.943287 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.953012 [debug] [Thread-18 ]: On model.test.view_model: COMMIT
+[0m07:55:30.953605 [debug] [Thread-18 ]: Using vertica connection "model.test.view_model"
+[0m07:55:30.954027 [debug] [Thread-18 ]: On model.test.view_model: COMMIT
+[0m07:55:30.959733 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.962915 [debug] [Thread-18 ]: Using vertica connection "model.test.view_model"
+[0m07:55:30.963192 [debug] [Thread-18 ]: On model.test.view_model: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_model"} */
+drop view if exists "VMart"."test16666845282332081944_test_concurrency"."view_model__dbt_backup" cascade
+[0m07:55:30.969569 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.07 seconds
+[0m07:55:30.971697 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:30.971904 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.07 seconds
+[0m07:55:30.972116 [debug] [Thread-17 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."table_b" rename to "table_b__dbt_backup"
+[0m07:55:30.974042 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:30.974278 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.974600 [debug] [Thread-16 ]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."table_a" rename to "table_a__dbt_backup"
+[0m07:55:30.975604 [debug] [Thread-18 ]: finished collecting timing info
+[0m07:55:30.975999 [debug] [Thread-18 ]: On model.test.view_model: Close
+[0m07:55:30.976573 [info ] [Thread-18 ]: 4 of 7 OK created sql view model test16666845282332081944_test_concurrency.view_model  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.20s]
+[0m07:55:30.977034 [debug] [Thread-18 ]: Finished running node model.test.view_model
+[0m07:55:30.977409 [debug] [Thread-15 ]: Began running node model.test.dep
+[0m07:55:30.977623 [info ] [Thread-15 ]: 6 of 7 START sql table model test16666845282332081944_test_concurrency.dep ..... [RUN]
+[0m07:55:30.978065 [debug] [Thread-15 ]: Acquiring new vertica connection "model.test.dep"
+[0m07:55:30.978234 [debug] [Thread-15 ]: Began compiling node model.test.dep
+[0m07:55:30.978366 [debug] [Thread-15 ]: Compiling model.test.dep
+[0m07:55:30.981154 [debug] [Thread-15 ]: Writing injected SQL for node "model.test.dep"
+[0m07:55:30.981455 [debug] [Thread-15 ]: finished collecting timing info
+[0m07:55:30.981609 [debug] [Thread-15 ]: Began executing node model.test.dep
+[0m07:55:30.983682 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:30.983832 [debug] [Thread-15 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_tmp" cascade
+[0m07:55:30.983938 [debug] [Thread-15 ]: Opening a new connection, currently in state closed
+[0m07:55:30.986275 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:30.987919 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:30.988066 [debug] [Thread-17 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_tmp" rename to "table_b"
+[0m07:55:30.994006 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:30.997466 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:30.997824 [debug] [Thread-16 ]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_tmp" rename to "table_a"
+[0m07:55:31.004544 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.006415 [debug] [Thread-17 ]: On model.test.table_b: COMMIT
+[0m07:55:31.006815 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:31.007109 [debug] [Thread-17 ]: On model.test.table_b: COMMIT
+[0m07:55:31.010680 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.013074 [debug] [Thread-16 ]: On model.test.table_a: COMMIT
+[0m07:55:31.013612 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:31.013938 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.014419 [debug] [Thread-16 ]: On model.test.table_a: COMMIT
+[0m07:55:31.015081 [debug] [Thread-15 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.018804 [debug] [Thread-17 ]: Using vertica connection "model.test.table_b"
+[0m07:55:31.019896 [debug] [Thread-17 ]: On model.test.table_b: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_b"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_b__dbt_backup" cascade
+[0m07:55:31.023793 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:31.027845 [debug] [Thread-16 ]: Using vertica connection "model.test.table_a"
+[0m07:55:31.028232 [debug] [Thread-16 ]: On model.test.table_a: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.table_a"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."table_a__dbt_backup" cascade
+[0m07:55:31.028633 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:31.033399 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:31.033783 [debug] [Thread-15 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_backup" cascade
+[0m07:55:31.036231 [debug] [Thread-17 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.038328 [debug] [Thread-17 ]: finished collecting timing info
+[0m07:55:31.038738 [debug] [Thread-17 ]: On model.test.table_b: Close
+[0m07:55:31.039966 [info ] [Thread-17 ]: 3 of 7 OK created sql table model test16666845282332081944_test_concurrency.table_b  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.27s]
+[0m07:55:31.040874 [debug] [Thread-17 ]: Finished running node model.test.table_b
+[0m07:55:31.041149 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.043894 [debug] [Thread-15 ]: Writing runtime sql for node "model.test.dep"
+[0m07:55:31.044339 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:31.044578 [debug] [Thread-16 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.044807 [debug] [Thread-15 ]: On model.test.dep: BEGIN
+[0m07:55:31.046079 [debug] [Thread-16 ]: finished collecting timing info
+[0m07:55:31.046527 [debug] [Thread-16 ]: On model.test.table_a: Close
+[0m07:55:31.047319 [info ] [Thread-16 ]: 2 of 7 OK created sql table model test16666845282332081944_test_concurrency.table_a  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.28s]
+[0m07:55:31.047848 [debug] [Thread-16 ]: Finished running node model.test.table_a
+[0m07:55:31.048335 [debug] [Thread-18 ]: Began running node model.test.view_with_conflicting_cascade
+[0m07:55:31.048707 [info ] [Thread-18 ]: 7 of 7 START sql view model test16666845282332081944_test_concurrency.view_with_conflicting_cascade  [RUN]
+[0m07:55:31.049408 [debug] [Thread-18 ]: Acquiring new vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:31.049619 [debug] [Thread-18 ]: Began compiling node model.test.view_with_conflicting_cascade
+[0m07:55:31.049800 [debug] [Thread-18 ]: Compiling model.test.view_with_conflicting_cascade
+[0m07:55:31.052340 [debug] [Thread-18 ]: Writing injected SQL for node "model.test.view_with_conflicting_cascade"
+[0m07:55:31.052552 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.052849 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:31.053023 [debug] [Thread-15 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+
+  
+    
+
+  create  table
+    "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_tmp"
+    
+  as (
+    
+
+select * from "VMart"."test16666845282332081944_test_concurrency"."view_model"
+  );
+
+  
+[0m07:55:31.053134 [debug] [Thread-18 ]: finished collecting timing info
+[0m07:55:31.053423 [debug] [Thread-18 ]: Began executing node model.test.view_with_conflicting_cascade
+[0m07:55:31.056380 [debug] [Thread-18 ]: Writing runtime sql for node "model.test.view_with_conflicting_cascade"
+[0m07:55:31.056667 [debug] [Thread-18 ]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:31.056795 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: BEGIN
+[0m07:55:31.056893 [debug] [Thread-18 ]: Opening a new connection, currently in state closed
+[0m07:55:31.080278 [debug] [Thread-18 ]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.085372 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:31.085821 [debug] [Thread-18 ]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:31.086130 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_with_conflicting_cascade"} */
+
+  create view "VMart"."test16666845282332081944_test_concurrency"."view_with_conflicting_cascade__dbt_tmp" as (
+    select * from "VMart"."test16666845282332081944_test_concurrency"."table_a"
+
+union all
+
+select * from "VMart"."test16666845282332081944_test_concurrency"."table_b"
+  );
+[0m07:55:31.086607 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:31.094491 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:31.094960 [debug] [Thread-15 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."dep" rename to "dep__dbt_backup"
+[0m07:55:31.097202 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.137573 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:31.141350 [debug] [Thread-18 ]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:31.143270 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:31.143567 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_with_conflicting_cascade"} */
+alter view "VMart"."test16666845282332081944_test_concurrency"."view_with_conflicting_cascade" rename to "view_with_conflicting_cascade__dbt_backup"
+[0m07:55:31.143800 [debug] [Thread-15 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+alter table "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_tmp" rename to "dep"
+[0m07:55:31.154468 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.156683 [debug] [Thread-18 ]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:31.156892 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_with_conflicting_cascade"} */
+alter view "VMart"."test16666845282332081944_test_concurrency"."view_with_conflicting_cascade__dbt_tmp" rename to "view_with_conflicting_cascade"
+[0m07:55:31.157515 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.158609 [debug] [Thread-15 ]: On model.test.dep: COMMIT
+[0m07:55:31.158805 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:31.158920 [debug] [Thread-15 ]: On model.test.dep: COMMIT
+[0m07:55:31.163785 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:31.165682 [debug] [Thread-15 ]: Using vertica connection "model.test.dep"
+[0m07:55:31.165901 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.166081 [debug] [Thread-15 ]: On model.test.dep: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.dep"} */
+drop table if exists "VMart"."test16666845282332081944_test_concurrency"."dep__dbt_backup" cascade
+[0m07:55:31.167748 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: COMMIT
+[0m07:55:31.168013 [debug] [Thread-18 ]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:31.168129 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: COMMIT
+[0m07:55:31.172368 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:31.173960 [debug] [Thread-18 ]: Using vertica connection "model.test.view_with_conflicting_cascade"
+[0m07:55:31.174109 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.view_with_conflicting_cascade"} */
+drop view if exists "VMart"."test16666845282332081944_test_concurrency"."view_with_conflicting_cascade__dbt_backup" cascade
+[0m07:55:31.178519 [debug] [Thread-15 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.179371 [debug] [Thread-15 ]: finished collecting timing info
+[0m07:55:31.179528 [debug] [Thread-15 ]: On model.test.dep: Close
+[0m07:55:31.180068 [info ] [Thread-15 ]: 6 of 7 OK created sql table model test16666845282332081944_test_concurrency.dep  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.20s]
+[0m07:55:31.180427 [debug] [Thread-15 ]: Finished running node model.test.dep
+[0m07:55:31.181775 [debug] [Thread-18 ]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.182640 [debug] [Thread-18 ]: finished collecting timing info
+[0m07:55:31.182799 [debug] [Thread-18 ]: On model.test.view_with_conflicting_cascade: Close
+[0m07:55:31.183263 [info ] [Thread-18 ]: 7 of 7 OK created sql view model test16666845282332081944_test_concurrency.view_with_conflicting_cascade  [[32mCode: None, Rows: -1, Array Size: 1[0m in 0.13s]
+[0m07:55:31.183577 [debug] [Thread-18 ]: Finished running node model.test.view_with_conflicting_cascade
+[0m07:55:31.184511 [debug] [MainThread]: Acquiring new vertica connection "master"
+[0m07:55:31.184676 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:31.184791 [debug] [MainThread]: On master: BEGIN
+[0m07:55:31.184896 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:31.200707 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.206919 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.207208 [debug] [MainThread]: On master: COMMIT
+[0m07:55:31.207351 [debug] [MainThread]: Using vertica connection "master"
+[0m07:55:31.207488 [debug] [MainThread]: On master: COMMIT
+[0m07:55:31.212237 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.0 seconds
+[0m07:55:31.212413 [debug] [MainThread]: On master: Close
+[0m07:55:31.212888 [info ] [MainThread]: 
+[0m07:55:31.213130 [info ] [MainThread]: Finished running 4 table models, 3 view models in 0 hours 0 minutes and 0.58 seconds (0.58s).
+[0m07:55:31.213329 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m07:55:31.213455 [debug] [MainThread]: Connection 'model.test.dep' was properly closed.
+[0m07:55:31.213594 [debug] [MainThread]: Connection 'model.test.table_a' was properly closed.
+[0m07:55:31.213692 [debug] [MainThread]: Connection 'model.test.table_b' was properly closed.
+[0m07:55:31.213783 [debug] [MainThread]: Connection 'model.test.view_with_conflicting_cascade' was properly closed.
+[0m07:55:31.218598 [info ] [MainThread]: 
+[0m07:55:31.218919 [info ] [MainThread]: [31mCompleted with 1 error and 0 warnings:[0m
+[0m07:55:31.219138 [info ] [MainThread]: 
+[0m07:55:31.219323 [error] [MainThread]: [33mDatabase Error in model invalid (models/invalid.sql)[0m
+[0m07:55:31.219502 [error] [MainThread]:   Severity: ERROR, Message: Column "a_field_that_does_not_exist" does not exist, Sqlstate: 42703, Routine: transformSQLColumnRef, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Optimizer/OptUtil/ExprUtil.cpp, Line: 7217, Error Code: 2624, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "model.test.invalid"} */           create  table     "VMart"."test16666845282332081944_test_concurrency"."invalid__dbt_tmp"        as (      select a_field_that_does_not_exist from test16666845282332081944_test_concurrency.seed   );   '
+[0m07:55:31.219680 [error] [MainThread]:   compiled Code at target/run/test/models/invalid.sql
+[0m07:55:31.219869 [info ] [MainThread]: 
+[0m07:55:31.220050 [info ] [MainThread]: Done. PASS=5 WARN=0 ERROR=1 SKIP=1 TOTAL=7
+[0m07:55:31.220308 [debug] [MainThread]: Flushing usage events
+[0m07:55:31.220910 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:31.222524 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.222721 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:31.222841 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:55:31.238058 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.243219 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.243492 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.243627 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:31.270694 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:31.272618 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.272836 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."view_model")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."view_model" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."view_model"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:31.319023 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.05 seconds
+[0m07:55:31.321125 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:31.326173 [debug] [MainThread]: On _test: Close
+[0m07:55:31.328016 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:31.331612 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.332038 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:31.332360 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:31.348377 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.353835 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.354277 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.354545 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:31.391769 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:31.393139 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.393332 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."dep")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."dep" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."dep"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:31.435442 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:31.437932 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:31.443862 [debug] [MainThread]: On _test: Close
+[0m07:55:31.446174 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:31.450175 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.450933 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:31.451298 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:31.469903 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.475197 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.475711 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.476038 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:31.524280 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.05 seconds
+[0m07:55:31.527391 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.527842 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_a")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_a" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."table_a"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:31.576258 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.05 seconds
+[0m07:55:31.577114 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:31.582502 [debug] [MainThread]: On _test: Close
+[0m07:55:31.583156 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:31.584534 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.584670 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:31.584772 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:31.603486 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.612182 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:31.612550 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.612766 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'seed'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:31.653453 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:31.655399 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.655704 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+with diff_count as (
+    SELECT
+        1 as id,
+        COUNT(*) as num_missing FROM (
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_b")
+             UNION ALL
+            (SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."table_b" EXCEPT
+             SELECT "email", "first_name", "gender", "id", "ip_address", "last_name" FROM "VMart"."test16666845282332081944_test_concurrency"."seed")
+        ) as a
+), table_a as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."seed"
+), table_b as (
+    SELECT COUNT(*) as num_rows FROM "VMart"."test16666845282332081944_test_concurrency"."table_b"
+), row_count_diff as (
+    select
+        1 as id,
+        table_a.num_rows - table_b.num_rows as difference
+    from table_a, table_b
+)
+select
+    row_count_diff.difference as row_count_difference,
+    diff_count.num_missing as num_mismatched
+from row_count_diff
+join diff_count using (id)
+[0m07:55:31.716290 [debug] [MainThread]: SQL status: Code: [Column(name='row_count_difference', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='num_mismatched', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.06 seconds
+[0m07:55:31.717268 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:31.723825 [debug] [MainThread]: On _test: Close
+[0m07:55:31.724834 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:31.726730 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.726900 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:31.727027 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:31.745667 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.752994 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:31.753468 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.753813 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'invalid'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'invalid'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:31.791155 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.04 seconds
+[0m07:55:31.793713 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:31.798513 [debug] [MainThread]: On _test: Close
+[0m07:55:31.800320 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:31.803966 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.804348 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:31.804648 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:31.821003 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.825871 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.826455 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.826809 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'skip'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_schema = 'test16666845282332081944_test_concurrency'
+        and table_name = 'skip'
+    ) t
+    order by ordinal_position
+  
+[0m07:55:31.861910 [debug] [MainThread]: SQL status: Code: [Column(name='column_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='data_type', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='character_maximum_length', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_precision', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True), Column(name='numeric_scale', type_code=6, display_size=20, internal_size=8, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.03 seconds
+[0m07:55:31.865034 [debug] [MainThread]: On _test: ROLLBACK
+[0m07:55:31.869884 [debug] [MainThread]: On _test: Close
+[0m07:55:31.873191 [debug] [MainThread]: Acquiring new vertica connection "_test"
+[0m07:55:31.873831 [debug] [MainThread]: Dropping schema "_ReferenceKey(database='vmart', schema='test16666845282332081944_test_concurrency', identifier=None)".
+[0m07:55:31.879462 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.879741 [debug] [MainThread]: On _test: BEGIN
+[0m07:55:31.879862 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:55:31.896543 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+[0m07:55:31.901137 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+[0m07:55:31.901358 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.901471 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+drop schema if exists "test16666845282332081944_test_concurrency" cascade
+  
+[0m07:55:31.913774 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.914622 [debug] [MainThread]: On _test: COMMIT
+[0m07:55:31.914813 [debug] [MainThread]: Using vertica connection "_test"
+[0m07:55:31.914927 [debug] [MainThread]: On _test: COMMIT
+[0m07:55:31.920258 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+[0m07:55:31.920643 [debug] [MainThread]: On _test: Close
+[0m07:55:31.921302 [debug] [MainThread]: Connection '_test' was properly closed.

@@ -1,0 +1,447 @@
+===================================================================================== test session starts =====================================================================================
+platform linux -- Python 3.10.6, pytest-7.1.3, pluggy-1.0.0
+rootdir: /home/sachin/Documents/VERTICA/dbt-vertica-3x, configfile: pytest.ini
+plugins: dotenv-0.5.2
+collected 1 item                                                                                                                                                                              
+
+functional/adapter/test_basic.py F                                                                                                                                                      [100%]
+
+========================================================================================== FAILURES ===========================================================================================
+____________________________________________________________________ TestSnapshotTimestampVertica.test_snapshot_timestamp _____________________________________________________________________
+
+self = <adapter.test_basic.TestSnapshotTimestampVertica object at 0x7fd3eadbdcf0>, project = <dbt.tests.fixtures.project.TestProjInfo object at 0x7fd3ecffb910>
+
+    def test_snapshot_timestamp(self, project):
+        # seed command
+>       results = run_dbt(["seed"])
+
+/home/sachin/Documents/VERTICA/cenv/lib/python3.10/site-packages/dbt/tests/adapter/basic/test_snapshot_timestamp.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ['seed'], expect_pass = True
+
+    def run_dbt(args: List[str] = None, expect_pass=True):
+        # Ignore logbook warnings
+        warnings.filterwarnings("ignore", category=DeprecationWarning, module="logbook")
+    
+        # The logger will complain about already being initialized if
+        # we don't do this.
+        log_manager.reset_handlers()
+        if args is None:
+            args = ["run"]
+    
+        print("\n\nInvoking dbt with {}".format(args))
+        res, success = handle_and_check(args)
+    
+        if expect_pass is not None:
+>           assert success == expect_pass, "dbt exit state did not match expected"
+E           AssertionError: dbt exit state did not match expected
+
+/home/sachin/Documents/VERTICA/cenv/lib/python3.10/site-packages/dbt/tests/util.py:76: AssertionError
+------------------------------------------------------------------------------------ Captured stdout setup ------------------------------------------------------------------------------------
+
+=== Test project_root: /tmp/pytest-of-sachin/pytest-121/project0
+19:22:05  Partial parse save file not found. Starting full parse.
+------------------------------------------------------------------------------------- Captured log setup --------------------------------------------------------------------------------------
+INFO     default_stdout:functions.py:222 19:22:05  Partial parse save file not found. Starting full parse.
+DEBUG    configured_file:functions.py:220 19:22:05.393217 [debug] [MainThread]: Acquiring new vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:05.393406 [debug] [MainThread]: Acquiring new vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:05.393572 [debug] [MainThread]: Creating schema "_ReferenceKey(database='vmart', schema='test16664665251829722278_test_basic', identifier=None)"
+DEBUG    configured_file:functions.py:220 19:22:05.399948 [debug] [MainThread]: Using vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:05.400110 [debug] [MainThread]: On _test: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:05.400218 [debug] [MainThread]: Opening a new connection, currently in state init
+DEBUG    configured_file:functions.py:220 19:22:05.653337 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:05.662868 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.26 seconds
+DEBUG    configured_file:functions.py:220 19:22:05.663391 [debug] [MainThread]: Using vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:05.663726 [debug] [MainThread]: On _test: create schema if not exists "test16664665251829722278_test_basic"
+  
+DEBUG    configured_file:functions.py:220 19:22:05.680078 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+DEBUG    configured_file:functions.py:220 19:22:05.681033 [debug] [MainThread]: On _test: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:05.681252 [debug] [MainThread]: Using vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:05.681405 [debug] [MainThread]: On _test: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:05.691760 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+DEBUG    configured_file:functions.py:220 19:22:05.692051 [debug] [MainThread]: On _test: Close
+------------------------------------------------------------------------------------ Captured stdout call -------------------------------------------------------------------------------------
+
+
+Invoking dbt with ['seed']
+19:22:05  Running with dbt=1.3.0
+19:22:05  Partial parse save file not found. Starting full parse.
+19:22:06  Found 0 models, 0 tests, 1 snapshot, 0 analyses, 296 macros, 0 operations, 3 seed files, 0 sources, 0 exposures, 0 metrics
+19:22:06  
+19:22:06  Concurrency: 4 threads (target='default')
+19:22:06  
+19:22:06  1 of 3 START seed file test16664665251829722278_test_basic.added ............... [RUN]
+19:22:06  2 of 3 START seed file test16664665251829722278_test_basic.base ................ [RUN]
+19:22:06  3 of 3 START seed file test16664665251829722278_test_basic.newcolumns .......... [RUN]
+19:22:06  2 of 3 ERROR loading seed file test16664665251829722278_test_basic.base ........ [ERROR in 0.25s]
+19:22:06  3 of 3 ERROR loading seed file test16664665251829722278_test_basic.newcolumns .. [ERROR in 0.26s]
+19:22:06  1 of 3 OK loaded seed file test16664665251829722278_test_basic.added ........... [Code: None, Rows: -1, Array Size: 1 in 0.31s]
+19:22:06  
+19:22:06  Finished running 3 seeds in 0 hours 0 minutes and 0.60 seconds (0.60s).
+19:22:06  
+19:22:06  Completed with 2 errors and 0 warnings:
+19:22:06  
+19:22:06  Database Error in seed base (seeds/base.csv)
+19:22:06    Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.base"} */          create table "VMart"."test16664665251829722278_test_basic"."base" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone)   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."base"         ("id", "name", "some_date")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/base.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+19:22:06    compiled Code at target/run/snapshot_strategy_timestamp/seeds/base.csv
+19:22:06  
+19:22:06  Database Error in seed newcolumns (seeds/newcolumns.csv)
+19:22:06    Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.newcolumns"} */          create table "VMart"."test16664665251829722278_test_basic"."newcolumns" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone,"last_initial" varchar(1))   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."newcolumns"         ("id", "name", "some_date", "last_initial")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/newcolumns.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+19:22:06    compiled Code at target/run/snapshot_strategy_timestamp/seeds/newcolumns.csv
+19:22:06  
+19:22:06  Done. PASS=1 WARN=0 ERROR=2 SKIP=0 TOTAL=3
+-------------------------------------------------------------------------------------- Captured log call --------------------------------------------------------------------------------------
+DEBUG    configured_file:functions.py:220 19:22:05.703505 [debug] [MainThread]: Connection '_test' was properly closed.
+INFO     configured_file:functions.py:222 
+
+============================== 2022-10-22 19:22:05.710499 | 14bc1651-890a-45e1-a4ac-b2b9e146bb5a ==============================
+19:22:05.710511 [info ] [MainThread]: Running with dbt=1.3.0
+INFO     configured_std_out:functions.py:222 19:22:05  Running with dbt=1.3.0
+DEBUG    configured_file:functions.py:220 19:22:05.710841 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/tmp/pytest-of-sachin/pytest-121/profile0', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'show': False, 'which': 'seed', 'rpc_method': 'seed', 'indirect_selection': 'eager'}
+DEBUG    configured_file:functions.py:220 19:22:05.710964 [debug] [MainThread]: Tracking: do not track
+INFO     configured_file:functions.py:222 19:22:05.717125 [info ] [MainThread]: Partial parse save file not found. Starting full parse.
+INFO     configured_std_out:functions.py:222 19:22:05  Partial parse save file not found. Starting full parse.
+DEBUG    configured_file:functions.py:220 19:22:05.725648 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+DEBUG    configured_file:functions.py:220 19:22:05.726446 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+DEBUG    configured_file:functions.py:220 19:22:05.726677 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+DEBUG    configured_file:functions.py:220 19:22:05.731389 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+DEBUG    configured_file:functions.py:220 19:22:05.732357 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+DEBUG    configured_file:functions.py:220 19:22:05.732959 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+DEBUG    configured_file:functions.py:220 19:22:05.735658 [debug] [MainThread]: Parsing macros/materializations/models/incremental/helpers.sql
+DEBUG    configured_file:functions.py:220 19:22:05.738044 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+DEBUG    configured_file:functions.py:220 19:22:05.742871 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+DEBUG    configured_file:functions.py:220 19:22:05.743966 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+DEBUG    configured_file:functions.py:220 19:22:05.748032 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+DEBUG    configured_file:functions.py:220 19:22:05.749417 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+DEBUG    configured_file:functions.py:220 19:22:05.759096 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+DEBUG    configured_file:functions.py:220 19:22:05.760420 [debug] [MainThread]: Parsing macros/materializations/snapshots/helper.sql
+DEBUG    configured_file:functions.py:220 19:22:05.760637 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+DEBUG    configured_file:functions.py:220 19:22:05.766368 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+DEBUG    configured_file:functions.py:220 19:22:05.770242 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+DEBUG    configured_file:functions.py:220 19:22:05.770920 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+DEBUG    configured_file:functions.py:220 19:22:05.771393 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+DEBUG    configured_file:functions.py:220 19:22:05.773496 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+DEBUG    configured_file:functions.py:220 19:22:05.775258 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+DEBUG    configured_file:functions.py:220 19:22:05.779980 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+DEBUG    configured_file:functions.py:220 19:22:05.781005 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+DEBUG    configured_file:functions.py:220 19:22:05.781800 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+DEBUG    configured_file:functions.py:220 19:22:05.783293 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+DEBUG    configured_file:functions.py:220 19:22:05.785742 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+DEBUG    configured_file:functions.py:220 19:22:05.786736 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+DEBUG    configured_file:functions.py:220 19:22:05.790301 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+DEBUG    configured_file:functions.py:220 19:22:05.791879 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+DEBUG    configured_file:functions.py:220 19:22:05.794141 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+DEBUG    configured_file:functions.py:220 19:22:05.806895 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+DEBUG    configured_file:functions.py:220 19:22:05.812969 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+DEBUG    configured_file:functions.py:220 19:22:05.814087 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+DEBUG    configured_file:functions.py:220 19:22:05.820486 [debug] [MainThread]: Parsing macros/materializations/models/incremental/strategies.sql
+DEBUG    configured_file:functions.py:220 19:22:05.824637 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+DEBUG    configured_file:functions.py:220 19:22:05.835167 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+DEBUG    configured_file:functions.py:220 19:22:05.837384 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+DEBUG    configured_file:functions.py:220 19:22:05.843076 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+DEBUG    configured_file:functions.py:220 19:22:05.855451 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+DEBUG    configured_file:functions.py:220 19:22:05.857307 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+DEBUG    configured_file:functions.py:220 19:22:05.865407 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+DEBUG    configured_file:functions.py:220 19:22:05.877232 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+DEBUG    configured_file:functions.py:220 19:22:05.879387 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+DEBUG    configured_file:functions.py:220 19:22:05.881477 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+DEBUG    configured_file:functions.py:220 19:22:05.885759 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+DEBUG    configured_file:functions.py:220 19:22:05.898400 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+DEBUG    configured_file:functions.py:220 19:22:05.902954 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+DEBUG    configured_file:functions.py:220 19:22:05.904566 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+DEBUG    configured_file:functions.py:220 19:22:05.906244 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+DEBUG    configured_file:functions.py:220 19:22:05.908989 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+DEBUG    configured_file:functions.py:220 19:22:05.911282 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+DEBUG    configured_file:functions.py:220 19:22:05.914276 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+DEBUG    configured_file:functions.py:220 19:22:05.925505 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+DEBUG    configured_file:functions.py:220 19:22:05.941201 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+DEBUG    configured_file:functions.py:220 19:22:05.949070 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+DEBUG    configured_file:functions.py:220 19:22:05.963170 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+DEBUG    configured_file:functions.py:220 19:22:05.965696 [debug] [MainThread]: Parsing macros/adapters/timestamps.sql
+DEBUG    configured_file:functions.py:220 19:22:05.969401 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+DEBUG    configured_file:functions.py:220 19:22:05.974084 [debug] [MainThread]: Parsing macros/python_model/python.sql
+DEBUG    configured_file:functions.py:220 19:22:05.980368 [debug] [MainThread]: Parsing macros/utils/replace.sql
+DEBUG    configured_file:functions.py:220 19:22:05.981856 [debug] [MainThread]: Parsing macros/utils/array_concat.sql
+DEBUG    configured_file:functions.py:220 19:22:05.983060 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+DEBUG    configured_file:functions.py:220 19:22:05.984107 [debug] [MainThread]: Parsing macros/utils/array_append.sql
+DEBUG    configured_file:functions.py:220 19:22:05.985453 [debug] [MainThread]: Parsing macros/utils/array_construct.sql
+DEBUG    configured_file:functions.py:220 19:22:05.986892 [debug] [MainThread]: Parsing macros/utils/concat.sql
+DEBUG    configured_file:functions.py:220 19:22:05.987642 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+DEBUG    configured_file:functions.py:220 19:22:05.988303 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+DEBUG    configured_file:functions.py:220 19:22:05.989214 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+DEBUG    configured_file:functions.py:220 19:22:05.991430 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+DEBUG    configured_file:functions.py:220 19:22:05.992111 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+DEBUG    configured_file:functions.py:220 19:22:05.993004 [debug] [MainThread]: Parsing macros/utils/right.sql
+DEBUG    configured_file:functions.py:220 19:22:05.993751 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+DEBUG    configured_file:functions.py:220 19:22:05.998312 [debug] [MainThread]: Parsing macros/utils/literal.sql
+DEBUG    configured_file:functions.py:220 19:22:05.999074 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+DEBUG    configured_file:functions.py:220 19:22:05.999911 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+DEBUG    configured_file:functions.py:220 19:22:06.000591 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+DEBUG    configured_file:functions.py:220 19:22:06.001467 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+DEBUG    configured_file:functions.py:220 19:22:06.002193 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+DEBUG    configured_file:functions.py:220 19:22:06.004420 [debug] [MainThread]: Parsing macros/utils/length.sql
+DEBUG    configured_file:functions.py:220 19:22:06.005596 [debug] [MainThread]: Parsing macros/utils/except.sql
+DEBUG    configured_file:functions.py:220 19:22:06.006576 [debug] [MainThread]: Parsing macros/utils/hash.sql
+DEBUG    configured_file:functions.py:220 19:22:06.007804 [debug] [MainThread]: Parsing macros/utils/position.sql
+DEBUG    configured_file:functions.py:220 19:22:06.008973 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+DEBUG    configured_file:functions.py:220 19:22:06.010955 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+DEBUG    configured_file:functions.py:220 19:22:06.012577 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+DEBUG    configured_file:functions.py:220 19:22:06.013631 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+DEBUG    configured_file:functions.py:220 19:22:06.014462 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+DEBUG    configured_file:functions.py:220 19:22:06.015599 [debug] [MainThread]: Parsing macros/etc/statement.sql
+DEBUG    configured_file:functions.py:220 19:22:06.019748 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+DEBUG    configured_file:functions.py:220 19:22:06.028716 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+INFO     configured_file:functions.py:222 19:22:06.351330 [info ] [MainThread]: Found 0 models, 0 tests, 1 snapshot, 0 analyses, 296 macros, 0 operations, 3 seed files, 0 sources, 0 exposures, 0 metrics
+INFO     configured_std_out:functions.py:222 19:22:06  Found 0 models, 0 tests, 1 snapshot, 0 analyses, 296 macros, 0 operations, 3 seed files, 0 sources, 0 exposures, 0 metrics
+INFO     configured_file:functions.py:222 19:22:06.352997 [info ] [MainThread]: 
+INFO     configured_std_out:functions.py:222 19:22:06  
+DEBUG    configured_file:functions.py:220 19:22:06.353839 [debug] [MainThread]: Acquiring new vertica connection "master"
+DEBUG    configured_file:functions.py:220 19:22:06.354889 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart"
+DEBUG    configured_file:functions.py:220 19:22:06.359225 [debug] [ThreadPool]: Using vertica connection "list_VMart"
+DEBUG    configured_file:functions.py:220 19:22:06.359453 [debug] [ThreadPool]: On list_VMart: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart"} */
+
+    select schema_name
+    from v_catalog.schemata
+  
+DEBUG    configured_file:functions.py:220 19:22:06.359589 [debug] [ThreadPool]: Opening a new connection, currently in state init
+DEBUG    configured_file:functions.py:220 19:22:06.383619 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:06.417905 [debug] [ThreadPool]: SQL status: Code: [Column(name='schema_name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.06 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.419119 [debug] [ThreadPool]: On list_VMart: Close
+DEBUG    configured_file:functions.py:220 19:22:06.421045 [debug] [ThreadPool]: Acquiring new vertica connection "list_VMart_test16664665251829722278_test_basic"
+DEBUG    configured_file:functions.py:220 19:22:06.425624 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16664665251829722278_test_basic"
+DEBUG    configured_file:functions.py:220 19:22:06.425854 [debug] [ThreadPool]: On list_VMart_test16664665251829722278_test_basic: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:06.425981 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+DEBUG    configured_file:functions.py:220 19:22:06.457603 [debug] [ThreadPool]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:06.465559 [debug] [ThreadPool]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.04 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.465814 [debug] [ThreadPool]: Using vertica connection "list_VMart_test16664665251829722278_test_basic"
+DEBUG    configured_file:functions.py:220 19:22:06.465939 [debug] [ThreadPool]: On list_VMart_test16664665251829722278_test_basic: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "list_VMart_test16664665251829722278_test_basic"} */
+select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'table' as type
+    from v_catalog.tables
+    where table_schema ilike 'test16664665251829722278_test_basic'
+    union all
+    select
+      'VMart' as database,
+      table_name as name,
+      table_schema as schema,
+      'view' as type
+    from v_catalog.views
+    where table_schema ilike 'test16664665251829722278_test_basic'
+  
+DEBUG    configured_file:functions.py:220 19:22:06.491403 [debug] [ThreadPool]: SQL status: Code: [Column(name='database', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='name', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='schema', type_code=9, display_size=128, internal_size=-1, precision=None, scale=None, null_ok=True), Column(name='type', type_code=9, display_size=5, internal_size=-1, precision=None, scale=None, null_ok=True)], Rows: -1, Array Size: 1 in 0.03 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.492314 [debug] [ThreadPool]: On list_VMart_test16664665251829722278_test_basic: ROLLBACK
+DEBUG    configured_file:functions.py:220 19:22:06.511068 [debug] [ThreadPool]: On list_VMart_test16664665251829722278_test_basic: Close
+DEBUG    configured_file:functions.py:220 19:22:06.511975 [debug] [MainThread]: Using vertica connection "master"
+DEBUG    configured_file:functions.py:220 19:22:06.512182 [debug] [MainThread]: On master: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:06.512303 [debug] [MainThread]: Opening a new connection, currently in state init
+DEBUG    configured_file:functions.py:220 19:22:06.572550 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:06.580640 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.07 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.581067 [debug] [MainThread]: On master: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.581260 [debug] [MainThread]: Using vertica connection "master"
+DEBUG    configured_file:functions.py:220 19:22:06.581401 [debug] [MainThread]: On master: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.594403 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.594700 [debug] [MainThread]: On master: Close
+INFO     configured_file:functions.py:222 19:22:06.595184 [info ] [MainThread]: Concurrency: 4 threads (target='default')
+INFO     configured_std_out:functions.py:222 19:22:06  Concurrency: 4 threads (target='default')
+INFO     configured_file:functions.py:222 19:22:06.595474 [info ] [MainThread]: 
+INFO     configured_std_out:functions.py:222 19:22:06  
+DEBUG    configured_file:functions.py:220 19:22:06.597855 [debug] [Thread-1 (]: Began running node seed.snapshot_strategy_timestamp.added
+DEBUG    configured_file:functions.py:220 19:22:06.598030 [debug] [Thread-2 (]: Began running node seed.snapshot_strategy_timestamp.base
+DEBUG    configured_file:functions.py:220 19:22:06.598262 [debug] [Thread-3 (]: Began running node seed.snapshot_strategy_timestamp.newcolumns
+INFO     configured_file:functions.py:222 19:22:06.598481 [info ] [Thread-1 (]: 1 of 3 START seed file test16664665251829722278_test_basic.added ............... [RUN]
+INFO     configured_std_out:functions.py:222 19:22:06  1 of 3 START seed file test16664665251829722278_test_basic.added ............... [RUN]
+INFO     configured_file:functions.py:222 19:22:06.598910 [info ] [Thread-2 (]: 2 of 3 START seed file test16664665251829722278_test_basic.base ................ [RUN]
+INFO     configured_std_out:functions.py:222 19:22:06  2 of 3 START seed file test16664665251829722278_test_basic.base ................ [RUN]
+INFO     configured_file:functions.py:222 19:22:06.599237 [info ] [Thread-3 (]: 3 of 3 START seed file test16664665251829722278_test_basic.newcolumns .......... [RUN]
+INFO     configured_std_out:functions.py:222 19:22:06  3 of 3 START seed file test16664665251829722278_test_basic.newcolumns .......... [RUN]
+DEBUG    configured_file:functions.py:220 19:22:06.599765 [debug] [Thread-1 (]: Acquiring new vertica connection "seed.snapshot_strategy_timestamp.added"
+DEBUG    configured_file:functions.py:220 19:22:06.600522 [debug] [Thread-2 (]: Acquiring new vertica connection "seed.snapshot_strategy_timestamp.base"
+DEBUG    configured_file:functions.py:220 19:22:06.601046 [debug] [Thread-3 (]: Acquiring new vertica connection "seed.snapshot_strategy_timestamp.newcolumns"
+DEBUG    configured_file:functions.py:220 19:22:06.601216 [debug] [Thread-1 (]: Began compiling node seed.snapshot_strategy_timestamp.added
+DEBUG    configured_file:functions.py:220 19:22:06.601390 [debug] [Thread-2 (]: Began compiling node seed.snapshot_strategy_timestamp.base
+DEBUG    configured_file:functions.py:220 19:22:06.601593 [debug] [Thread-3 (]: Began compiling node seed.snapshot_strategy_timestamp.newcolumns
+DEBUG    configured_file:functions.py:220 19:22:06.601788 [debug] [Thread-1 (]: finished collecting timing info
+DEBUG    configured_file:functions.py:220 19:22:06.601974 [debug] [Thread-2 (]: finished collecting timing info
+DEBUG    configured_file:functions.py:220 19:22:06.602175 [debug] [Thread-3 (]: finished collecting timing info
+DEBUG    configured_file:functions.py:220 19:22:06.602315 [debug] [Thread-1 (]: Began executing node seed.snapshot_strategy_timestamp.added
+DEBUG    configured_file:functions.py:220 19:22:06.602499 [debug] [Thread-2 (]: Began executing node seed.snapshot_strategy_timestamp.base
+DEBUG    configured_file:functions.py:220 19:22:06.602694 [debug] [Thread-3 (]: Began executing node seed.snapshot_strategy_timestamp.newcolumns
+DEBUG    configured_file:functions.py:220 19:22:06.665685 [debug] [Thread-3 (]: Writing runtime sql for node "seed.snapshot_strategy_timestamp.newcolumns"
+DEBUG    configured_file:functions.py:220 19:22:06.667747 [debug] [Thread-1 (]: Writing runtime sql for node "seed.snapshot_strategy_timestamp.added"
+DEBUG    configured_file:functions.py:220 19:22:06.669052 [debug] [Thread-2 (]: Writing runtime sql for node "seed.snapshot_strategy_timestamp.base"
+DEBUG    configured_file:functions.py:220 19:22:06.669486 [debug] [Thread-3 (]: Using vertica connection "seed.snapshot_strategy_timestamp.newcolumns"
+DEBUG    configured_file:functions.py:220 19:22:06.669662 [debug] [Thread-3 (]: On seed.snapshot_strategy_timestamp.newcolumns: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:06.669771 [debug] [Thread-1 (]: Using vertica connection "seed.snapshot_strategy_timestamp.added"
+DEBUG    configured_file:functions.py:220 19:22:06.669921 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+DEBUG    configured_file:functions.py:220 19:22:06.670031 [debug] [Thread-2 (]: Using vertica connection "seed.snapshot_strategy_timestamp.base"
+DEBUG    configured_file:functions.py:220 19:22:06.670169 [debug] [Thread-1 (]: On seed.snapshot_strategy_timestamp.added: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:06.670620 [debug] [Thread-2 (]: On seed.snapshot_strategy_timestamp.base: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:06.670756 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+DEBUG    configured_file:functions.py:220 19:22:06.670943 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+DEBUG    configured_file:functions.py:220 19:22:06.719590 [debug] [Thread-1 (]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:06.720159 [debug] [Thread-2 (]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:06.720686 [debug] [Thread-3 (]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:06.727017 [debug] [Thread-2 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.06 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.727226 [debug] [Thread-1 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.06 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.727486 [debug] [Thread-2 (]: Using vertica connection "seed.snapshot_strategy_timestamp.base"
+DEBUG    configured_file:functions.py:220 19:22:06.727672 [debug] [Thread-1 (]: Using vertica connection "seed.snapshot_strategy_timestamp.added"
+DEBUG    configured_file:functions.py:220 19:22:06.727862 [debug] [Thread-2 (]: On seed.snapshot_strategy_timestamp.base: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.base"} */
+
+    
+    create table "VMart"."test16664665251829722278_test_basic"."base" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone)
+  ;
+    -- dbt seed --
+    
+        copy "VMart"."test16664665251829722278_test_basic"."base"
+        ("id", "name", "some_date")
+        from local '/tmp/pytest-of-sachin/pytest-121/project0/seeds/base.csv'
+        delimiter ','
+        enclosed by '"'
+        skip 1
+        abort on error
+        rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;
+    
+  
+DEBUG    configured_file:functions.py:220 19:22:06.728022 [debug] [Thread-1 (]: On seed.snapshot_strategy_timestamp.added: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.added"} */
+
+    
+    create table "VMart"."test16664665251829722278_test_basic"."added" ("id" integer,"name" varchar(9),"some_date" timestamp without time zone)
+  ;
+    -- dbt seed --
+    
+        copy "VMart"."test16664665251829722278_test_basic"."added"
+        ("id", "name", "some_date")
+        from local '/tmp/pytest-of-sachin/pytest-121/project0/seeds/added.csv'
+        delimiter ','
+        enclosed by '"'
+        skip 1
+        abort on error
+        rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;
+    
+  
+DEBUG    configured_file:functions.py:220 19:22:06.732116 [debug] [Thread-3 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.06 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.732322 [debug] [Thread-3 (]: Using vertica connection "seed.snapshot_strategy_timestamp.newcolumns"
+DEBUG    configured_file:functions.py:220 19:22:06.732439 [debug] [Thread-3 (]: On seed.snapshot_strategy_timestamp.newcolumns: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.newcolumns"} */
+
+    
+    create table "VMart"."test16664665251829722278_test_basic"."newcolumns" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone,"last_initial" varchar(1))
+  ;
+    -- dbt seed --
+    
+        copy "VMart"."test16664665251829722278_test_basic"."newcolumns"
+        ("id", "name", "some_date", "last_initial")
+        from local '/tmp/pytest-of-sachin/pytest-121/project0/seeds/newcolumns.csv'
+        delimiter ','
+        enclosed by '"'
+        skip 1
+        abort on error
+        rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;
+    
+  
+DEBUG    configured_file:functions.py:220 19:22:06.777063 [debug] [Thread-2 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.05 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.785876 [debug] [Thread-1 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.06 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.805420 [debug] [Thread-1 (]: On seed.snapshot_strategy_timestamp.added: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.805776 [debug] [Thread-1 (]: Using vertica connection "seed.snapshot_strategy_timestamp.added"
+DEBUG    configured_file:functions.py:220 19:22:06.806301 [debug] [Thread-2 (]: On seed.snapshot_strategy_timestamp.base: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.806650 [debug] [Thread-1 (]: On seed.snapshot_strategy_timestamp.added: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.806986 [debug] [Thread-2 (]: Using vertica connection "seed.snapshot_strategy_timestamp.base"
+DEBUG    configured_file:functions.py:220 19:22:06.807685 [debug] [Thread-2 (]: On seed.snapshot_strategy_timestamp.base: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.817933 [debug] [Thread-3 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.09 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.821489 [debug] [Thread-3 (]: On seed.snapshot_strategy_timestamp.newcolumns: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.821911 [debug] [Thread-3 (]: Using vertica connection "seed.snapshot_strategy_timestamp.newcolumns"
+DEBUG    configured_file:functions.py:220 19:22:06.822244 [debug] [Thread-3 (]: On seed.snapshot_strategy_timestamp.newcolumns: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.838866 [debug] [Thread-2 (]: vertica adapter: :P Database error: Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.base"} */          create table "VMart"."test16664665251829722278_test_basic"."base" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone)   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."base"         ("id", "name", "some_date")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/base.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+DEBUG    configured_file:functions.py:220 19:22:06.839439 [debug] [Thread-2 (]: On seed.snapshot_strategy_timestamp.base: ROLLBACK
+DEBUG    configured_file:functions.py:220 19:22:06.844558 [debug] [Thread-3 (]: vertica adapter: :P Database error: Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.newcolumns"} */          create table "VMart"."test16664665251829722278_test_basic"."newcolumns" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone,"last_initial" varchar(1))   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."newcolumns"         ("id", "name", "some_date", "last_initial")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/newcolumns.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+DEBUG    configured_file:functions.py:220 19:22:06.845066 [debug] [Thread-3 (]: On seed.snapshot_strategy_timestamp.newcolumns: ROLLBACK
+DEBUG    configured_file:functions.py:220 19:22:06.848944 [debug] [Thread-2 (]: On seed.snapshot_strategy_timestamp.base: Close
+DEBUG    configured_file:functions.py:220 19:22:06.850004 [debug] [Thread-2 (]: finished collecting timing info
+DEBUG    configured_file:functions.py:220 19:22:06.851075 [debug] [Thread-2 (]: Database Error in seed base (seeds/base.csv)
+  Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.base"} */          create table "VMart"."test16664665251829722278_test_basic"."base" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone)   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."base"         ("id", "name", "some_date")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/base.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+  compiled Code at target/run/snapshot_strategy_timestamp/seeds/base.csv
+ERROR    configured_file:functions.py:226 19:22:06.851715 [error] [Thread-2 (]: 2 of 3 ERROR loading seed file test16664665251829722278_test_basic.base ........ [ERROR in 0.25s]
+ERROR    configured_std_out:functions.py:226 19:22:06  2 of 3 ERROR loading seed file test16664665251829722278_test_basic.base ........ [ERROR in 0.25s]
+DEBUG    configured_file:functions.py:220 19:22:06.852638 [debug] [Thread-2 (]: Finished running node seed.snapshot_strategy_timestamp.base
+DEBUG    configured_file:functions.py:220 19:22:06.859513 [debug] [Thread-3 (]: On seed.snapshot_strategy_timestamp.newcolumns: Close
+DEBUG    configured_file:functions.py:220 19:22:06.860401 [debug] [Thread-3 (]: finished collecting timing info
+DEBUG    configured_file:functions.py:220 19:22:06.861706 [debug] [Thread-3 (]: Database Error in seed newcolumns (seeds/newcolumns.csv)
+  Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.newcolumns"} */          create table "VMart"."test16664665251829722278_test_basic"."newcolumns" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone,"last_initial" varchar(1))   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."newcolumns"         ("id", "name", "some_date", "last_initial")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/newcolumns.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+  compiled Code at target/run/snapshot_strategy_timestamp/seeds/newcolumns.csv
+ERROR    configured_file:functions.py:226 19:22:06.862303 [error] [Thread-3 (]: 3 of 3 ERROR loading seed file test16664665251829722278_test_basic.newcolumns .. [ERROR in 0.26s]
+ERROR    configured_std_out:functions.py:226 19:22:06  3 of 3 ERROR loading seed file test16664665251829722278_test_basic.newcolumns .. [ERROR in 0.26s]
+DEBUG    configured_file:functions.py:220 19:22:06.863166 [debug] [Thread-3 (]: Finished running node seed.snapshot_strategy_timestamp.newcolumns
+DEBUG    configured_file:functions.py:220 19:22:06.909185 [debug] [Thread-1 (]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.1 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.910414 [debug] [Thread-1 (]: finished collecting timing info
+DEBUG    configured_file:functions.py:220 19:22:06.910923 [debug] [Thread-1 (]: On seed.snapshot_strategy_timestamp.added: Close
+INFO     configured_file:functions.py:222 19:22:06.912176 [info ] [Thread-1 (]: 1 of 3 OK loaded seed file test16664665251829722278_test_basic.added ........... [Code: None, Rows: -1, Array Size: 1 in 0.31s]
+INFO     configured_std_out:functions.py:222 19:22:06  1 of 3 OK loaded seed file test16664665251829722278_test_basic.added ........... [Code: None, Rows: -1, Array Size: 1 in 0.31s]
+DEBUG    configured_file:functions.py:220 19:22:06.913075 [debug] [Thread-1 (]: Finished running node seed.snapshot_strategy_timestamp.added
+DEBUG    configured_file:functions.py:220 19:22:06.915314 [debug] [MainThread]: Acquiring new vertica connection "master"
+DEBUG    configured_file:functions.py:220 19:22:06.915855 [debug] [MainThread]: Using vertica connection "master"
+DEBUG    configured_file:functions.py:220 19:22:06.916215 [debug] [MainThread]: On master: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:06.916530 [debug] [MainThread]: Opening a new connection, currently in state closed
+DEBUG    configured_file:functions.py:220 19:22:06.937820 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:06.948143 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.03 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.948687 [debug] [MainThread]: On master: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.949013 [debug] [MainThread]: Using vertica connection "master"
+DEBUG    configured_file:functions.py:220 19:22:06.949303 [debug] [MainThread]: On master: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:06.956402 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.01 seconds
+DEBUG    configured_file:functions.py:220 19:22:06.956929 [debug] [MainThread]: On master: Close
+INFO     configured_file:functions.py:222 19:22:06.958153 [info ] [MainThread]: 
+INFO     configured_std_out:functions.py:222 19:22:06  
+INFO     configured_file:functions.py:222 19:22:06.958856 [info ] [MainThread]: Finished running 3 seeds in 0 hours 0 minutes and 0.60 seconds (0.60s).
+INFO     configured_std_out:functions.py:222 19:22:06  Finished running 3 seeds in 0 hours 0 minutes and 0.60 seconds (0.60s).
+DEBUG    configured_file:functions.py:220 19:22:06.959450 [debug] [MainThread]: Connection 'master' was properly closed.
+DEBUG    configured_file:functions.py:220 19:22:06.959752 [debug] [MainThread]: Connection 'seed.snapshot_strategy_timestamp.added' was properly closed.
+DEBUG    configured_file:functions.py:220 19:22:06.960056 [debug] [MainThread]: Connection 'seed.snapshot_strategy_timestamp.base' was properly closed.
+DEBUG    configured_file:functions.py:220 19:22:06.960363 [debug] [MainThread]: Connection 'seed.snapshot_strategy_timestamp.newcolumns' was properly closed.
+INFO     configured_file:functions.py:222 19:22:06.971040 [info ] [MainThread]: 
+INFO     configured_std_out:functions.py:222 19:22:06  
+INFO     configured_file:functions.py:222 19:22:06.971494 [info ] [MainThread]: Completed with 2 errors and 0 warnings:
+INFO     configured_std_out:functions.py:222 19:22:06  Completed with 2 errors and 0 warnings:
+INFO     configured_file:functions.py:222 19:22:06.971871 [info ] [MainThread]: 
+INFO     configured_std_out:functions.py:222 19:22:06  
+ERROR    configured_file:functions.py:226 19:22:06.972187 [error] [MainThread]: Database Error in seed base (seeds/base.csv)
+ERROR    configured_std_out:functions.py:226 19:22:06  Database Error in seed base (seeds/base.csv)
+ERROR    configured_file:functions.py:226 19:22:06.972497 [error] [MainThread]:   Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.base"} */          create table "VMart"."test16664665251829722278_test_basic"."base" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone)   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."base"         ("id", "name", "some_date")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/base.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+ERROR    configured_std_out:functions.py:226 19:22:06    Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.base"} */          create table "VMart"."test16664665251829722278_test_basic"."base" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone)   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."base"         ("id", "name", "some_date")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/base.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+ERROR    configured_file:functions.py:226 19:22:06.972808 [error] [MainThread]:   compiled Code at target/run/snapshot_strategy_timestamp/seeds/base.csv
+ERROR    configured_std_out:functions.py:226 19:22:06    compiled Code at target/run/snapshot_strategy_timestamp/seeds/base.csv
+INFO     configured_file:functions.py:222 19:22:06.973107 [info ] [MainThread]: 
+INFO     configured_std_out:functions.py:222 19:22:06  
+ERROR    configured_file:functions.py:226 19:22:06.973410 [error] [MainThread]: Database Error in seed newcolumns (seeds/newcolumns.csv)
+ERROR    configured_std_out:functions.py:226 19:22:06  Database Error in seed newcolumns (seeds/newcolumns.csv)
+ERROR    configured_file:functions.py:226 19:22:06.973705 [error] [MainThread]:   Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.newcolumns"} */          create table "VMart"."test16664665251829722278_test_basic"."newcolumns" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone,"last_initial" varchar(1))   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."newcolumns"         ("id", "name", "some_date", "last_initial")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/newcolumns.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+ERROR    configured_std_out:functions.py:226 19:22:06    Severity: ROLLBACK, Message: Object "seed_rejects" already exists, Sqlstate: 42710, Routine: outputAlreadyExistsEreport, File: /data/jenkins/workspace/RE-ReleaseBuilds/RE-Knuckleboom/server/vertica/Commands/DDL.cpp, Line: 25505, Error Code: 4213, SQL: '/* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "node_id": "seed.snapshot_strategy_timestamp.newcolumns"} */          create table "VMart"."test16664665251829722278_test_basic"."newcolumns" ("id" integer,"name" varchar(8),"some_date" timestamp without time zone,"last_initial" varchar(1))   ;     -- dbt seed --              copy "VMart"."test16664665251829722278_test_basic"."newcolumns"         ("id", "name", "some_date", "last_initial")         from local \'/tmp/pytest-of-sachin/pytest-121/project0/seeds/newcolumns.csv\'         delimiter \',\'         enclosed by \'"\'         skip 1         abort on error         rejected data as table "VMart"."test16664665251829722278_test_basic".seed_rejects;        '
+ERROR    configured_file:functions.py:226 19:22:06.974008 [error] [MainThread]:   compiled Code at target/run/snapshot_strategy_timestamp/seeds/newcolumns.csv
+ERROR    configured_std_out:functions.py:226 19:22:06    compiled Code at target/run/snapshot_strategy_timestamp/seeds/newcolumns.csv
+INFO     configured_file:functions.py:222 19:22:06.974224 [info ] [MainThread]: 
+INFO     configured_std_out:functions.py:222 19:22:06  
+INFO     configured_file:functions.py:222 19:22:06.974430 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=2 SKIP=0 TOTAL=3
+INFO     configured_std_out:functions.py:222 19:22:06  Done. PASS=1 WARN=0 ERROR=2 SKIP=0 TOTAL=3
+DEBUG    configured_file:functions.py:220 19:22:06.974715 [debug] [MainThread]: Flushing usage events
+------------------------------------------------------------------------------------ Captured log teardown ------------------------------------------------------------------------------------
+DEBUG    configured_file:functions.py:220 19:22:07.023559 [debug] [MainThread]: Acquiring new vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:07.023869 [debug] [MainThread]: Dropping schema "_ReferenceKey(database='vmart', schema='test16664665251829722278_test_basic', identifier=None)".
+DEBUG    configured_file:functions.py:220 19:22:07.066595 [debug] [MainThread]: Using vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:07.066816 [debug] [MainThread]: On _test: BEGIN
+DEBUG    configured_file:functions.py:220 19:22:07.066951 [debug] [MainThread]: Opening a new connection, currently in state init
+DEBUG    configured_file:functions.py:220 19:22:07.117200 [debug] [MainThread]: vertica adapter: :P Connected to database: VMart at 159.65.150.255
+DEBUG    configured_file:functions.py:220 19:22:07.126112 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.06 seconds
+DEBUG    configured_file:functions.py:220 19:22:07.126694 [debug] [MainThread]: Using vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:07.127042 [debug] [MainThread]: On _test: /* {"app": "dbt", "dbt_version": "1.3.0", "profile_name": "test", "target_name": "default", "connection_name": "_test"} */
+drop schema if exists "test16664665251829722278_test_basic" cascade
+  
+DEBUG    configured_file:functions.py:220 19:22:07.146610 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.02 seconds
+DEBUG    configured_file:functions.py:220 19:22:07.148418 [debug] [MainThread]: On _test: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:07.148840 [debug] [MainThread]: Using vertica connection "_test"
+DEBUG    configured_file:functions.py:220 19:22:07.149179 [debug] [MainThread]: On _test: COMMIT
+DEBUG    configured_file:functions.py:220 19:22:07.189152 [debug] [MainThread]: SQL status: Code: None, Rows: -1, Array Size: 1 in 0.04 seconds
+DEBUG    configured_file:functions.py:220 19:22:07.189864 [debug] [MainThread]: On _test: Close
+DEBUG    configured_file:functions.py:220 19:22:07.191813 [debug] [MainThread]: Connection '_test' was properly closed.
+=================================================================================== short test summary info ===================================================================================
+FAILED functional/adapter/test_basic.py::TestSnapshotTimestampVertica::test_snapshot_timestamp - AssertionError: dbt exit state did not match expected
