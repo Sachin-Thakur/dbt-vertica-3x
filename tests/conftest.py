@@ -27,10 +27,10 @@ def dbt_profile_target():
     return {
         "type": "vertica",
         "threads": 1,
-        "host": "159.65.150.255",
+        "host": "172.16.120.10",
         "port": int(os.getenv("VERTICA_TEST_PORT", 5433)),
         "username": os.getenv("VERTICA_TEST_USER", "dbadmin"),
-        "password": os.getenv("VERTICA_TEST_PASS", ""),
+        "password": os.getenv("VERTICA_TEST_PASS", "simplify3xdb"),
         "database": os.getenv("VERTICA_TEST_DATABASE","VMart"),
         
     }
@@ -51,39 +51,39 @@ def dbt_profile_target(request):
 def apache_spark_target():
     return {
         "type": "spark",
-        "host": "159.65.150.255",
+        "host": "172.16.120.10",
     }
 
 def databricks_sql_endpoint_target():
     return {
         "type": "spark",
-        "host": "159.65.150.255",
+        "host": "172.16.120.10",
     }
 
 def vertica_target():
     return {
         "type": "vertica",
         "threads": 1,
-        "host": "159.65.150.255",
+        "host": "172.16.120.10",
         "port": int(os.getenv("VERTICA_TEST_PORT", 5433)),
         "username": os.getenv("VERTICA_TEST_USER", "dbadmin"),
-        "password": os.getenv("VERTICA_TEST_PASS", ""),
+        "password": os.getenv("VERTICA_TEST_PASS", "simplify3xdb"),
         "database": os.getenv("VERTICA_TEST_DATABASE","VMart"),
     }
 
 
-# @pytest.fixture(autouse=True)
-# def skip_by_profile_type(request):
-#     profile_type = request.config.getoption("--profile")
-#     if request.node.get_closest_marker("skip_profile"):
-#         for skip_profile_type in request.node.get_closest_marker("skip_profile").args:
-#             if skip_profile_type == profile_type:
-#                 pytest.skip("skipped on '{profile_type}' profile")
+@pytest.fixture(autouse=True)
+def skip_by_profile_type(request):
+    profile_type = request.config.getoption("--profile")
+    if request.node.get_closest_marker("skip_profile"):
+        for skip_profile_type in request.node.get_closest_marker("skip_profile").args:
+            if skip_profile_type == profile_type:
+                pytest.skip("skipped on '{profile_type}' profile")
 
-# @pytest.fixture(autouse=True)
-# def only_profile_type(request):
-#     profile_type = request.config.getoption("--profile")
-#     if request.node.get_closest_marker("only_profile"):
-#         for only_profile_type in request.node.get_closest_marker("only_profile").args:
-#             if only_profile_type != profile_type:
-#                 pytest.skip("skipped on '{profile_type}' profile")
+@pytest.fixture(autouse=True)
+def only_profile_type(request):
+    profile_type = request.config.getoption("--profile")
+    if request.node.get_closest_marker("only_profile"):
+        for only_profile_type in request.node.get_closest_marker("only_profile").args:
+            if only_profile_type != profile_type:
+                pytest.skip("skipped on '{profile_type}' profile")
