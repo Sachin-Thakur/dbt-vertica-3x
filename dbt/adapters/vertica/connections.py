@@ -4,7 +4,10 @@ import ssl
 import os
 import requests
 from typing import Optional
-
+from typing import List, Optional, Tuple, Any, Iterable, Dict, Union
+from dbt.contracts.connection import AdapterResponse
+import dbt.clients.agate_helper
+import agate
 from dbt.adapters.base import Credentials
 from dbt.adapters.sql import SQLConnectionManager
 from dbt.events import AdapterLogger
@@ -30,7 +33,8 @@ class verticaCredentials(Credentials):
     ssl_env_cafile: Optional[str] = None
     ssl_uri: Optional[str] = None
     connection_load_balance: Optional[bool]= True
-    # backup_server_node: Optional[str] = None
+    retries:int  =  1
+    backup_server_node: Optional[str] = None
 
     @property
     def type(self):
@@ -69,7 +73,8 @@ class verticaConnectionManager(SQLConnectionManager):
                 'connection_timeout': credentials.timeout,
                 'connection_load_balance': credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
-                # 'backup_server_node':credentials.backup_server_node,
+                'retries': credentials.retries,
+                'backup_server_node':credentials.backup_server_node,
             }
             # if credentials.ssl.lower() in {'true', 'yes', 'please'}:
             if credentials.ssl:
@@ -89,13 +94,15 @@ class verticaConnectionManager(SQLConnectionManager):
                 conn_info['ssl'] = context
                 logger.debug(f'SSL is on')
             
-            # def connect(**conn_info):
-            #     logger.debug(f': COnnecting always')
-            #     handle = vertica_python.connect(**conn_info)
-            #     connection.state = 'open'
-            #     connection.handle = handle
-            #     logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
-            #     return connection
+            def connect():
+                logger.debug(f': Connecting...')
+                handle = vertica_python.connect(**conn_info)
+                connection.state = 'open'
+                connection.handle = handle
+                logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
+                
+                # return connection
+                return handle
 
             # if conn_info['connection_timeout'] >=3600:
             #     conn_info = {
@@ -111,10 +118,10 @@ class verticaConnectionManager(SQLConnectionManager):
             #     }
             #     connect(**conn_info)
 
-            handle = vertica_python.connect(**conn_info)
-            connection.state = 'open'
-            connection.handle = handle
-            logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
+            # handle = vertica_python.connect(**conn_info)
+            # connection.state = 'open'
+            # connection.handle = handle
+            # logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
 
         except Exception as exc:
             logger.debug(f':P Error connecting to database: {exc}')
@@ -139,7 +146,23 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f':P Could not EnableWithClauseMaterialization: {exc}')
                 pass
 
-        return connection
+        retryable_exceptions = [
+        Exception,
+        dbt.exceptions.FailedToConnectException
+        ]
+
+        return cls.retry_connection(
+        connection,
+        connect=connect,
+        logger=logger,
+        retry_limit=credentials.retries,
+        retryable_exceptions=retryable_exceptions,
+        )
+
+
+
+
+        # return connection
 
     @classmethod
     def get_response(cls, cursor):
@@ -180,12 +203,41 @@ class verticaConnectionManager(SQLConnectionManager):
             self.release()
             raise dbt.exceptions.RuntimeException(str(exc))
 
-    # def check_exceptions_for_msq(self, cursor: Any):
-    #     # check results of other queries in multistatement query
-    #     # check it only after getting data from cursor!
-    #     while cursor.nextset():
-    #         check = cursor._message
-    #         if isinstance(check, vertica_python.vertica.messages.ErrorResponse):
-    #             logger.debug(f'Cursor message is: {check}')
-    #             self.release()
-    #             raise dbt.exceptions.DatabaseException(str(check))
+    @classmethod
+    def get_result_from_cursor(cls, cursor: Any) -> agate.Table:
+        data: List[Any] = []
+        column_names: List[str] = []
+
+        if cursor.description is not None:
+            column_names = [col[0] for col in cursor.description]
+            rows = cursor.fetchall()
+            self.check_exceptions_for_msq(cursor)
+            data = cls.process_results(column_names, rows)
+
+
+        return dbt.clients.agate_helper.table_from_data_flat(
+            data,
+            column_names
+        )
+
+    def execute(self, sql: str, auto_begin: bool = False, fetch: bool = False) -> Tuple[Union[AdapterResponse, str], agate.Table]:
+        sql = self._add_query_comment(sql)
+        _, cursor = self.add_query(sql, auto_begin)
+        response = self.get_response(cursor)
+        if fetch:
+            table = self.get_result_from_cursor(cursor)
+        else:
+            table = dbt.clients.agate_helper.empty_table()
+            self.check_exceptions_for_msq(cursor)
+        return response, table
+
+
+    def check_exceptions_for_msq(self, cursor: Any):
+        # check results of other queries in multistatement query
+        # check it only after getting data from cursor!
+        while cursor.nextset():
+            check = cursor._message
+            if isinstance(check, vertica_python.vertica.messages.ErrorResponse):
+                logger.debug(f'Cursor message is: {check}')
+                self.release()
+                raise dbt.exceptions.DatabaseException(str(check))
