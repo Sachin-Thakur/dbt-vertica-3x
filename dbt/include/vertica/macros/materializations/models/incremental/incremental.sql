@@ -6,7 +6,7 @@
   {% set existing_relation = load_relation(this) %}
   {% set tmp_relation = make_temp_relation(this) %}
 
-  {#-- Validate early so we don't run SQL if the strategy is invalid --#}
+--   {#-- Validate early so we don't run SQL if the strategy is invalid --#}
   {% set strategy = vertica__validate_get_incremental_strategy(config) %}
 
   -- setup
@@ -19,7 +19,7 @@
   {% if existing_relation is none %}
       {% set build_sql = vertica__create_table_as(False, target_relation, sql) %}
   {% elif existing_relation.is_view or full_refresh_mode %}
-      {#-- Make sure the backup doesn't exist so we don't encounter issues with the rename below #}
+    --   {#-- Make sure the backup doesn't exist so we don't encounter issues with the rename below #}
       {% set backup_identifier = existing_relation.identifier ~ "__dbt_backup" %}
       {% set backup_relation = existing_relation.incorporate(path={"identifier": backup_identifier}) %}
       {% do adapter.drop_relation(backup_relation) %}

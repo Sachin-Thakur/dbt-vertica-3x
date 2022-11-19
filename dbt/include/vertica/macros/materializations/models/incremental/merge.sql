@@ -5,14 +5,14 @@
   merge into {{ target_relation }} as DBT_INTERNAL_DEST
   using {{ tmp_relation }} as DBT_INTERNAL_SOURCE
 
-  {#-- Test 1, find the provided merge columns #}
+  -- {#-- Test 1, find the provided merge columns #}
   {% if merge_columns %}
     on 
     {% for column in merge_columns %}
       DBT_INTERNAL_DEST.{{ adapter.quote(column) }} = DBT_INTERNAL_SOURCE.{{ adapter.quote(column) }}
       {%- if not loop.last %} AND {% endif %} 
     {%- endfor %}
-  {#-- Test 2, use all columns in the destination table #}
+  -- {#-- Test 2, use all columns in the destination table #}
   {% else %}
     on
     {% for column in dest_columns -%}
