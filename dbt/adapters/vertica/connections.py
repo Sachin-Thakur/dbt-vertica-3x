@@ -4,12 +4,11 @@ import ssl
 import os
 import requests
 from typing import Optional
-from typing import List, Optional, Tuple, Any, Iterable, Dict, Union
+
 from dbt.contracts.connection import AdapterResponse
+from typing import List, Optional, Tuple, Any, Iterable, Dict, Union
 import dbt.clients.agate_helper
 import agate
-
-
 from dbt.adapters.base import Credentials
 from dbt.adapters.sql import SQLConnectionManager
 from dbt.events import AdapterLogger
@@ -36,7 +35,13 @@ class verticaCredentials(Credentials):
     ssl_uri: Optional[str] = None
     connection_load_balance: Optional[bool]= True
     retries:int  =  1
+    backup_server_node =  []
     # backup_server_node: Optional[str] = None
+
+    # additional_info = {
+    # 'password': str, 
+    # 'backup_server_node': list# invalid value to be set in a connection string
+    # }
 
     @property
     def type(self):
@@ -52,7 +57,7 @@ class verticaCredentials(Credentials):
 
     def _connection_keys(self):
         # return an iterator of keys to pretty-print in 'dbt debug'
-        return ('host','port','database','username','schema', 'connection_load_balance')
+        return ('host','port','database','username','schema', 'connection_load_balance','backup_server_node')
 
 class verticaConnectionManager(SQLConnectionManager):
     TYPE = 'vertica'
@@ -76,8 +81,14 @@ class verticaConnectionManager(SQLConnectionManager):
                 'connection_load_balance':credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
                 'retries': credentials.retries,
-                # 'backup_server_node':credentials.backup_server_node,
+                'backup_server_node':credentials.backup_server_node,
             }
+
+            # additional_info = {
+            # # 'password': credentials.password,
+            # 'backup_server_node': credentials.backup_server_node # invalid value to be set in a connection string
+            # }
+        
             # if credentials.ssl.lower() in {'true', 'yes', 'please'}:
             if credentials.ssl:
                 if credentials.ssl_env_cafile is not None:
@@ -98,9 +109,11 @@ class verticaConnectionManager(SQLConnectionManager):
             
             def connect():
                 logger.debug(f': Connecting...')
+                
                 handle = vertica_python.connect(**conn_info)
                 connection.state = 'open'
                 connection.handle = handle
+                
                 logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
                 
                 # return connection
@@ -159,6 +172,8 @@ class verticaConnectionManager(SQLConnectionManager):
     def cancel(self, connection):
         logger.debug(':P Cancel query')
         connection.handle.cancel()
+
+        
     @contextmanager
     def exception_handler(self, sql):
         try:
@@ -180,7 +195,7 @@ class verticaConnectionManager(SQLConnectionManager):
         if cursor.description is not None:
             column_names = [col[0] for col in cursor.description]
             rows = cursor.fetchall()
-            cls.check_exceptions_for_msq(cursor)
+            # check_exceptions_for_msq(cursor)
             data = cls.process_results(column_names, rows)
 
         return dbt.clients.agate_helper.table_from_data_flat(
