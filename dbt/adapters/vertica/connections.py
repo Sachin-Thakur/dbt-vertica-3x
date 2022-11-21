@@ -35,7 +35,7 @@ class verticaCredentials(Credentials):
     ssl_uri: Optional[str] = None
     connection_load_balance: Optional[bool]= True
     retries:int  =  1
-    backup_server_node =  []
+    backup_server_node: Optional[List[str]] = None
     # backup_server_node: Optional[str] = None
 
     # additional_info = {
@@ -81,8 +81,8 @@ class verticaConnectionManager(SQLConnectionManager):
                 'connection_load_balance':credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
                 'retries': credentials.retries,
-                'backup_server_node': ['172.16.120.11'] 
-                # 'backup_server_node':credentials.backup_server_node,
+                # 'backup_server_node': ['172.16.120.11'] 
+                'backup_server_node':credentials.backup_server_node,
                 
             }
 
@@ -110,17 +110,14 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f'SSL is on')
             
             def connect():
-                # logger.debug(f': Connecting...')
-                # handle = vertica_python.connect(**conn_info)
-                # try:
+                # print(conn_info)
                 handle = vertica_python.connect(**conn_info)
                 logger.debug(f':P Connection work {handle}')
                 connection.state = 'open'
                 connection.handle = handle
                 logger.debug(f':P Connected to database: {credentials.database} at {credentials.host} at {handle}')
-                
-                return connection
-                # return handle
+                # return connection
+                return handle
                 
                 # except:
                     
