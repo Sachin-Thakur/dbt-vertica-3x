@@ -27,7 +27,7 @@ def dbt_profile_target():
     return {
         "type": "vertica",
         "threads": 1,
-        "host": "127.0.0.1",
+        "host": "159.65.150.255",
         "port": int(os.getenv("VERTICA_TEST_PORT", 5433)),
         "username": os.getenv("VERTICA_TEST_USER", "dbadmin"),
         "password": os.getenv("VERTICA_TEST_PASS", ""),
@@ -51,20 +51,20 @@ def dbt_profile_target(request):
 def apache_spark_target():
     return {
         "type": "spark",
-        "host": "localhost",
+        "host": "159.65.150.255",
     }
 
 def databricks_sql_endpoint_target():
     return {
         "type": "spark",
-        "host": "localhost",
+        "host": "159.65.150.255",
     }
 
 def vertica_target():
     return {
         "type": "vertica",
         "threads": 1,
-        "host": "127.0.0.1",
+        "host": "159.65.150.255",
         "port": int(os.getenv("VERTICA_TEST_PORT", 5433)),
         "username": os.getenv("VERTICA_TEST_USER", "dbadmin"),
         "password": os.getenv("VERTICA_TEST_PASS", ""),
