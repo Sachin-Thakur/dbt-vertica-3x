@@ -25,12 +25,13 @@ class verticaCredentials(Credentials):
     password: str
     ssl: bool = False
     port: int = 5433
-    timeout: int = 360
+    timeout: int = 10
     withMaterialization: bool = False
     ssl_env_cafile: Optional[str] = None
     ssl_uri: Optional[str] = None
     connection_load_balance: Optional[bool]= True
     # backup_server_node: Optional[str] = None
+    retries: int = 2
 
     @property
     def type(self):
@@ -140,6 +141,18 @@ class verticaConnectionManager(SQLConnectionManager):
                 pass
 
         return connection
+        # retryable_exceptions = [  
+        #     Exception,  
+        #     dbt.exceptions.FailedToConnectException()
+        # ]
+
+        # return cls.retry_connection(
+        # connection,
+        # connect=vertica_python.connect(**conn_info),
+        # logger=logger,
+        # retry_limit=credentials.retries,
+        # retryable_exceptions=retryable_exceptions )
+
 
     @classmethod
     def get_response(cls, cursor):

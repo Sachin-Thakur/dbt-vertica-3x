@@ -20,7 +20,7 @@ class VerticaConfig(AdapterConfig):
     automatic_clustering: Optional[bool] = None
     secure: Optional[bool] = None
     copy_grants: Optional[bool] = None
-    snowflake_warehouse: Optional[str] = None
+    vertica_warehouse: Optional[str] = None
     query_tag: Optional[str] = None
     merge_update_columns: Optional[str] = None
 

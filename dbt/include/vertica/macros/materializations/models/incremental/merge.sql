@@ -1,4 +1,4 @@
-{% macro vertica__get_merge_sql(target_relation, tmp_relation, dest_columns) %}
+{% macro vertica__get_merge_sql(target_relation, tmp_relation, unique_key, dest_columns) %}
   {%- set dest_columns_csv =  get_quoted_csv(dest_columns | map(attribute="name")) -%}
   {%- set merge_columns = config.get("merge_columns", default=None)%}
 
@@ -38,11 +38,49 @@
   )
 {%- endmacro %}
 
+{% macro vertica__get_delete_insert_merge_sql(target, source, unique_key, dest_columns) -%}
 
-{# No need to implement get_delete_insert_merge_sql(). Syntax supported by default. #}
+    {%- set dest_cols_csv = get_quoted_csv(dest_columns | map(attribute="name")) -%}
 
+    {% if unique_key %}
+        delete from {{ target }}
+            where (
+                {{ unique_key }}) in (
+                select ({{ unique_key }})
+                from {{ source }}
+            );
 
-{% macro vertica__get_insert_overwrite_merge_sql() -%}
-  {{ exceptions.raise_not_implemented(
-    'get_insert_overwrite_merge_sql macro not implemented for adapter '+adapter.type()) }}
+    {% endif %}
+
+    insert into {{ target }} ({{ dest_cols_csv }})
+    (
+        select {{ dest_cols_csv }}
+        from {{ source }}
+    );
+
 {%- endmacro %}
+
+
+{% macro vertica__get_insert_overwrite_merge_sql(target_relation, tmp_relation, dest_columns) -%}
+    {%- set complex_type = config.get('include_complex_type') -%}
+    {%- set partitions = config.get('partitions') -%}
+    {%- set dest_cols_csv = get_quoted_csv(dest_columns | map(attribute="name")) -%}
+
+    {%- if complex_type %}
+        {{ vertica__create_table_from_relation(True, tmp_relation, target_relation, dest_columns, sql) }}
+    {% else %}
+        {{ vertica__create_table_as(True, tmp_relation, sql) }}
+    {% endif %}
+
+
+    {% for partition in partitions %}
+    SELECT DROP_PARTITIONS('{{ target_relation.schema }}.{{ target_relation.table }}', '{{ partition }}', '{{ partition }}');
+    SELECT PURGE_PARTITION('{{ target_relation.schema }}.{{ target_relation.table }}', '{{ partition }}');
+    {% endfor %}
+
+    insert into {{ target_relation }} ({{ dest_cols_csv }})
+    (
+        select {{ dest_cols_csv }}
+        from {{ tmp_relation }}
+    )
+{% endmacro %}
