@@ -57,7 +57,7 @@ class verticaCredentials(Credentials):
 
     def _connection_keys(self):
         # return an iterator of keys to pretty-print in 'dbt debug'
-        return ('host','port','database','username','schema', 'connection_load_balance','backup_server_node')
+        return ('host','port','database','username','schema', 'connection_load_balance')
 
 class verticaConnectionManager(SQLConnectionManager):
     TYPE = 'vertica'
@@ -81,7 +81,9 @@ class verticaConnectionManager(SQLConnectionManager):
                 'connection_load_balance':credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
                 'retries': credentials.retries,
-                'backup_server_node':credentials.backup_server_node,
+                'backup_server_node': ['172.16.120.11'] 
+                # 'backup_server_node':credentials.backup_server_node,
+                
             }
 
             # additional_info = {
@@ -108,16 +110,41 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f'SSL is on')
             
             def connect():
-                logger.debug(f': Connecting...')
-                
+                # logger.debug(f': Connecting...')
+                # handle = vertica_python.connect(**conn_info)
+                # try:
                 handle = vertica_python.connect(**conn_info)
+                logger.debug(f':P Connection work {handle}')
                 connection.state = 'open'
                 connection.handle = handle
+                logger.debug(f':P Connected to database: {credentials.database} at {credentials.host} at {handle}')
                 
-                logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
+                return connection
+                # return handle
                 
-                # return connection
-                return handle
+                # except:
+                    
+                #     conn_info = {
+                #     'host': credentials.backup_server_node,
+                #     'port': credentials.port,
+                #     'user': credentials.username,
+                #     'password': credentials.password,
+                #     'database': credentials.database,
+                #     'connection_timeout': credentials.timeout,
+                #     'connection_load_balance':credentials.connection_load_balance,
+                #     'session_label': f'dbt_{credentials.username}',
+                #     'retries': credentials.retries,
+                #     'backup_server_node':credentials.host
+                # }
+                # handle = vertica_python.connect(**conn_info)
+                # logger.debug(f':P Connection work{handle}')
+                # connection.state = 'open'
+                # connection.handle = handle
+                # logger.debug(f':P Connected to database: {credentials.database} at {credentials.host} at {handle}')
+                
+                # # return connection
+                # return handle
+               
 
 
         except Exception as exc:
@@ -155,6 +182,8 @@ class verticaConnectionManager(SQLConnectionManager):
         retry_limit=credentials.retries,
         retryable_exceptions=retryable_exceptions,
         )
+
+        # return connection
 
 
     @classmethod

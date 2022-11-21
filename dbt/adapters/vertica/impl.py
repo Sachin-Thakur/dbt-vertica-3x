@@ -80,17 +80,19 @@ class verticaAdapter(SQLAdapter):
     #     Not used to validate custom strategies defined by end users.
     #     """
     #     return ["append", "delete+insert"]
-
+    @classmethod
     def valid_incremental_strategies(self):
         """The set of standard builtin strategies which this adapter supports out-of-the-box.
         Not used to validate custom strategies defined by end users.
         """
         return ["append"]
 
+    @classmethod
     def builtin_incremental_strategies(self):
         return ["append", "delete+insert", "merge", "insert_overwrite"]
 
     @available.parse_none
+    @classmethod
     def get_incremental_strategy_macro(self, model_context, strategy: str):
         # Construct macro_name from strategy name
         if strategy is None:
