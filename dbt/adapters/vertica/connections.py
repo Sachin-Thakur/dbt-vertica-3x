@@ -78,7 +78,7 @@ class verticaConnectionManager(SQLConnectionManager):
                 'connection_load_balance':credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
                 'retries': credentials.retries,
-                # 'backup_server_node': ['172.16.120.11'] 
+              
                 'backup_server_node':credentials.backup_server_node,
                 
             }
@@ -160,24 +160,8 @@ class verticaConnectionManager(SQLConnectionManager):
             rows_affected=rows,
             code=str(code)
         )
-    def cancel(self, connection):
-        logger.debug(':P Cancel query')
-        connection.handle.cancel()
 
-        
-    @contextmanager
-    def exception_handler(self, sql):
-        try:
-            yield
-        except vertica_python.DatabaseError as exc:
-            logger.debug(f':P Database error: {exc}')
-            self.release()
-            raise dbt.exceptions.DatabaseException(str(exc))
-        except Exception as exc:
-            logger.debug(f':P Error: {exc}')
-            self.release()
-            raise dbt.exceptions.RuntimeException(str(exc))
-    
+
     
     # def check_exceptions_for_msq(self, cursor: Any):
     #     # check results of other queries in multistatement query
@@ -191,4 +175,65 @@ class verticaConnectionManager(SQLConnectionManager):
 
 
 
-    
+    @classmethod
+    def get_result_from_cursor(cls, cursor: Any) -> agate.Table:
+        data: List[Any] = []
+        column_names: List[str] = []
+
+        if cursor.description is not None:
+            column_names = [col[0] for col in cursor.description]
+            rows = cursor.fetchall()
+            while cursor.nextset():
+                check = cursor._message
+                if isinstance(check, ErrorResponse):
+                    logger.debug(f'Cursor message is: {check}')
+                    self.release()
+                    raise dbt.exceptions.DatabaseException(str(check))
+            data = cls.process_results(column_names, rows)
+
+        return dbt.clients.agate_helper.table_from_data_flat(
+            data,
+            column_names
+        )
+
+    def execute(self, sql: str, auto_begin: bool = False, fetch: bool = False) -> Tuple[Union[AdapterResponse, str], agate.Table]:
+        sql = self._add_query_comment(sql)
+        _, cursor = self.add_query(sql, auto_begin)
+        response = self.get_response(cursor)
+        if fetch:
+            table = self.get_result_from_cursor(cursor)
+        else:
+            table = dbt.clients.agate_helper.empty_table()
+            while cursor.nextset():
+                check = cursor._message
+                if isinstance(check, vertica_python.vertica.messages.ErrorResponse):
+                    logger.debug(f'Cursor message is: {check}')
+                    self.release()
+                    raise dbt.exceptions.DatabaseException(str(check))
+        return response, table
+
+
+
+
+    @classmethod
+    def get_status(cls, cursor):
+        return str(cursor.rowcount)
+
+    def cancel(self, connection):
+        logger.debug(':P Cancel query')
+        connection.handle.cancel()
+
+
+    @contextmanager
+    def exception_handler(self, sql):
+        try:
+            yield
+        except vertica_python.DatabaseError as exc:
+            logger.debug(f':P Database error: {exc}')
+            self.release()
+            raise dbt.exceptions.DatabaseException(str(exc))
+        except Exception as exc:
+            logger.debug(f':P Error: {exc}')
+            self.release()
+            raise dbt.exceptions.RuntimeException(str(exc))
+
