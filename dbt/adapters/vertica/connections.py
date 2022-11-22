@@ -4,15 +4,16 @@ import ssl
 import os
 import requests
 from typing import Optional
-
+from dbt.contracts.connection import AdapterResponse
+from typing import List, Optional, Tuple, Any, Iterable, Dict, Union
+import dbt.clients.agate_helper
+import agate
 from dbt.adapters.base import Credentials
 from dbt.adapters.sql import SQLConnectionManager
 from dbt.events import AdapterLogger
 logger = AdapterLogger("vertica")
-
 from dbt.contracts.connection import AdapterResponse
 import dbt.exceptions
-
 import vertica_python
 
 
@@ -25,12 +26,19 @@ class verticaCredentials(Credentials):
     password: str
     ssl: bool = False
     port: int = 5433
-    timeout: int = 360
+    timeout: int = 3600
     withMaterialization: bool = False
     ssl_env_cafile: Optional[str] = None
     ssl_uri: Optional[str] = None
     connection_load_balance: Optional[bool]= True
+    retries:int  =  1
+    backup_server_node: Optional[List[str]] = None
     # backup_server_node: Optional[str] = None
+
+    # additional_info = {
+    # 'password': str, 
+    # 'backup_server_node': list# invalid value to be set in a connection string
+    # }
 
     @property
     def type(self):
@@ -67,10 +75,14 @@ class verticaConnectionManager(SQLConnectionManager):
                 'password': credentials.password,
                 'database': credentials.database,
                 'connection_timeout': credentials.timeout,
-                'connection_load_balance': credentials.connection_load_balance,
+                'connection_load_balance':credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
-                # 'backup_server_node':credentials.backup_server_node,
+                'retries': credentials.retries,
+                # 'backup_server_node': ['172.16.120.11'] 
+                'backup_server_node':credentials.backup_server_node,
+                
             }
+
             # if credentials.ssl.lower() in {'true', 'yes', 'please'}:
             if credentials.ssl:
                 if credentials.ssl_env_cafile is not None:
@@ -89,32 +101,16 @@ class verticaConnectionManager(SQLConnectionManager):
                 conn_info['ssl'] = context
                 logger.debug(f'SSL is on')
             
-            # def connect(**conn_info):
-            #     logger.debug(f': COnnecting always')
-            #     handle = vertica_python.connect(**conn_info)
-            #     connection.state = 'open'
-            #     connection.handle = handle
-            #     logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
-            #     return connection
+            def connect():
+                handle = vertica_python.connect(**conn_info)
+                logger.debug(f':P Connection work {handle}')
+                connection.state = 'open'
+                connection.handle = handle
+                logger.debug(f':P Connected to database: {credentials.database} at {credentials.host} at {handle}')
+                return handle
+        
+               
 
-            # if conn_info['connection_timeout'] >=3600:
-            #     conn_info = {
-            #     'host': credentials.backup_server_node,
-            #     'port': credentials.port,
-            #     'user': credentials.username,
-            #     'password': credentials.password,
-            #     'database': credentials.database,
-            #     'connection_timeout': credentials.timeout,
-            #     'connection_load_balance': credentials.connection_load_balance,
-            #     'session_label': f'dbt_{credentials.username}',
-            #     'backup_server_node':credentials.backup_server_node,
-            #     }
-            #     connect(**conn_info)
-
-            handle = vertica_python.connect(**conn_info)
-            connection.state = 'open'
-            connection.handle = handle
-            logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
 
         except Exception as exc:
             logger.debug(f':P Error connecting to database: {exc}')
@@ -139,7 +135,18 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f':P Could not EnableWithClauseMaterialization: {exc}')
                 pass
 
-        return connection
+        retryable_exceptions = [
+        Exception,
+        dbt.exceptions.FailedToConnectException
+        ]
+
+        return cls.retry_connection(
+        connection,
+        connect=connect,
+        logger=logger,
+        retry_limit=credentials.retries,
+        retryable_exceptions=retryable_exceptions,
+        )
 
     @classmethod
     def get_response(cls, cursor):
@@ -148,25 +155,16 @@ class verticaConnectionManager(SQLConnectionManager):
         message = cursor._message
         arraysize = cursor.arraysize
         operation = cursor.operation
-
         return AdapterResponse(
-            _message="Code: {}, Rows: {}, Array Size: {}".format(str(code), rows, arraysize),
+            _message="Operation: {}, Message: {}, Code: {}, Rows: {}, Arraysize: {}".format(operation, message, str(code), rows, arraysize),
             rows_affected=rows,
             code=str(code)
         )
-
     def cancel(self, connection):
         logger.debug(':P Cancel query')
         connection.handle.cancel()
 
-    # def cancel(self, connection):
-    #     tid = connection.handle.transaction_id()
-    #     sql = 'select cancel_transaction({})'.format(tid)
-    #     logger.debug("Cancelling query '{}' ({})".format(connection_name, pid))
-    #     _, cursor = self.add_query(sql, 'master')
-    #     res = cursor.fetchone()
-    #     logger.debug("Canceled query '{}': {}".format(connection_name, res))
-
+        
     @contextmanager
     def exception_handler(self, sql):
         try:
@@ -179,7 +177,8 @@ class verticaConnectionManager(SQLConnectionManager):
             logger.debug(f':P Error: {exc}')
             self.release()
             raise dbt.exceptions.RuntimeException(str(exc))
-
+    
+    
     # def check_exceptions_for_msq(self, cursor: Any):
     #     # check results of other queries in multistatement query
     #     # check it only after getting data from cursor!
@@ -189,3 +188,7 @@ class verticaConnectionManager(SQLConnectionManager):
     #             logger.debug(f'Cursor message is: {check}')
     #             self.release()
     #             raise dbt.exceptions.DatabaseException(str(check))
+
+
+
+    
