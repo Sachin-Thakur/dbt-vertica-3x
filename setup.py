@@ -28,7 +28,7 @@ def _get_dbt_core_version():
     return f"{minor}{pre}"
 
 
-package_name = "dbt-vertica_sprint1"
+package_name = "dbt-vertica_sprint2"
 package_version = "1.3.0"
 description = """The vertica adapter plugin for dbt (data build tool)"""
 dbt_core_version = _get_dbt_core_version()
