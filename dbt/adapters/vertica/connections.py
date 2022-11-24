@@ -31,7 +31,7 @@ class verticaCredentials(Credentials):
     ssl_uri: Optional[str] = None
     connection_load_balance: Optional[bool]= True
     # backup_server_node: Optional[str] = None
-    retries: int = 2
+    retries: int = 1
 
     @property
     def type(self):
@@ -70,7 +70,8 @@ class verticaConnectionManager(SQLConnectionManager):
                 'connection_timeout': credentials.timeout,
                 'connection_load_balance': credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
-                # 'backup_server_node':credentials.backup_server_node,
+                'retries':credentials.retries,
+                'backup_server_node':credentials.backup_server_node,
             }
             # if credentials.ssl.lower() in {'true', 'yes', 'please'}:
             if credentials.ssl:
@@ -90,13 +91,15 @@ class verticaConnectionManager(SQLConnectionManager):
                 conn_info['ssl'] = context
                 logger.debug(f'SSL is on')
             
-            # def connect(**conn_info):
-            #     logger.debug(f': COnnecting always')
-            #     handle = vertica_python.connect(**conn_info)
-            #     connection.state = 'open'
-            #     connection.handle = handle
-            #     logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
-            #     return connection
+
+            def connect():
+                logger.debug(f': Connecting...')
+                handle = vertica_python.connect(**conn_info)
+                connection.state = 'open'
+                connection.handle = handle
+                logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
+                
+                return handle
 
             # if conn_info['connection_timeout'] >=3600:
             #     conn_info = {
@@ -112,10 +115,7 @@ class verticaConnectionManager(SQLConnectionManager):
             #     }
             #     connect(**conn_info)
 
-            handle = vertica_python.connect(**conn_info)
-            connection.state = 'open'
-            connection.handle = handle
-            logger.debug(f':P Connected to database: {credentials.database} at {credentials.host}')
+
 
         except Exception as exc:
             logger.debug(f':P Error connecting to database: {exc}')
@@ -140,20 +140,19 @@ class verticaConnectionManager(SQLConnectionManager):
                 logger.debug(f':P Could not EnableWithClauseMaterialization: {exc}')
                 pass
 
-        return connection
-        # retryable_exceptions = [  
-        #     Exception,  
-        #     dbt.exceptions.FailedToConnectException()
-        # ]
+        # return connection
+        retryable_exceptions = [  
+            Exception,  
+            dbt.exceptions.FailedToConnectException()
+        ]
+        return cls.retry_connection(
+        connection,
+        connect=connect,
+        logger=logger,
+        retry_limit=credentials.retries,
+        retryable_exceptions=retryable_exceptions )
 
-        # return cls.retry_connection(
-        # connection,
-        # connect=vertica_python.connect(**conn_info),
-        # logger=logger,
-        # retry_limit=credentials.retries,
-        # retryable_exceptions=retryable_exceptions )
-
-
+ 
     @classmethod
     def get_response(cls, cursor):
         code = cursor.description
