@@ -54,7 +54,7 @@
         , numeric_scale
         , ordinal_position
         from v_catalog.columns
-        where table_schema = '{{ relation.schema }}'
+        where table_schema = '{{ relation.schema stra}}'
         and table_name = '{{ relation.identifier }}'
         union all
         select
