@@ -10,16 +10,16 @@
 
 {% endmacro %}
 
-{% macro get_incremental_append_sql(arg_dict) %}
+{% macro get_incremental_append_sql(target_relation, temp_relation, dest_columns) %}
 
-  {{ return(adapter.dispatch('get_incremental_append_sql', 'dbt')(arg_dict)) }}
+  {{ return(adapter.dispatch('get_incremental_append_sql', 'dbt')(target_relation, temp_relation, dest_columns)) }}
 
 {% endmacro %}
 
 
-{% macro vertica__get_incremental_append_sql(arg_dict) %}
+{% macro vertica__get_incremental_append_sql(target_relation, tmp_relation, dest_columns) %}
 
-  {% do return(get_insert_into_sql(arg_dict["target_relation"], arg_dict["temp_relation"], arg_dict["dest_columns"])) %}
+  {% do return(get_insert_into_sql(target_relation, tmp_relation, dest_columns)) %}
 
 {% endmacro %}
 {% macro get_incremental_delete_insert_sql(arg_dict) %}
@@ -78,8 +78,8 @@
 
 
 
-{% macro vertica__get_incremental_default_sql(arg_dict) %}
+{% macro vertica__get_incremental_default_sql(target_relation, tmp_relation, dest_columns) %}
 
-  {% do return(get_incremental_append_sql(arg_dict)) %}
+  {% do return(get_incremental_append_sql(target_relation, tmp_relation, dest_columns)) %}
 
 {% endmacro %}
