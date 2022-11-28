@@ -4,9 +4,9 @@
 
   {% set invalid_strategy_msg -%}
     Invalid incremental strategy provided: {{ strategy }}
-    Expected one of: 'merge', 'delete+insert','insert+overwrite'
+    Expected one of: 'merge', 'delete+insert','insert+overwrite','append'
   {%- endset %}
-  {% if strategy not in ['merge', 'delete+insert','insert+overwrite'] %}
+  {% if strategy not in ['merge', 'delete+insert','insert+overwrite','append'] %}
     {% do exceptions.raise_compiler_error(invalid_strategy_msg) %}
   {% endif %}
 
@@ -32,6 +32,8 @@
     {% do return(vertica__get_delete_insert_merge_sql(target_relation, tmp_relation, unique_key, dest_columns)) %}
   {% elif strategy == 'insert+overwrite' %}
     {% do return(vertica__get_insert_overwrite_merge_sql(target_relation, tmp_relation, dest_columns)) %}
+  {% elif strategy == 'append' %}
+    {% do return(vertica__get_incremental_append_sql(target_relation, tmp_relation,unique_key,  dest_columns)) %}
   {% else %}
     {% do exceptions.raise_compiler_error('invalid strategy: ' ~ strategy) %}
   {% endif %}
@@ -54,7 +56,7 @@
         , numeric_scale
         , ordinal_position
         from v_catalog.columns
-        where table_schema = '{{ relation.schema stra}}'
+        where table_schema = '{{ relation.schema}}'
         and table_name = '{{ relation.identifier }}'
         union all
         select
