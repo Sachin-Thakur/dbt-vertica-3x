@@ -78,8 +78,7 @@ class verticaConnectionManager(SQLConnectionManager):
                 'connection_load_balance':credentials.connection_load_balance,
                 'session_label': f'dbt_{credentials.username}',
                 'retries': credentials.retries,
-              
-                'backup_server_node':credentials.backup_server_node,
+                'backup_server_node': credentials.backup_server_node,
                 
             }
 
