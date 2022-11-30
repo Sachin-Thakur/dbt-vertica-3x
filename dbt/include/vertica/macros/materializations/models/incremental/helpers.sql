@@ -1,6 +1,9 @@
 {% macro vertica__validate_get_incremental_strategy(config) %}
   {#-- Find and validate the incremental strategy #}
-  {%- set strategy = config.get("incremental_strategy", default="merge") -%}
+  {% set strategy = config.get("incremental_strategy", default="merge") %}
+  {% if not strategy %}
+    {% set strategy = "merge" %}
+  {% endif %}
 
   {% set invalid_strategy_msg -%}
     Invalid incremental strategy provided: {{ strategy }}
