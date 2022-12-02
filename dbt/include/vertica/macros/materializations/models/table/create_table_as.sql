@@ -11,6 +11,10 @@
   {%- set ksafe = config.get('ksafe', default=None) -%}
 
 
+  {%- set partition_by_string = config.get('partition_by_string', default=none) -%}
+  {%- set partition_by_group_by_string = config.get('partition_by_group_by_string', default=none) -%}
+
+
 
 
   create {% if temporary: -%}local temporary{%- endif %} table
@@ -38,6 +42,19 @@
  {% if ksafe is not none -%}
   ksafe {{ ksafe }}
   {% endif %}
+  
+
+
+
+
+
+ {% if partition_by_string is not none -%}
+    ; alter table{{ relation.include(database=(not temporary), schema=(not temporary)) }} partition BY {{ partition_by_string }}
+    {% if partition_by_string is not none and partition_by_active_count is not none %}
+      SET ACTIVEPARTITIONCOUNT {{ partition_by_active_count }}
+    {% endif %}
+  {% endif %} 
+;
 
 
   
