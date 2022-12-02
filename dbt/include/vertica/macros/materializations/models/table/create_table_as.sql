@@ -15,6 +15,9 @@
   {%- set partition_by_group_by_string = config.get('partition_by_group_by_string', default=none) -%}
 
 
+  {%- set partition_by_active_count = config.get('partition_by_active_count', default=none) -%}
+partition_by_active_count
+
 
 
   create {% if temporary: -%}local temporary{%- endif %} table
@@ -43,6 +46,7 @@
   ksafe {{ ksafe }}
   {% endif %}
   
+
 
 
 
