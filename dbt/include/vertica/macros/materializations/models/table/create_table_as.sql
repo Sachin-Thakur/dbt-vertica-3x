@@ -16,7 +16,7 @@
 
 
   {%- set partition_by_active_count = config.get('partition_by_active_count', default=none) -%}
-partition_by_active_count
+
 
 
 
