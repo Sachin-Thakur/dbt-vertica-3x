@@ -16,6 +16,7 @@
 
 
   {%- set partition_by_active_count = config.get('partition_by_active_count', default=none) -%}
+  -- {%   set partition_by_active_count = config.get('', default=none) %}
 
 
 
@@ -49,16 +50,20 @@
 
 
 
-
-
-
- {% if partition_by_string is not none -%}
-    ; alter table{{ relation.include(database=(not temporary), schema=(not temporary)) }} partition BY {{ partition_by_string }}
+{% if partition_by_string is not none -%}
+    ; alter table {{ relation.include(database=(not temporary), schema=(not temporary)) }} partition BY {{ partition_by_string }}
+    {% if partition_by_string is not none and partition_by_group_by_string is not none -%}
+      group by {{ partition_by_group_by_string }}
+    {% endif %}
     {% if partition_by_string is not none and partition_by_active_count is not none %}
       SET ACTIVEPARTITIONCOUNT {{ partition_by_active_count }}
     {% endif %}
-  {% endif %} 
-;
+  {% endif %}  
+  ;
+
+
+    
+
 
 
   

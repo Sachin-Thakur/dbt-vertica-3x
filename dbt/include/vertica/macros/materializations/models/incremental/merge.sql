@@ -60,3 +60,16 @@
 
 {%- endmacro %}
 
+
+
+
+
+{% macro vertica__get_insert_overwrite_merge_sql(target_relation, tmp_relation, dest_columns) -%}
+    {%- set dest_cols_csv = get_quoted_csv(dest_columns | map(attribute="name")) -%}
+    DELETE FROM {{ target_relation }};
+    insert into {{ target_relation }} ({{ dest_cols_csv }})
+    (
+        select {{ dest_cols_csv }}
+        from {{ tmp_relation }}
+    );
+{% endmacro %}
