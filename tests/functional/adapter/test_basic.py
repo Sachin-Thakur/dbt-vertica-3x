@@ -14,7 +14,23 @@ from dbt.tests.adapter.basic.test_snapshot_timestamp import BaseSnapshotTimestam
 from dbt.tests.adapter.basic.test_adapter_methods import BaseAdapterMethod
 from dbt.tests.adapter.basic.test_validate_connection import BaseValidateConnection
 
+incremental_sql = """
+{{ config(materialized="incremental",incremental_strategy="merge",unique_key='id') }}
+select * from {{ source('raw', 'seed') }}
+{% if is_incremental() %}
+where id > (select max(id) from {{ this }})
+{% endif %}
+""".strip()
 
+schema_base_yml = """
+version: 2
+sources:
+  - name: raw
+    schema: "{{ target.schema }}"
+    tables:
+      - name: seed
+        identifier: "{{ var('seed_name', 'base') }}"
+"""
 
 class TestEmptyVertica(BaseEmpty):
     pass
@@ -38,11 +54,11 @@ class TestSimpleMaterializationsVertica(BaseSimpleMaterializations):
 class TestEphemeralVertica(BaseEphemeral):
     pass
 
-
-
 class TestIncrementalVertica(BaseIncremental):
-    pass
-
+    @pytest.fixture(scope="class")
+    def models(self):
+        return {"incremental.sql": incremental_sql, "schema.yml": schema_base_yml}
+    
 
 class TestBaseIncrementalNotSchemaChangeVertica(BaseIncrementalNotSchemaChange):
     pass

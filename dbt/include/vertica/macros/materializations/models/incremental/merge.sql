@@ -7,7 +7,7 @@
   using {{ tmp_relation }} as DBT_INTERNAL_SOURCE
 
   {#-- Test 1, find the provided merge columns #}
-  {% if unique_key %}
+  {% if merge_columns %}
     on 
     {% for column in [merge_columns] %}
       DBT_INTERNAL_DEST.{{ adapter.quote(column) }} = DBT_INTERNAL_SOURCE.{{ adapter.quote(column) }}

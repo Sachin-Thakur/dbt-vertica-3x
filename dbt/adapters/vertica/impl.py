@@ -63,5 +63,30 @@ class verticaAdapter(SQLAdapter):
                 grants_dict.update({privilege: [grantee]})
         return grants_dict
 
+
+    def run_sql_for_tests(self, sql, fetch, conn):
+        cursor = conn.handle.cursor()
+        try:
+            cursor.execute(sql)
+            result = None                
+            if fetch == "one":
+                result = cursor.fetchone()
+                conn.handle.commit()
+                return result
+            elif fetch == "all":
+                result = cursor.fetchall()
+                conn.handle.commit()
+                return result
+            else:
+                conn.handle.commit()
+                return
+        except BaseException as e:
+            if conn.handle and not getattr(conn.handle, "closed", True):
+                conn.handle.rollback()
+            print(sql)
+            print(e)
+            raise
+        finally:
+            conn.transaction_open = False
     
     
