@@ -6,7 +6,7 @@
   {%- set order_by = config.get('order_by', none) -%}
  
  {%- set segmented_by_string = config.get('segmented_by_string', default=none) -%}
-  {%- set segmented_by_all_nodes = config.get('segmented_by_all_nodes', default=true) -%}
+  {%- set segmented_by_all_nodes = config.get('segmented_by_all_nodes', default=True) -%}
   {%- set no_segmentation = config.get('no_segmentation', default=False) -%}
   {%- set ksafe = config.get('ksafe', default=None) -%}
 
@@ -40,7 +40,9 @@
    {% endif %}
   {% endif %}
 
-  {% if no_segmentation %} UNSEGMENTED ALL NODES {% endif %}
+  {% if no_segmentation =='True' or no_segmentation=='true' %} 
+  UNSEGMENTED ALL NODES 
+  {% endif %}
 
  {% if ksafe is not none -%}
   ksafe {{ ksafe }}
