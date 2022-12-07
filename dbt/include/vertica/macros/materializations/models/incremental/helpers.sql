@@ -36,7 +36,7 @@
   {% elif strategy == 'insert+overwrite' %}
     {% do return(vertica__get_insert_overwrite_merge_sql(target_relation, tmp_relation, dest_columns)) %}
   {% elif strategy == 'append' %}
-    {% do return(vertica__get_incremental_append_sql(target_relation, tmp_relation,unique_key,  dest_columns)) %}
+    {% do return(vertica__get_incremental_append_sql(target_relation, tmp_relation,  dest_columns)) %}
   {% else %}
     {% do exceptions.raise_compiler_error('invalid strategy: ' ~ strategy) %}
   {% endif %}
