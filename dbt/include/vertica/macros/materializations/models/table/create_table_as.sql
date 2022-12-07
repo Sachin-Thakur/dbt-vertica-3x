@@ -8,7 +8,7 @@
  {%- set segmented_by_string = config.get('segmented_by_string', default=none) -%}
   {%- set segmented_by_all_nodes = config.get('segmented_by_all_nodes', default=True) -%}
   {%- set no_segmentation = config.get('no_segmentation', default=False) -%}
-  {%- set ksafe = config.get('ksafe', default=None) -%}
+  {%- set ksafe = config.get('ksafe', default=none) -%}
 
 
   {%- set partition_by_string = config.get('partition_by_string', default=none) -%}
