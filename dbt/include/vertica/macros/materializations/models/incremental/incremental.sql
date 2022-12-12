@@ -70,7 +70,7 @@
     {% else %}
 
       {% set build_sql = vertica__get_incremental_sql(strategy, target_relation, tmp_relation, unique_key, dest_columns) %}
-     {% endif %}
+
   {% endif %}
 
   {% call statement("main") %}
