@@ -89,4 +89,4 @@ class verticaAdapter(SQLAdapter):
         finally:
             conn.transaction_open = False
     
-    
+
