@@ -1,13 +1,17 @@
 {% materialization incremental, adapter='vertica' %}
 
-  {% set unique_key = config.get('unique_key') %}
+  {% set unique_key = config.get('unique_key')   or 'none' %}
 
   {% set target_relation = this %}
-  {% set existing_relation = load_relation(this) %}
+  {%- set existing_relation = load_cached_relation(this) -%}
+  
+  -- {% set existing_relation = load_relation(this) %}
   {% set tmp_relation = make_temp_relation(this) %}
   {%- set full_refresh_mode = (should_full_refresh()) -%}
+  {%- set on_schema_change = incremental_validate_on_schema_change(config.get('on_schema_change'), default='ignore') -%}
 
-  {#-- Validate early so we don't run SQL if the strategy is invalid --#}
+
+  -- {#-- Validate early so we don't run SQL if the strategy is invalid --#}
   {% set strategy = vertica__validate_get_incremental_strategy(config) %}
 
   
@@ -21,14 +25,14 @@
   {% set to_drop = [] %}
 
 
-  {# -- first check whether we want to full refresh for source view or config reasons #}
+  -- {# -- first check whether we want to full refresh for source view or config reasons #}
   {% set trigger_full_refresh = (full_refresh_mode or existing_relation.is_view) %}
 
 
   {% if existing_relation is none %}
       {% set build_sql = vertica__create_table_as(False, target_relation, sql) %}
   {% elif existing_relation.is_view %}
-      {#-- Make sure the backup doesn't exist so we don't encounter issues with the rename below #}
+      -- {#-- Make sure the backup doesn't exist so we don't encounter issues with the rename below #}
       {% set backup_identifier = existing_relation.identifier ~ "__dbt_backup" %}
       {% set backup_relation = existing_relation.incorporate(path={"identifier": backup_identifier}) %}
       {% do adapter.drop_relation(backup_relation) %}
@@ -37,7 +41,7 @@
       {% set build_sql = vertica__create_table_as(False, target_relation, sql) %}
       {% do to_drop.append(backup_relation) %}
   {% elif full_refresh_mode %}
-      {#-- Make sure the backup doesn't exist so we don't encounter issues with the rename below #}
+      -- {#-- Make sure the backup doesn't exist so we don't encounter issues with the rename below #}
       {% set tmp_identifier = model['name'] + '__dbt_tmp' %}
       {% set backup_identifier = model['name'] + '__dbt_backup' %}
       {% set intermediate_relation = existing_relation.incorporate(path={"identifier": tmp_identifier}) %}
@@ -55,18 +59,18 @@
              from_relation=tmp_relation,
              to_relation=target_relation) %}
              
-      {#-- Process schema changes. Returns dict of changes if successful. Use source columns for upserting/merging --#}
+      -- {#-- Process schema changes. Returns dict of changes if successful. Use source columns for upserting/merging --#}
       {% set dest_columns = process_schema_changes(on_schema_change, tmp_relation, existing_relation) %}
       {% if not dest_columns %}
         {% set dest_columns = adapter.get_columns_in_relation(existing_relation) %}
       {% endif %}
-      {% if unique_key is none%}
-        { % do exceptions.raise_compiler_error('unique is required argument  ' ~ unique_key) %}
+    --   {% if unique_key is none%}
+    --     { % do exceptions.raise_compiler_error('unique is required argument  ' ~ unique_key) %}
 
        
-    {% else %}
+    -- {% else %}
       {% set build_sql = vertica__get_incremental_sql(strategy, target_relation, tmp_relation, unique_key, dest_columns) %}
-     {% endif %}
+    --  {% endif %}
   {% endif %}
 
   {% call statement("main") %}
