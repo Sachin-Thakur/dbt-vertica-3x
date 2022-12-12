@@ -60,13 +60,9 @@
       {% if not dest_columns %}
         {% set dest_columns = adapter.get_columns_in_relation(existing_relation) %}
       {% endif %}
-      {% if unique_key is none%}
-        { % do exceptions.raise_compiler_error('unique is required argument  ' ~ unique_key) %}
 
-       
-    {% else %}
       {% set build_sql = vertica__get_incremental_sql(strategy, target_relation, tmp_relation, unique_key, dest_columns) %}
-     {% endif %}
+
   {% endif %}
 
   {% call statement("main") %}

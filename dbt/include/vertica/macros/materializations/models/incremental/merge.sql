@@ -62,15 +62,42 @@
 {%- endmacro %}
 
 
-
-
-
-{% macro vertica__get_insert_overwrite_merge_sql(target_relation, tmp_relation, dest_columns) -%}
+{% macro vertica__get_insert_overwrite_merge_sql(target_relation, source, dest_columns) -%}
+    {%- set partition_by_string = config.get('partition_by_string', default=none) -%}
+    {%- set partitions = config.get('partitions') -%}
     {%- set dest_cols_csv = get_quoted_csv(dest_columns | map(attribute="name")) -%}
-    DELETE FROM {{ target_relation }};
-    insert into {{ target_relation }} ({{ dest_cols_csv }})
-    (
+
+    {% if partition_by_string == none %}
+      DELETE FROM {{ target_relation }};
+
+      insert into {{ target_relation }} ({{ dest_cols_csv }})
+      (
+          select {{ dest_cols_csv }}
+          from {{ source }}
+      );
+    {% else %}     
+
+      select PARTITION_TABLE('{{ target_relation.schema }}.{{ target_relation.table }}');
+      
+      {% if partitions == none %}
+        {% set get_distinct_partitions %}
+          SELECT DISTINCT {{ partition_by_string }} from {{ source }}
+        {% endset %}
+
+        {% set results =  run_query(get_distinct_partitions) %}
+        {% set partitions = results.columns[0].values() %}
+      {% endif %}
+
+      {% for partition in partitions %}
+          SELECT DROP_PARTITIONS('{{ target_relation.schema }}.{{ target_relation.table }}', '{{ partition }}', '{{ partition }}');
+          SELECT PURGE_PARTITION('{{ target_relation.schema }}.{{ target_relation.table }}', '{{ partition }}');
+      {% endfor %}
+
+      insert into {{ target_relation }} ({{ dest_cols_csv }})
+      (
         select {{ dest_cols_csv }}
-        from {{ tmp_relation }}
-    );
+        from {{ source }}
+      );
+
+    {% endif %}
 {% endmacro %}
