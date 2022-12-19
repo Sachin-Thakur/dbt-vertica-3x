@@ -1,4 +1,5 @@
 {% materialization table, adapter='vertica' %}
+  {% set grant_config = config.get('grants') %}
   {%- set identifier = model['alias'] -%}
   {%- set tmp_identifier = model['name'] + '__dbt_tmp' -%}
   {%- set backup_identifier = model['name'] + '__dbt_backup' -%}
@@ -51,6 +52,10 @@
 
   -- `COMMIT` happens here
   {{ adapter.commit() }}
+
+  {% call statement('main') %}
+    {{ vertica__do_apply_grants(target_relation, grant_config) }}
+  {% endcall %}
 
   -- finally, drop the existing/backup relation after the commit
   {{ drop_relation_if_exists(backup_relation) }}

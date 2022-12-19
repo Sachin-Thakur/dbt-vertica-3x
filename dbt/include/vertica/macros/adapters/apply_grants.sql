@@ -1,20 +1,18 @@
-{% macro vertica__get_show_grant_sql(relation) %}
-    {% set location = adapter.get_dataset_location(relation) %}
-    {% set relation = relation.incorporate(location=location) %}
+{%- macro vertica__get_grant_sql(relation, privilege, grantees) -%}
+    grant {{ privilege }} on {{ relation }} to {{ grantees|join(",") }}
+{%- endmacro %}
 
-    select privilege_type, grantee
-    from {{ relation.information_schema("OBJECT_PRIVILEGES") }}
-    where object_schema = "{{ relation.dataset }}"
-      and object_name = "{{ relation.identifier }}"
-      -- filter out current user
-      and split(grantee, ':')[offset(1)] != session_user()
+{% macro vertica__get_show_grant_sql(relation) %}
+    select privileges_description,grantee from grants where object_type = '{{relation.type}}' and object_name= '{{ relation.identifier }}' and grantee != session_user()
 {% endmacro %}
 
+{%- macro vertica__get_revoke_sql(relation, privilege, grantees) -%}
+    revoke {{ privilege }} on {{ relation }} from {{ adapter.quote(grantees[0]) }}
+{%- endmacro %}
 
-{%- macro vertica__get_grant_sql(relation, privilege, grantee) -%}
-    grant `{{ privilege }}` on {{ relation.type }} {{ relation }} to {{ '\"' + grantee|join('\", \"') + '\"' }}
-{%- endmacro -%}
 
-{%- macro vertica__get_revoke_sql(relation, privilege, grantee) -%}
-    revoke `{{ privilege }}` on {{ relation.type }} {{ relation }} from {{ '\"' + grantee|join('\", \"') + '\"' }}
-{%- endmacro -%}
+{% macro vertica__do_apply_grants(relation, grant_config) %}
+    {% for privilege, grantees in grant_config.items() %}
+        grant {{ privilege }} on {{ relation }} to {{ grantees|join(",") }};
+    {% endfor %}
+{% endmacro %}
