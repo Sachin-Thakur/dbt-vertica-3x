@@ -9,11 +9,11 @@ Below is a table for what features the current Vertica adapter supports for dbt.
 | Table Materializations                            | Yes         |
 | Ephemeral Materializations                        | Yes         |
 | View Materializations                             | Yes         |
-| Incremental Materializations - Append             | Untested    |
+| Incremental Materializations - Append             | Yes         |
 | Incremental Materailizations - Insert + Overwrite | Yes         |
 | Incremental Materializations - Merge              | Yes         |
-| Snapshots - Timestamp                             | Passes Test |
-| Snapshots - Check Cols                            | Passes Test |
+| Snapshots - Timestamp                             | Yes         |
+| Snapshots - Check Cols                            | No Paritial |
 | Seeds                                             | Yes         |
 | Tests                                             | Yes         |
 | Documentation                                     | Yes         |
@@ -38,10 +38,19 @@ Below is a table for what features the current Vertica adapter supports for Vert
 - Incremental Materialization: cleanup and standardization
 - More functional adapter tests to inherit
 ### 1.2.0
-- igrate necessary cross-db macros into adapter and ensure they're tested accordingly
-- remove any copy-and-pasted materialization (if your adapter inherits from another adapter)
-- add new basic tests BaseDocsGenerate and BaseDocsGenReferences
-- consider checking and testing support for Python 3.10
+- migrate necessary cross-db macros into adapter and ensure they're tested accordingly 
+- remove any copy-and-pasted materialization (if your adapter inherits from another adapter) 
+
+- add new basic tests BaseDocsGenerate and BaseDocsGenReferences 
+
+- consider checking and testing support for Python 3.10 
+
+- dbt-labs/dbt-core#5432 might make it into the second release cut in the next week, in which case, you'll also might want to:implement method and tests for connection retry logic1.0.3 
+
+- Refactored the adapter to model after dbt's global_project macros 
+
+- Unimplemented functions should throw an exception that it's not implemented. If you stumble across this, please open an Issue or PR so we can investigate. 
+
 ### 1.0.3
 - Refactored the adapter to model after dbt's global_project macros
 - Unimplemented functions should throw an exception that it's not implemented. If you stumble across this, please open an Issue or PR so we can investigate.
@@ -85,9 +94,25 @@ your-profile:
       password: your-password
       database: vertica-database-name
       schema: your-default-schema
+      connection_load_balance: True
+      backup_server_node: ['123.123.123.123','www.abc.com',('123.123.123.123',5433)]
+
+
   target: dev
 ```
 By default, `dbt-vertica` will request `ConnectionLoadBalance=true` (which is generally a good thing), and set a session label of `dbt_your-username`.
+
+Load Balancing– Connection Load Balancing helps automatically spread the overhead caused by client connections across the cluster by having hosts redirect client connections to other hosts. Both the server and the client need to enable load balancing for it to function. If the server disables connection load balancing, the load balancing request from client will be ignored. 
+
+`connection_load_balance : True` this paramerter will enable the load balancing in vertica  and `connection_load_balance : False` will disable the  load balancing in vertica.
+
+Backup Server Node– Supply a list of backup hosts to backup_server_node for the client to try if the primary host you specify in the connection parameters (host, port) is unreachable. Each item in the list should be either a host string (using default port 5433) or a (host, port) tuple. A host can be a host name or an IP address.
+Format of  passing backup server node in profiles.yml is  below:
+
+`backup_server_node: ['123.123.123.123','www.abc.com',('123.123.123.123',5433)]`
+
+
+
 There are three options for SSL: `ssl`, `ssl_env_cafile`, and `ssl_uri`.
 See their use in the code [here](https://github.com/mpcarter/dbt-vertica/blob/d15f925049dabd2833b4d88304edd216e3f654ed/dbt/adapters/vertica/connections.py#L72-L87).
 ## Reach out!

@@ -3,10 +3,10 @@
   {% set unique_key = config.get('unique_key')   or 'none' %}
 
   {% set target_relation = this %}
-  {%- set existing_relation = load_cached_relation(this) -%}
-  
-  -- {% set existing_relation = load_relation(this) %}
-  {% set tmp_relation = make_temp_relation(this) %}
+  -- {%- set existing_relation = load_cached_relation(this) -%}
+  {% set existing_relation = load_relation(this) %}
+   {%- set target_relation = this.incorporate(type='table') -%}
+  {% set tmp_relation = make_temp_relation(target_relation) %}
   {%- set full_refresh_mode = (should_full_refresh()) -%}
   {%- set on_schema_change = incremental_validate_on_schema_change(config.get('on_schema_change'), default='ignore') -%}
 
@@ -36,7 +36,6 @@
       {% set backup_identifier = existing_relation.identifier ~ "__dbt_backup" %}
       {% set backup_relation = existing_relation.incorporate(path={"identifier": backup_identifier}) %}
       {% do adapter.drop_relation(backup_relation) %}
-
       {% do adapter.rename_relation(existing_relation, backup_relation) %}
       {% set build_sql = vertica__create_table_as(False, target_relation, sql) %}
       {% do to_drop.append(backup_relation) %}
@@ -51,40 +50,36 @@
       
       {% set need_swap = true %}
       {% do to_drop.append(backup_relation) %}
-      
   {% else %}
-       
       {% do run_query(vertica__create_table_as(True, tmp_relation, sql)) %}
       {% do adapter.expand_target_column_types(
              from_relation=tmp_relation,
              to_relation=target_relation) %}
-             
       -- {#-- Process schema changes. Returns dict of changes if successful. Use source columns for upserting/merging --#}
-      {% set dest_columns = process_schema_changes(on_schema_change, tmp_relation, existing_relation) %}
+         {% set msg %}
+       sachin: {{tmp_relation}}
+    {% endset %}
+  {% do log(msg) %}
+      {% set dest_columns = process_schema_changes(on_schema_change, tmp_relation, target_relation) %}
       {% if not dest_columns %}
-        {% set dest_columns = adapter.get_columns_in_relation(existing_relation) %}
+      {%  set dest_columns =  vertica__get_columns_in_relation(existing_relation)%}
+        -- {% set dest_columns = adapter.get_columns_in_relation(existing_relation) %}
       {% endif %}
     --   {% if unique_key is none%}
     --     { % do exceptions.raise_compiler_error('unique is required argument  ' ~ unique_key) %}
 
-       
     -- {% else %}
       {% set build_sql = vertica__get_incremental_sql(strategy, target_relation, tmp_relation, unique_key, dest_columns) %}
     --  {% endif %}
   {% endif %}
-
   {% call statement("main") %}
       {{ build_sql }}
   {% endcall %}
-
-  
   {% if need_swap %}
       {% do adapter.rename_relation(target_relation, backup_relation) %}
       {% do adapter.rename_relation(intermediate_relation, target_relation) %}
   {% endif %}
-
   {% do persist_docs(target_relation, model) %}
-
   {% if existing_relation is none or existing_relation.is_view or should_full_refresh() %}
     {% do create_indexes(target_relation) %}
   {% endif %}
