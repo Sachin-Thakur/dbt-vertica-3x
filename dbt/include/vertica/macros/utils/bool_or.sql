@@ -1,4 +1,4 @@
-{% macro vertica__bool_or(expression) -%}
+{% macro bool_or(expression) -%}
 
     logical_or({{ expression }})
 

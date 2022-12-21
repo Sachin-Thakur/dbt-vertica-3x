@@ -4,7 +4,7 @@
 
      {% set log_message = 'Invalid value for on_schema_change (%s) specified. Setting default value of %s.' % (on_schema_change, default) %}
      {% do log(log_message) %}
-      {{log_message}}
+
      {{ return(default) }}
 
    {% else %}

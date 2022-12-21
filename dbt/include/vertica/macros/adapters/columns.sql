@@ -43,6 +43,50 @@
 
 
 
+{% macro alter_column_type(relation, column_name, new_column_type) -%}
+  {{ return(adapter.dispatch('alter_column_type', 'dbt')(relation, column_name, new_column_type)) }}
+{% endmacro %}
+
+
+
+{% macro diff_columns(source_columns, target_columns) %}
+
+  {% set result = [] %}
+  {% set source_names = source_columns | map(attribute = 'column') | list %}
+  {% set target_names = target_columns | map(attribute = 'column') | list %}
+
+   {# --check whether the name attribute exists in the target - this does not perform a data type check #}
+   {% for sc in source_columns %}
+     {% if sc.name not in target_names %}
+        {{ result.append(sc) }}
+     {% endif %}
+   {% endfor %}
+
+  {{ return(result) }}
+
+{% endmacro %}
+{% macro diff_column_data_types(source_columns, target_columns) %}
+
+  {% set result = [] %}
+  {% for sc in source_columns %}
+    {% set tc = target_columns | selectattr("name", "equalto", sc.name) | list | first %}
+    {% if tc %}
+      {% if sc.data_type != tc.data_type and not sc.can_expand_to(other_column=tc) %}
+        {{ result.append( { 'column_name': tc.name, 'new_type': sc.data_type } ) }}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {{ return(result) }}
+
+{% endmacro %}
+
+
+
+
+
+
+
 {% macro vertica__alter_column_type(relation, column_name, new_column_type) -%}
   {#
     1. Create a new column (w/ temp name and correct type)
@@ -63,36 +107,39 @@
 
 
 
-{% macro alter_relation_add_remove_columns(relation, add_columns = none, remove_columns = none) -%}
+{% macro alter_relation_add_remove_columns(relation, add_columns, remove_columns ) -%}
   {{ return(adapter.dispatch('alter_relation_add_remove_columns', 'dbt')(relation, add_columns, remove_columns)) }}
 {% endmacro %}
 
+
 {% macro vertica__alter_relation_add_remove_columns(relation, add_columns, remove_columns) %}
-  
   {% if add_columns is none %}
     {% set add_columns = [] %}
   {% endif %}
   {% if remove_columns is none %}
     {% set remove_columns = [] %}
   {% endif %}
-  
-  {% set sql -%}
-     
-     alter {{ relation.type }} {{ relation }}
-       
             {% for column in add_columns %}
-               add column {{ column.name }} {{ column.data_type }}{{ ',' if not loop.last }}
-            {% endfor %}{{ ',' if remove_columns | length > 0 }}
-            
-            {% for column in remove_columns %}
-                drop column {{ column.name }}{{ ',' if not loop.last }}
+             {% set sql -%}
+              alter table {{ relation }}
+               add column {{  adapter.quote(column.name) }} {{ column.data_type }} 
+                {%- endset -%} 
+               {% do run_query(sql) %}
             {% endfor %}
-  
-  {%- endset -%}
-
-  {% do run_query(sql) %}
-
+            {% for column in remove_columns %}  
+             {% set sql -%}
+              alter table  {{ relation }} 
+                drop column {{  adapter.quote(column.name) }}  ;
+                 {%- endset -%} 
+             
+            {% endfor %}
+             {% do log(sql) %}
+              {% do run_query(sql) %}
+              
+           
+  -- {% do run_query(sql) %}
 {% endmacro %}
+
 
 
 {# 

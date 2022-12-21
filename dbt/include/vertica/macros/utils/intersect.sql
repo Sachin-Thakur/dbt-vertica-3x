@@ -1,4 +1,4 @@
-{% macro vertica__intersect() %}
+{% macro intersect() %}
 
     intersect distinct
 

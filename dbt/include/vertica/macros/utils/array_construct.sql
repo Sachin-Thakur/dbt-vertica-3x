@@ -1,4 +1,4 @@
-{% macro vertica__array_construct(inputs, data_type) -%}
+{% macro array_construct(inputs, data_type) -%}
     {% if inputs|length > 0 %}
     [ {{ inputs|join(' , ') }} ]
     {% else %}
