@@ -44,7 +44,14 @@ jobs:
       run: python setup.py install
     - name: Test
 
-      run: python -m pytest tests/functional/adapter/
+      run: python -m pytest tests/functional/adapter/test_basic.py
+      run: python -m pytest tests/functional/adapter/concurrency/
+      run: python -m pytest tests/functional/adapter/ephemeral/
+      run: python -m pytest tests/functional/adapter/test_doc_gen.py
+      run: python -m pytest tests/functional/adapter/test_data_types.py
+      run: python -m pytest tests/functional/adapter/utils/test_basic.py
+      run: python -m pytest tests/functional/adapter/utils/test_concat.py
+      run: python -m pytest tests/functional/adapter/utils/data_type/
 
 
 
