@@ -39,6 +39,9 @@
   -- build model
   {% call statement('main') -%}
     {{ create_table_as(False, intermediate_relation, sql) }}
+      {% if grant_config is not none %}
+        {{ vertica__do_apply_grants(target_relation, grant_config) }}
+      {% endif %}
   {%- endcall %}
 
   -- cleanup
@@ -53,9 +56,8 @@
   -- `COMMIT` happens here
   {{ adapter.commit() }}
 
-  {% call statement('main') %}
-    {{ vertica__do_apply_grants(target_relation, grant_config) }}
-  {% endcall %}
+
+
 
   -- finally, drop the existing/backup relation after the commit
   {{ drop_relation_if_exists(backup_relation) }}
