@@ -17,21 +17,21 @@
     {{ sql }}
   )
 
-  {% if order_by is not none  %}
-    order by {{ order_by  }}
-  {%- endif -%}
+  {% if order_by is not none  -%}
+      order by {{ order_by }} 
+  {% endif -%}
 
   {% if segmented_by_string is not none -%}
-    segmented by {{ segmented_by_string }} {% if segmented_by_all_nodes %} ALL NODES {% endif %}
+              segmented  BY  {{ segmented_by_string }} {% if segmented_by_all_nodes %} ALL NODES {% endif %}
   {% endif %}
 
-  {% if no_segmentation =='True' or no_segmentation=='true' %} 
+  {% if no_segmentation =='True' or no_segmentation=='true'  -%} 
     UNSEGMENTED ALL NODES 
-  {% endif %}
+  {% endif -%}
 
   {% if ksafe is not none -%}
     ksafe {{ ksafe }}
-  {% endif %}
+  {% endif -%}
   
   {% if partition_by_string is not none -%}
     ; alter table {{ relation.include(database=(not temporary), schema=(not temporary)) }} partition BY {{ partition_by_string }}
