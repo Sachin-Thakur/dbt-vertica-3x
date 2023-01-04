@@ -84,6 +84,7 @@ setup(
         'dbt': [
             'include/vertica/dbt_project.yml',
             'include/vertica/profile_template.yml',
+            'include/vertica/sample_profiles.yml',
             'include/vertica/macros/*.sql',
             'include/vertica/macros/adapters/*.sql',
             'include/vertica/macros/materializations/*.sql',
