@@ -112,6 +112,8 @@ Format of  passing backup server node in profiles.yml is  below:
 `backup_server_node: ['123.123.123.123','www.abc.com',('123.123.123.123',5433)]`
 
 
+`INCLUDE SCHEMA PRIVILEGES` as the default for views and table materializations and instructions on how a user can disable it if needed.
+
 
 There are three options for SSL: `ssl`, `ssl_env_cafile`, and `ssl_uri`.
 See their use in the code [here](https://github.com/mpcarter/dbt-vertica/blob/d15f925049dabd2833b4d88304edd216e3f654ed/dbt/adapters/vertica/connections.py#L72-L87).
