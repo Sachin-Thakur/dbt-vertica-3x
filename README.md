@@ -112,11 +112,14 @@ Format of  passing backup server node in profiles.yml is  below:
 `backup_server_node: ['123.123.123.123','www.abc.com',('123.123.123.123',5433)]`
 
 
-`INCLUDE SCHEMA PRIVILEGES` as the default for views and table materializations and instructions on how a user can disable it if needed.
-
 
 There are three options for SSL: `ssl`, `ssl_env_cafile`, and `ssl_uri`.
 See their use in the code [here](https://github.com/mpcarter/dbt-vertica/blob/d15f925049dabd2833b4d88304edd216e3f654ed/dbt/adapters/vertica/connections.py#L72-L87).
+
+
+`INCLUDE SCHEMA PRIVILEGES` as the default for views and table materializations and instructions on how a user can disable it if needed.
+
+
 ## Reach out!
 First off, I would not have been able to make this adapater if the smart folks at dbt labs didn't make it so easy. That said, it seems every database has its own little quirks. I ran into several different issues when adapting the macros to Vertica. If you find something not working right, please open an issue (assuming it has to do with the adapter and not dbt itself).
 Also, I would be excited to hear about anyone who is able to benefit from using dbt with Vertica. (Just open an issue to leave me a comment.)
