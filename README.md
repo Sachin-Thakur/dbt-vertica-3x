@@ -117,7 +117,7 @@ There are three options for SSL: `ssl`, `ssl_env_cafile`, and `ssl_uri`.
 See their use in the code [here](https://github.com/mpcarter/dbt-vertica/blob/d15f925049dabd2833b4d88304edd216e3f654ed/dbt/adapters/vertica/connections.py#L72-L87).
 
 
-`INCLUDE SCHEMA PRIVILEGES` as the default for views and table materializations and instructions on how a user can disable it if needed.
+`INCLUDE SCHEMA PRIVILEGES` as the default for views and table materializations and if not required then you can exclude it manually, if you have the privileges to remove.
 
 
 ## Reach out!

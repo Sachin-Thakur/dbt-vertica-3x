@@ -7,9 +7,9 @@
 
   {% set invalid_strategy_msg -%}
     Invalid incremental strategy provided: {{ strategy }}
-    Expected one of: 'merge', 'delete+insert','insert+overwrite','append'
+    Expected one of: 'merge', 'delete+insert','insert_overwrite','append'
   {%- endset %}
-  {% if strategy not in ['merge', 'delete+insert','insert+overwrite','append'] %}
+  {% if strategy not in ['merge', 'delete+insert','insert_overwrite','append'] %}
     {% do exceptions.raise_compiler_error(invalid_strategy_msg) %}
   {% endif %}
 
@@ -33,7 +33,7 @@
     {% do return(vertica__get_merge_sql(target_relation, tmp_relation, unique_key, dest_columns)) %}
   {% elif strategy == 'delete+insert' %}
     {% do return(vertica__get_delete_insert_merge_sql(target_relation, tmp_relation, unique_key, dest_columns)) %}
-  {% elif strategy == 'insert+overwrite' %}
+  {% elif strategy == 'insert_overwrite' %}
     {% do return(vertica__get_insert_overwrite_merge_sql(target_relation, tmp_relation, dest_columns)) %}
   {% elif strategy == 'append' %}
     {% do return(vertica__get_incremental_append_sql(target_relation, tmp_relation,  dest_columns)) %}
