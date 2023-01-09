@@ -1,5 +1,6 @@
 {% macro vertica__get_columns_in_relation(relation) -%}
-  {% call statement('get_columns_in_relation', fetch_result=True) %}
+ 
+   {% call statement('get_columns_in_relation', fetch_result=True) %}
     select
     column_name
     , data_type
@@ -32,6 +33,7 @@
     order by ordinal_position
   {% endcall %}
   {% set table = load_result('get_columns_in_relation').table %}
+
   {{ return(sql_convert_columns_in_relation(table)) }}
 {% endmacro %}
 
@@ -41,6 +43,59 @@
     'sql_convert_columns_in_relation macro not implemented for adapter '+adapter.type()) }}
 {%- endmacro %}
 
+
+
+{% macro vertica__get_columns_in_temp_relation(relation) -%}
+ 
+   {% call statement('get_columns_in_temp_relation', fetch_result=True) %}
+    select
+    column_name
+    , data_type
+    , character_maximum_length
+    , numeric_precision
+    , numeric_scale
+    from (
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.columns
+        where  table_name = '{{ relation.identifier }}'
+        union all
+        select
+        column_name
+        , data_type
+        , character_maximum_length
+        , numeric_precision
+        , numeric_scale
+        , ordinal_position
+        from v_catalog.view_columns
+        where table_name = '{{ relation.identifier }}'
+    ) t
+    order by ordinal_position
+  {% endcall %}
+  {% set table = load_result('get_columns_in_temp_relation').table %}
+
+  {{ return(sql_convert_columns_in_relation(table)) }}
+{% endmacro %}
+
+
+
+
+
+
+
+{% macro sql_convert_columns_in_relation(table) -%}
+  {% set columns = [] %}
+  {% for row in table %}
+    {% do columns.append(api.Column(*row)) %}
+  {% endfor %}
+ 
+  {{ return(columns) }}
+{% endmacro %}
 
 
 {% macro alter_column_type(relation, column_name, new_column_type) -%}
@@ -57,6 +112,7 @@
 
    {# --check whether the name attribute exists in the target - this does not perform a data type check #}
    {% for sc in source_columns %}
+
      {% if sc.name not in target_names %}
         {{ result.append(sc) }}
      {% endif %}
@@ -122,7 +178,7 @@
             {% for column in add_columns %}
              {% set sql -%}
               alter table {{ relation }}
-               add column {{  adapter.quote(column.name) }} {{ column.data_type }} 
+                   add column {{  adapter.quote(column.name) }} {{ column.data_type }} 
                 {%- endset -%} 
                {% do run_query(sql) %}
             {% endfor %}
