@@ -1,7 +1,7 @@
 # dbt-vertica
-[dbt](https://www.getdbt.com/) adapter for [Vertica](https://www.vertica.com/) uses [vertica-python](https://github.com/vertica/vertica-python) to connect to your Vertica database.
+[dbt](https://www.getdbt.com/) adapter for [Vertica](https://www.vertica.com/). The adapter uses [vertica-python](https://github.com/vertica/vertica-python) to connect to your Vertica database.
 
-For more information on using dbt with Vertica, consult the Vertica Setup and Configuration pages.
+For more information on using dbt with Vertica, consult the [Vertica-Setup](https://docs.getdbt.com/reference/warehouse-setups/vertica-setup) and [Configuration](https://docs.getdbt.com/reference/resource-configs/vertica-configs) pages.
 
 ## Supported Features
 ### dbt Core Features
@@ -74,14 +74,36 @@ your-profile:
 | schema | The schema to build models into. | No | None | VMart |
 | connection_load_balance | A Boolean value that indicates whether the connection can be redirected to a host in the database other than host. | No | true | true |
 | backup_server_node | List of hosts to connect to if the primary host specified in the connection (host, port) is unreachable. Each item in the list should be either a host string (using default port 5433) or a (host, port) tuple. A host can be a host name or an IP address. | No | none | ['123.123.123.123','www.abc.com',('123.123.123.124',5433)]
-| retries | The retry times after an unsuccessful connection. | No | 1 | 3 |
+| retries | The retry times after an unsuccessful connection. | No | 2 | 3 |
 | threads | The number of threads the dbt project will run on. | No | 1 | 3 |
-| label | A session label to identify the connection. | No | An auto-generated label with format of: dbt_<username>	| dbt_dbadmin |
+| label | A session label to identify the connection. | No | An auto-generated label with format of: dbt_username	| dbt_dbadmin |
 
 For more information on Vertica’s connection properties please refer to [Vertica-Python](https://github.com/vertica/vertica-python#create-a-connection) Connection Properties.
 
-There are three options for SSL: `ssl`, `ssl_env_cafile`, and `ssl_uri`.
-See their use in the code [here](https://github.com/mpcarter/dbt-vertica/blob/d15f925049dabd2833b4d88304edd216e3f654ed/dbt/adapters/vertica/connections.py#L72-L87).
 
 
-added `INCLUDE SCHEMA PRIVILEGES` as the default for views and table materializations and if not required then user can exclude it manually.
+
+## Changelog
+
+See the [changelog](https://github.com/vertica/dbt-vertica/Changelog.md)
+
+
+## Contributing guidelines
+Have a bug or an idea? Please see [CONTRIBUTING.md](https://github.com/vertica/dbt-vertica/CONTRIBUTING.md) for details
+
+## Develop
+Run a local Vertica instance like:
+    docker run -p 5433:5433 \
+               -p 5444:5444 \
+               -e VERTICA_DB_NAME=docker \
+               -e VMART_ETL_SCRIPT="" \
+               -e VMART_ETL_SQL="" \
+               vertica/vertica-ce
+Access the local Vertica instance like:
+    docker exec -it <docker_image_name> /opt/vertica/bin/vsql
+You need the pytest dbt adapter:
+    pip3 install pytest-dbt-adapter==0.6.0
+Run tests via:
+    pytest tests/functional/adapater
+    # run an individual test with increased logging:
+    pytest tests/functional/adapater/test_basic.py
