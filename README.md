@@ -57,7 +57,7 @@ your-profile:
       connection_load_balance: True
       backup_server_node: [list of backup hostnames or IPs]
       retries: [1 or more]
-threads: [1 or more] 
+      threads: [1 or more] 
   target: dev
 
 ```
