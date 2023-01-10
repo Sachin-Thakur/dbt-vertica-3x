@@ -92,18 +92,30 @@ See the [changelog](https://github.com/vertica/dbt-vertica/Changelog.md)
 Have a bug or an idea? Please see [CONTRIBUTING.md](https://github.com/vertica/dbt-vertica/CONTRIBUTING.md) for details
 
 ## Develop
+## Develop
+
 Run a local Vertica instance like:
+
     docker run -p 5433:5433 \
                -p 5444:5444 \
                -e VERTICA_DB_NAME=docker \
                -e VMART_ETL_SCRIPT="" \
                -e VMART_ETL_SQL="" \
                vertica/vertica-ce
+
 Access the local Vertica instance like:
+
     docker exec -it <docker_image_name> /opt/vertica/bin/vsql
+
+
 You need the pytest dbt adapter:
-    pip3 install pytest-dbt-adapter==0.6.0
+
+    pip3 install  dbt-tests-adapter==1.3.0
+
 Run tests via:
-    pytest tests/functional/adapater
-    # run an individual test with increased logging:
-    pytest tests/functional/adapater/test_basic.py
+  
+    pytest tests/functional/adapter
+    # run an individual test 
+    pytest tests/functional/adapter/test_basic.py
+  
+  
