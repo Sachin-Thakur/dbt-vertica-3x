@@ -92,7 +92,6 @@ See the [changelog](https://github.com/vertica/dbt-vertica/Changelog.md)
 Have a bug or an idea? Please see [CONTRIBUTING.md](https://github.com/vertica/dbt-vertica/CONTRIBUTING.md) for details
 
 ## Develop
-## Develop
 
 Run a local Vertica instance like:
 
