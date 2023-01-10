@@ -78,7 +78,7 @@ your-profile:
 | threads | The number of threads the dbt project will run on. | No | 1 | 3 |
 | label | A session label to identify the connection. | No | An auto-generated label with format of: dbt_<username>	| dbt_dbadmin |
 
-For more information on Vertica’s connection properties please refer to Vertica-Python Connection Properties.
+For more information on Vertica’s connection properties please refer to [Vertica-Python](https://github.com/vertica/vertica-python#create-a-connection) Connection Properties.
 
 There are three options for SSL: `ssl`, `ssl_env_cafile`, and `ssl_uri`.
 See their use in the code [here](https://github.com/mpcarter/dbt-vertica/blob/d15f925049dabd2833b4d88304edd216e3f654ed/dbt/adapters/vertica/connections.py#L72-L87).

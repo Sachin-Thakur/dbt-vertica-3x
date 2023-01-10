@@ -54,7 +54,9 @@ git checkout -b my-fix-branch
 
 Install the dbt-vertica dependencies for development:
 ```shell
-dbt run
+
+pip install dbt-vertica
+
 ```
 
 ## Step 4: Get the test suite running
