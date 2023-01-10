@@ -114,7 +114,7 @@ You need the pytest dbt adapter:
 
 Run tests via:
   
-    pytest tests/functional/adapter
+    pytest tests/functional/adapter/
     # run an individual test 
     pytest tests/functional/adapter/test_basic.py
   
