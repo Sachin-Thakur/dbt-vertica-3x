@@ -116,5 +116,3 @@ Run tests via:
     pytest tests/functional/adapter/
     # run an individual test 
     pytest tests/functional/adapter/test_basic.py
-  
-  
