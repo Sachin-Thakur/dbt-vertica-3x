@@ -1,3 +1,4 @@
+
 # Copyright (c) [2018-2023]  Micro Focus or one of its affiliates.
 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,28 +13,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 import pytest
-from dbt.tests.adapter.utils.data_types.base_data_type_macro import BaseDataTypeMacro
+import os
 
-seeds__expected_csv = """boolean_col
-True
-""".lstrip()
+# Import the standard functional fixtures as a plugin
+# Note: fixtures with session scope need to be local
+pytest_plugins = "dbt.tests.fixtures.project"
 
-models__actual_sql = """
-select cast('True' as {{ type_boolean() }}) as boolean_col
-"""
-
-
-class BaseTypeBoolean(BaseDataTypeMacro):
-    @pytest.fixture(scope="class")
-    def seeds(self):
-        return {"expected.csv": seeds__expected_csv}
-
-    @pytest.fixture(scope="class")
-    def models(self):
-        return {"actual.sql": self.interpolate_macro_namespace(models__actual_sql, "type_boolean")}
-
-
-class TestTypeBoolean(BaseTypeBoolean):
-    pass
+# The profile dictionary, used to write out profiles.yml
+# dbt will supply a unique schema per test, so we do not specify 'schema' here
+@pytest.fixture(scope="class")
+def dbt_profile_target():
+    return {
+        'type': 'vertica',
+        'threads': 1,
+        'host': '159.65.150.255',
+        'username': 'dbadmin',
+        'password': '',
+        'database': 'VMart',
+        'port': 5433,
+    }
