@@ -42,7 +42,7 @@ def dbt_profile_target():
     return {
          'type': 'vertica',
         'threads': 1,
-        'host': '159.65.150.255',
+        'host': '127.0.0.1',
         'username': 'dbadmin',
         'password': '',
         'database': 'VMart',
@@ -92,20 +92,20 @@ def dbt_profile_target(request):
 def apache_spark_target():
     return {
         "type": "spark",
-        "host": "159.65.150.255",
+        "host": "127.0.0.1",
     }
 
 def databricks_sql_endpoint_target():
     return {
         "type": "spark",
-        "host": "159.65.150.255",
+        "host": "127.0.0.1",
     }
 
 def vertica_target():
     return {
        'type': 'vertica',
         'threads': 1,
-        'host': '159.65.150.255',
+        'host': '127.0.0.1',
         'username': 'dbadmin',
         'password': '',
         'database': 'VMart',
