@@ -51,6 +51,7 @@ def dbt_profile_target():
     }
 
 
+
 #  return {
 #         "type": "vertica",
 #         "threads": 1,
